@@ -16,8 +16,10 @@
   }
 }
 
-body {
+html,body {
   color: rgb(var(--foreground-rgb));
+    -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
 }
 .title {
@@ -30,11 +32,36 @@ body {
   background-image: url(https://pic.imgdb.cn/item/6682c90bd9c307b7e9438e73.webp) ;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed
 }
+.hideScrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+
+.borderImg{
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+     border-radius: 10px;
+}
+.borderImg::after{
+ 
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(https://pic.imgdb.cn/item/6682fc04d9c307b7e98a9912.webp);
+    background-size: 105% 105%; /* 拉伸背景图片以完全填满盒子 */
+    background-repeat: no-repeat; /* 防止背景图片重复 */
+  background-position: center;
+
+
+
+}
+
