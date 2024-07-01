@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+html,body {
+  color: rgb(var(--foreground-rgb));
+    -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+}
+.title {
+  text-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+}
+.btn1{
+  background-image:linear-gradient(to right,#5c4f4c,#8F7772,#5c4f4c)
+}
+.homepage {
+  background-image: url(https://pic.imgdb.cn/item/6682c90bd9c307b7e9438e73.webp) ;
+  background-size: cover;
+  background-position: center;
+}
+.hideScrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+.recommendCard{
+  background-image: url(https://pic.imgdb.cn/item/668303e2d9c307b7e9916910.webp);
+  background-size: cover;
+  background-position: center;
+}
+.borderImg{
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+     border-radius: 10px;
+}
+.borderImg::after{
+ 
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(https://pic.imgdb.cn/item/6682fc04d9c307b7e98a9912.webp);
+    background-size: 105% 105%; /* 拉伸背景图片以完全填满盒子 */
+    background-repeat: no-repeat; /* 防止背景图片重复 */
+  background-position: center;
+
+
+
+}
+
