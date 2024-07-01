@@ -44,7 +44,11 @@ html,body {
     text-wrap: balance;
   }
 }
-
+.recommendCard{
+  background-image: url(https://pic.imgdb.cn/item/668303e2d9c307b7e9916910.webp);
+  background-size: cover;
+  background-position: center;
+}
 .borderImg{
   position: relative;
   overflow: hidden;
