@@ -10,14 +10,13 @@ export default function Home() {
           <div className="w-[500px] aspect-[269/125] relative mx-auto max-w-[80%] ">
             <Image fill src='https://pic.imgdb.cn/item/6682cc04d9c307b7e9487df1.webp' alt="logo" />
           </div>
-
           <div className="mt-[-10px]">
             <h1 className="text-[50px] title w-[fit-content] font-bold text-white mx-auto">炉石传说</h1>
             <div className="text-[rgb(255,208,151)] text-center mt-[16px] text-[20px] font-bold title">查询登顶,热门卡组。制作卡牌。</div>
             <div className="flex text-[16px] justify-center text-[#fff] mt-[24px] font-bold gap-[32px]">
               <div className="btn1 px-[4px] py-[4px] text-center shadow-lg  rounded-[6px] flex justify-center items-center">
                 <div className="py-[2px] px-[2px] bg-[#7e3690] rounded-[6px]">
-                  <Link href='/' className="block w-[110px] shadow-lg h-[40px] leading-[40px]  bg-gradient-to-r from-[#5A1B87] via-[#AB28C1] to-[#591C87] rounded-[4px]">
+                  <Link href='/cards' className="block w-[110px] shadow-lg h-[40px] leading-[40px]  bg-gradient-to-r from-[#5A1B87] via-[#AB28C1] to-[#591C87] rounded-[4px]">
                     卡组查询
                   </Link>
                 </div>
@@ -46,9 +45,9 @@ export default function Home() {
           欢迎自投卡组。
         </div>
           <div className="text-[16px] font-normal mt-[12px]">分享卡组,谢谢谢谢🙏</div>
-          <div className="btn1 mx-auto px-[4px] py-[4px] text-center shadow-lg mt-[40px] w-[fit-content]  rounded-[6px] flex justify-center items-center">
+          <div className="btn1 mx-auto font-bold px-[4px] py-[4px] text-center shadow-lg mt-[40px] w-[fit-content]  rounded-[6px] flex justify-center items-center">
             <div className=" py-[2px] px-[2px] bg-[#7e3690] rounded-[6px]">
-              <Link href='https://www.hearthcards.net' prefetch={false} className="block w-[110px] shadow-lg h-[40px] leading-[40px]  bg-gradient-to-r from-[#5A1B87] via-[#AB28C1] to-[#591C87] rounded-[4px]">
+              <Link href='/post' prefetch={false} className="block w-[110px] shadow-lg h-[40px] leading-[40px]  bg-gradient-to-r from-[#5A1B87] via-[#AB28C1] to-[#591C87] rounded-[4px]">
                 卡组上传
               </Link>
             </div>
