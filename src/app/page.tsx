@@ -5,6 +5,10 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="w-[100vw] min-h-[100vh] bg-[#0D0B20] hideScrollbar">
+      {/* <div className="w-[calc(100%-32px)] text-[#fff] font-bold px-[24px] rounded-[4px] mx-auto h-[40px] bg-[#442F2D]  flex items-center fixed top-[16px] z-[5] left-[50%] translate-x-[-50%]">
+           炉石超级无敌好玩.
+        </div> */}
+
       <div className="w-[100vw] homepage  aspect-[16/7] flex justify-center items-center relative">
         <div className="w-[100vw]">
           <div className="w-[500px] aspect-[269/125] relative mx-auto max-w-[80%] ">

@@ -21,7 +21,15 @@ html,body {
     -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 
+  
 }
+.card{
+        transform-style: preserve-3d;
+}
+.card:hover{
+filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
+}
+
 .title {
   text-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
 }
@@ -48,6 +56,7 @@ html,body {
   background-image: url(https://pic.imgdb.cn/item/668303e2d9c307b7e9916910.webp);
   background-size: cover;
   background-position: center;
+  background-position: fixed;
 }
 .borderImg{
   position: relative;
@@ -64,8 +73,34 @@ html,body {
     background-size: 105% 105%; /* 拉伸背景图片以完全填满盒子 */
     background-repeat: no-repeat; /* 防止背景图片重复 */
   background-position: center;
+}
+.mainSection{
+  background-image: url(https://pic.imgdb.cn/item/6683b34dd9c307b7e9a0f930.jpg);
+      background-size: 105% 105%; /* 拉伸背景图片以完全填满盒子 */
+    background-repeat: no-repeat; /* 防止背景图片重复 */
+  background-position: center;
+}
+
+.shake1 {
+  animation:shake 1s ease-in infinite alternate;
+}
 
 
 
+@keyframes shake {
+ 0%{
+    transform: rotateZ(-20deg) ;
+
+  }
+  10%{
+     transform: rotateZ(0deg);
+   
+  }
+  20%{
+      transform: rotateZ(-20deg) ;
+  }
+  30%{
+       transform: rotateZ(0deg);
+  }
 }
 
