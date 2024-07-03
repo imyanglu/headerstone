@@ -2,8 +2,8 @@
 import Image from "next/image"
 import { RecommendSection } from "./conponents"
 const Page = () => {
-    return <div className="w-[100vw] bg-[#fff] flex flex-col min-h-[100vh] ">
-        <div className="w-full h-[100px] relative flex items-center">
+    return <div className="w-[100vw] bg-[#E7D5A7] flex flex-col min-h-[100vh] ">
+        <div className="w-full h-[100px] relative flex items-center bg-[#561212] ">
             <div className="absolute top-[1px] z-[10] h-[40px] w-full ">
                 <Image src='https://pic.imgdb.cn/item/6683b127d9c307b7e99abe59.png'  alt="" fill />
             </div>
