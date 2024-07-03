@@ -5,7 +5,6 @@ import Link from "next/link"
 const Data = [{ name: '死亡骑士', slug: 'deathknight', pic: 'https://pic.imgdb.cn/item/66845b2ed9c307b7e9f05c72.png' },
     { name: '恶魔猎人', slug: 'demonhunter', pic: 'https://pic.imgdb.cn/item/66845b4fd9c307b7e9f07312.png' },
     { name: '德鲁伊', slug: 'druid', pic: 'https://pic.imgdb.cn/item/66845b75d9c307b7e9f09452.png' },
-  
     { name: '猎人', slug: 'hunter', pic: 'https://pic.imgdb.cn/item/66845b90d9c307b7e9f0ab9a.png' },
     { name: '法师', slug: 'mage', pic: 'https://pic.imgdb.cn/item/66845bafd9c307b7e9f0c626.png' },
     { name: '圣骑士', slug: 'paladin', pic: 'https://pic.imgdb.cn/item/66845bc1d9c307b7e9f0d558.png' },
@@ -17,7 +16,7 @@ const Data = [{ name: '死亡骑士', slug: 'deathknight', pic: 'https://pic.img
 ]
 
 const Page = () => { 
-    return <div className="w-[100vw]  relative min-h-[100vh] p-[24px]">
+    return <div className="w-[100vw]  relative min-h-[100vh] p-[24px] bg-[#711B1C]">
         <div className="w-[100vw] bottom-0 bg-[#000000] z-[-2]  absolute top-0 left-0">
             <img src='https://pic.imgdb.cn/item/66851590d9c307b7e91cba2a.jpg' className="w-full h-full" alt=''/>
         </div>

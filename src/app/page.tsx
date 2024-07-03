@@ -48,13 +48,15 @@ export default function Home() {
           <div className=" font-bold text-[24px]">
           欢迎自投卡组。
         </div>
-          <div className="text-[16px] font-normal mt-[12px]">分享卡组,谢谢谢谢🙏</div>
+          <div className="text-[16px] font-normal mt-[12px]">分享卡组,谢谢谢谢🙏暫不支持上傳</div>
+               <div className="text-[16px] font-normal mt-[12px]">QQ：499339182</div>
           <div className="btn1 mx-auto font-bold px-[4px] py-[4px] text-center shadow-lg mt-[40px] w-[fit-content]  rounded-[6px] flex justify-center items-center">
-            <div className=" py-[2px] px-[2px] bg-[#7e3690] rounded-[6px]">
+        
+            {/* <div className=" py-[2px] px-[2px] bg-[#7e3690] rounded-[6px]">
               <Link href='/post' prefetch={false} className="block w-[110px] shadow-lg h-[40px] leading-[40px]  bg-gradient-to-r from-[#5A1B87] via-[#AB28C1] to-[#591C87] rounded-[4px]">
                 卡组上传
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="flex-1">
