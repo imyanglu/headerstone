@@ -8,7 +8,7 @@ type CardGroupProps = {
     code?: string;
     name: string;
     pic: string;
-    author: string;
+    author?: string;
     intr?: string;
     winningRate: string;
     cards:[]
