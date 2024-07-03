@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image"
-import { RecommendSection } from "./conponents"
+
 const Page = () => {
     return <div className="w-[100vw] bg-[#fff] flex flex-col min-h-[100vh] ">
         <div className="w-full h-[100px] relative flex items-center">
@@ -17,7 +17,7 @@ const Page = () => {
             <img className="relative  z-[2] w-[50px] ml-[24px] shake1" alt="" src='https://pic.imgdb.cn/item/6683bbedd9c307b7e9b96d01.webp' />
             <div className="border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000] ml-[12px] relative z-[2] rounded-[24px]">
                 <div className="outline-[#E3D07F] flex outline outline-[3px] px-[24px] py-[3px]  rounded-[24px] border-[2px] border-[#000] font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
-                  卡组查询
+                  标准卡组
               </div>
             </div>
                 <div className="ml-[32px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[24px]">
@@ -28,7 +28,7 @@ const Page = () => {
             </div>
         </div>
         <div className="mainSection flex-1 w-[100vw] bg-[#E8D5AA] px-[24px] py-[16px]">
-            <RecommendSection />
+         
         </div>
 
     </div>
