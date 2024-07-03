@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { ManaControl } from "@/app/compoents"
 import Image from "next/image"
 
 const Page = () => {
@@ -20,6 +21,7 @@ const Page = () => {
                   标准卡组
               </div>
             </div>
+            <div className="relative z-10"> <ManaControl /></div>
                 <div className="ml-[32px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[24px]">
                 <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
                       <input placeholder="搜索卡组..." className="outline-none text-[14px]  py-[3px]  font-bold bg-[#3D0D0D] text-[#fff]"/>
