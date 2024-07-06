@@ -16,28 +16,27 @@
   }
 }
 
-html,body {
+html,
+body {
   color: rgb(var(--foreground-rgb));
-    -ms-overflow-style: none; /* IE and Edge */
+  -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-
-  
 }
-.card{
-        transform-style: preserve-3d;
+.card {
+  transform-style: preserve-3d;
 }
-.card:hover{
-filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
+.card:hover {
+  filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
 }
 
 .title {
   text-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
 }
-.btn1{
-  background-image:linear-gradient(to right,#5c4f4c,#8F7772,#5c4f4c)
+.btn1 {
+  background-image: linear-gradient(to right, #5c4f4c, #8f7772, #5c4f4c);
 }
 .homepage {
-  background-image: url(https://pic.imgdb.cn/item/6682c90bd9c307b7e9438e73.webp) ;
+  background-image: url(https://pic.imgdb.cn/item/6682c90bd9c307b7e9438e73.webp);
   background-size: cover;
   background-position: center;
 }
@@ -46,104 +45,133 @@ filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
   scrollbar-width: none; /* Firefox */
 }
 
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
-.recommendCard{
+.recommendCard {
   background-image: url(https://pic.imgdb.cn/item/668303e2d9c307b7e9916910.webp);
   background-size: cover;
   background-position: center;
   background-position: fixed;
 }
-.borderImg{
+.borderImg {
   position: relative;
   overflow: hidden;
   padding: 10px;
-     border-radius: 10px;
+  border-radius: 10px;
 }
-.borderImg::after{
- 
+.borderImg::after {
   content: '';
   position: absolute;
   inset: 0;
   background-image: url(https://pic.imgdb.cn/item/6682fc04d9c307b7e98a9912.webp);
-    background-size: 105% 105%; /* 拉伸背景图片以完全填满盒子 */
-    background-repeat: no-repeat; /* 防止背景图片重复 */
+  background-size: 105% 105%; /* 拉伸背景图片以完全填满盒子 */
+  background-repeat: no-repeat; /* 防止背景图片重复 */
   background-position: center;
 }
-.mainSection{
+.mainSection {
   background-image: url(https://pic.imgdb.cn/item/6683b34dd9c307b7e9a0f930.jpg);
-      background-size: 105% 105%; /* 拉伸背景图片以完全填满盒子 */
-    background-repeat: no-repeat; /* 防止背景图片重复 */
+  background-size: 105% 105%; /* 拉伸背景图片以完全填满盒子 */
+  background-repeat: no-repeat; /* 防止背景图片重复 */
   background-position: center;
 }
 
 .shake1 {
-  animation:shake 1s ease-in infinite alternate;
+  animation: shake 1s ease-in infinite alternate;
 }
-.light{
+.light {
   position: relative;
-  text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.95885px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.14147px 1.99499px 0px, rgb(0, 0, 0) -0.83229px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.70157px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.42159px -1.95506px 0px, rgb(0, 0, 0) 0.56732px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.55883px 0px;
+  text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.95885px 0px,
+    rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.14147px 1.99499px 0px,
+    rgb(0, 0, 0) -0.83229px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px,
+    rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.70157px 0px,
+    rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.42159px -1.95506px 0px,
+    rgb(0, 0, 0) 0.56732px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px,
+    rgb(0, 0, 0) 1.92034px -0.55883px 0px;
 }
-.light::after{
+.light::after {
   position: absolute;
   content: '';
   width: 100%;
   height: 100%;
-  left:50%;
-    top:50%;
-  transform: translate(-50%,-50%);
-  background-size:100% 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-size: 100% 100%;
   background-image: url(https://pic.imgdb.cn/item/668588ecd9c307b7e9130c7c.png);
   backdrop-filter: blur(10px);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
-.endText{
-   position: relative;
-  text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.95885px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.14147px 1.99499px 0px, rgb(0, 0, 0) -0.83229px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.70157px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.42159px -1.95506px 0px, rgb(0, 0, 0) 0.56732px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.55883px 0px;
+.endText {
+  position: relative;
+  text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.95885px 0px,
+    rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.14147px 1.99499px 0px,
+    rgb(0, 0, 0) -0.83229px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px,
+    rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.70157px 0px,
+    rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.42159px -1.95506px 0px,
+    rgb(0, 0, 0) 0.56732px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px,
+    rgb(0, 0, 0) 1.92034px -0.55883px 0px;
 }
-.endText::after{
-    position: absolute;
+.endText::after {
+  position: absolute;
   content: '';
   width: 100%;
   height: 100%;
-  left:0px;
-  top:50%;
-  transform: translate(-7px,-50%);
-  background-size:100% 100%;
+  left: 0px;
+  top: 50%;
+  transform: translate(-7px, -50%);
+  background-size: 100% 100%;
   background-image: url(https://pic.imgdb.cn/item/668588ecd9c307b7e9130c7c.png);
   backdrop-filter: blur(10px);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
-.endText:hover::after{
+.endText:hover::after {
   filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
-    opacity: 1;
+  opacity: 1;
 }
-.light:hover::after{
+.light:hover::after {
   opacity: 1;
 }
 
-
-
-@keyframes shake {
- 0%{
-    transform: rotateZ(-20deg) ;
-
-  }
-  10%{
-     transform: rotateZ(0deg);
-   
-  }
-  20%{
-      transform: rotateZ(-20deg) ;
-  }
-  30%{
-       transform: rotateZ(0deg);
-  }
+.deckHead {
+  height: 0px;
+  width: 100%;
+  position: relative;
+  padding-bottom: 34.695%;
+  background: no-repeat url(https://pic.imgdb.cn/item/66896f73d9c307b7e9d834bf.png) center/cover;
+}
+.deckAvatar {
+  background: no-repeat url(https://pic.imgdb.cn/item/66897e91d9c307b7e9f415ac.png) center/cover;
+}
+.deckContainer {
+  background: repeat-y url(https://pic.imgdb.cn/item/66896fd3d9c307b7e9d8e25c.png) top / 100%;
+}
+.deckFoot {
+  background: url(https://pic.imgdb.cn/item/66897034d9c307b7e9d997f9.png) center/cover;
+}
+.stroke {
+  text-shadow: #000 2px 0 0, #000 1.75517px 0.95885px 0, #000 1.0806px 1.68294px 0,
+    #000 0.14147px 1.99499px 0, #000 -0.83229px 1.81859px 0, #000 -1.60229px 1.19694px 0,
+    #000 -1.97998px 0.28224px 0, #000 -1.87291px -0.70157px 0, #000 -1.30729px -1.5136px 0,
+    #000 -0.42159px -1.95506px 0, #000 0.56732px -1.91785px 0, #000 1.41734px -1.41108px 0,
+    #000 1.92034px -0.55883px 0;
 }
 
+@keyframes shake {
+  0% {
+    transform: rotateZ(-20deg);
+  }
+  10% {
+    transform: rotateZ(0deg);
+  }
+  20% {
+    transform: rotateZ(-20deg);
+  }
+  30% {
+    transform: rotateZ(0deg);
+  }
+}
