@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import { getCards } from '@/app/api';
-import { ManaControl } from '@/app/compoents';
+import { DeckContainer, ManaControl } from '@/app/compoents';
 import { Card } from '@/type';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -20,8 +20,8 @@ const Page = ({ params }: { params: { slug: string } }) => {
     initCards();
   }, []);
   return (
-    <div className="w-[100vw] bg-[#fff] flex flex-col min-h-[100vh] ">
-      <div className="w-full h-[100px] relative flex items-center">
+    <div className="w-[100vw] bg-[#fff] flex flex-col h-[100vh] ">
+      <div className="w-full h-[100px] relative flex items-center shrink-0">
         <div className="absolute top-[1px] z-[10] h-[40px] w-full ">
           <Image src="https://pic.imgdb.cn/item/6683b127d9c307b7e99abe59.png" alt="" fill />
         </div>
@@ -57,12 +57,15 @@ const Page = ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </div>
-      <div className="mainSection grid grid-cols-4 flex-1 w-[100vw] bg-[#E8D5AA] px-[24px] py-[16px]">
-        {cards.map((card) => (
-          <div key={card.id} className="w-[fit-content]">
-            <img className="w-[240px] aspect-[240/363]" src={card.pic} alt={card.name} />
-          </div>
-        ))}
+      <div className="flex  items-center h-[calc(100vh-100px)] mainSection px-[32px]">
+        <div className="grid grid-cols-5 flex-1  bg-[#E8D5AA] px-[24px] overflow-scroll h-full hideScrollbar">
+          {cards.map((card) => (
+            <div key={card.id} className="w-[fit-content]">
+              <img className="w-[240px] aspect-[240/363]" src={card.pic} alt={card.name} />
+            </div>
+          ))}
+        </div>
+        <DeckContainer />
       </div>
     </div>
   );
