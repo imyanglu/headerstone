@@ -1,15 +1,23 @@
 'use client';
 
 import { Card } from '@/type';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import Cost from './Cost';
 
 /* eslint-disable @next/next/no-img-element */
 
-const DeckContainer = () => {
+type DeckContainer = {
+  selectedCards?: Map<string, Card & { count: number }>;
+};
+
+const img = 'https://pic.imgdb.cn/item/66840c49d9c307b7e9622a7c.png';
+const DeckContainer = ({ selectedCards }: DeckContainer) => {
   const [name, setName] = useState('圣骑士');
-  const [cards, setCards] = useState<Card[]>([]);
+  const processCards = useMemo(() => {
+    return Array.from(selectedCards?.values() || []);
+  }, [selectedCards]);
   return (
-    <div className="flex flex-col h-[fit-content] mx-auto w-[328px]">
+    <div className="flex flex-col h-full max-h-[600px] mx-auto w-[328px] bg-[#372B47]">
       <div className="deckHead">
         <div className="deckAvatar pr-[42px] z-[2] w-[90%] translate-y-[12px] relative pl-[14px] mx-auto pt-[16px] overflow-hidden pb-[12px]">
           <img
@@ -44,7 +52,19 @@ const DeckContainer = () => {
           </div>
         </div>
       </div>
-      <div className="deckContainer h-[500px] w-full"></div>
+      <div className="deckContainer flex-1 w-full relative">
+        <img
+          src="https://pic.imgdb.cn/item/668ae290d9c307b7e9ce6bf2.png"
+          className="absolute w-[80px] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+          alt=""
+        />
+        {processCards.map((i) => (
+          <div key={i.id} className="text-[#fff] font-bold px-[30px] text-[14px] flex items-center">
+            <Cost over={999} cost={i.cost} />
+            <div className="ml-[8px]">{i.name}</div>
+          </div>
+        ))}
+      </div>
       <div className="deckFoot w-full h-[fit-content] aspect-[406/109]"></div>
     </div>
   );

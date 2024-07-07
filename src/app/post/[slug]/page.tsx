@@ -6,19 +6,35 @@ import { Card } from '@/type';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+type SelectedCard = Card & { count: number };
 const Page = ({ params }: { params: { slug: string } }) => {
   const [cards, setCards] = useState<Card[]>([]);
-
+  const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
   const initCards = () => {
     const slug = params.slug;
     getCards(`${slug},all`).then((data) => {
-      console.log(data, 'dddd');
       setCards(data.cards);
     });
   };
+
+  const checkVerify = (newCard: SelectedCard) => {
+    return true;
+  };
+
+  const addCards = (id: string) => {
+    const newCards = new Map(selectedCards);
+    const sCard = cards.find((i) => i.id === id);
+    if (!sCard) return;
+    const count = selectedCards?.has(id) ? (selectedCards?.get(id) as SelectedCard).count + 1 : 1;
+    const newCard = { ...sCard, count };
+    newCards.set(id, newCard);
+    if (checkVerify(newCard)) setSelectedCards(newCards);
+  };
+
   useEffect(() => {
     initCards();
   }, []);
+
   return (
     <div className="w-[100vw] bg-[#fff] flex flex-col h-[100vh] ">
       <div className="w-full h-[100px] relative flex items-center shrink-0">
@@ -58,14 +74,33 @@ const Page = ({ params }: { params: { slug: string } }) => {
         </div>
       </div>
       <div className="flex  items-center h-[calc(100vh-100px)] mainSection px-[32px]">
-        <div className="grid grid-cols-5 flex-1  bg-[#E8D5AA] px-[24px] overflow-scroll h-full hideScrollbar">
+        <div
+          className="grid grid-cols-4 flex-1 gap-[32px]  bg-[#E8D5AA] px-[12px] overflow-scroll h-full hideScrollbar"
+          onClick={(e) => {
+            const target = e.target;
+            if (target && target instanceof HTMLElement && target.dataset.id) {
+              const id = target.dataset.id;
+              addCards(id);
+            }
+          }}>
           {cards.map((card) => (
-            <div key={card.id} className="w-[fit-content]">
-              <img className="w-[240px] aspect-[240/363]" src={card.pic} alt={card.name} />
+            <div
+              key={card.id}
+              data-id={card.id}
+              className="w-[fit-content] max-w-[300px] cursor-pointer"
+              draggable>
+              <img
+                data-id={card.id}
+                className="w-full aspect-[240/363]"
+                src={card.pic}
+                alt={card.name}
+              />
             </div>
           ))}
         </div>
-        <DeckContainer />
+        <div className="h-[calc(100vh-140px)] flex items-center">
+          <DeckContainer selectedCards={selectedCards} />
+        </div>
       </div>
     </div>
   );
