@@ -75,7 +75,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       </div>
       <div className="flex  items-center h-[calc(100vh-100px)] mainSection px-[32px]">
         <div
-          className="grid grid-cols-4 flex-1 gap-[32px]  bg-[#E8D5AA] px-[12px] overflow-scroll h-full hideScrollbar"
+          className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] flex-1   bg-[#E8D5AA] px-[12px] overflow-scroll h-full hideScrollbar"
           onClick={(e) => {
             const target = e.target;
             if (target && target instanceof HTMLElement && target.dataset.id) {
@@ -84,11 +84,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
             }
           }}>
           {cards.map((card) => (
-            <div
-              key={card.id}
-              data-id={card.id}
-              className="w-[fit-content] max-w-[300px] cursor-pointer"
-              draggable>
+            <div key={card.id} data-id={card.id} className="w-[240px]  cursor-pointer" draggable>
               <img
                 data-id={card.id}
                 className="w-full aspect-[240/363]"
