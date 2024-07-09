@@ -39,12 +39,96 @@ body {
   background-image: url(https://pic.imgdb.cn/item/6682c90bd9c307b7e9438e73.webp);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 .hideScrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
+.modal {
+  position: relative;
+}
+.modalHead::before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: -6px;
+  top: 0px;
+  background-image: url(https://pic.imgdb.cn/item/668d0cc4d9c307b7e91e8c79.png);
+}
+.modalHead {
+  z-index: 2;
+  height: 50px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  background-image: url(https://pic.imgdb.cn/item/668d1ca7d9c307b7e933d0f0.png);
+}
+.modalHead::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: -6px;
+  top: 0px;
+  background-repeat: no-repeat;
+  background-image: url(https://pic.imgdb.cn/item/668d0d01d9c307b7e91edd12.png);
+}
+.modalContainer {
+  position: relative;
+  width: 100%;
+  z-index: 3;
+}
+.modalContainer::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 50px;
+  left: -6px;
+  bottom: 10px;
+  background-image: url(https://pic.imgdb.cn/item/668d0e8bd9c307b7e9210e45.png);
+  z-index: -1;
+}
+.modalContainer::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 10px;
+  width: 50px;
+  bottom: 10px;
+  right: -6px;
+  background: url(https://pic.imgdb.cn/item/668d0e6ed9c307b7e920eb12.png);
+}
+.modalFoot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 2;
+  background-image: url(https://pic.imgdb.cn/item/668d1cd3d9c307b7e93403ff.png);
+}
+.modalFoot::before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: -6px;
+  bottom: 0px;
+  background-image: url(https://pic.imgdb.cn/item/668d0dc3d9c307b7e91ffe1c.png);
+  background-repeat: no-repeat;
+}
+.modalFoot::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: -6px;
+  bottom: 0px;
+  background-image: url(https://pic.imgdb.cn/item/668d0de4d9c307b7e9202bca.png);
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;

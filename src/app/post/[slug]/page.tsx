@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import { getCards } from '@/app/api';
-import { DeckContainer, ManaControl } from '@/app/compoents';
+import { DeckContainer, ManaControl } from '@/app/components';
 import { Card } from '@/type';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import EditCardGroupModal from './components/EditCardGroupModal';
 
 type SelectedCard = Card & { count: number };
 const Page = ({ params }: { params: { slug: string } }) => {
@@ -31,12 +32,16 @@ const Page = ({ params }: { params: { slug: string } }) => {
     if (checkVerify(newCard)) setSelectedCards(newCards);
   };
 
+  const publishCards = () => {
+    console.log('pppi');
+  };
+
   useEffect(() => {
     initCards();
   }, []);
 
   return (
-    <div className="w-[100vw] bg-[#fff] flex flex-col h-[100vh] ">
+    <div className="w-[100vw] bg-[#E8D5AA] flex flex-col h-[100vh] ">
       <div className="w-full h-[100px] relative flex items-center shrink-0">
         <div className="absolute top-[1px] z-[10] h-[40px] w-full ">
           <Image src="https://pic.imgdb.cn/item/6683b127d9c307b7e99abe59.png" alt="" fill />
@@ -75,7 +80,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       </div>
       <div className="flex  items-center h-[calc(100vh-100px)] mainSection px-[32px]">
         <div
-          className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] flex-1   bg-[#E8D5AA] px-[12px] overflow-scroll h-full hideScrollbar"
+          className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] flex-1    px-[12px] overflow-scroll h-full hideScrollbar"
           onClick={(e) => {
             const target = e.target;
             if (target && target instanceof HTMLElement && target.dataset.id) {
@@ -95,9 +100,10 @@ const Page = ({ params }: { params: { slug: string } }) => {
           ))}
         </div>
         <div className="h-[calc(100vh-140px)] flex items-center">
-          <DeckContainer selectedCards={selectedCards} />
+          <DeckContainer selectedCards={selectedCards} onPublish={publishCards} />
         </div>
       </div>
+      <EditCardGroupModal visible />
     </div>
   );
 };

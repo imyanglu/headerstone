@@ -8,7 +8,7 @@ export default function Home() {
            炉石超级无敌好玩.
         </div> */}
 
-      <div className="w-[100vw] homepage  aspect-[16/7] flex justify-center items-center relative">
+      <div className="w-[100vw] homepage h-[calc(100vh-20px)]   flex justify-center items-center relative">
         <div className="w-[100vw]">
           <div className="w-[500px] aspect-[269/125] relative mx-auto max-w-[80%] ">
             <Image fill src="https://pic.imgdb.cn/item/6682cc04d9c307b7e9487df1.webp" alt="logo" />

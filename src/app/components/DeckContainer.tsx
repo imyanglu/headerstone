@@ -8,10 +8,10 @@ import Cost from './Cost';
 
 type DeckContainer = {
   selectedCards?: Map<string, Card & { count: number }>;
+  onPublish?: () => void;
 };
 
-const img = 'https://pic.imgdb.cn/item/66840c49d9c307b7e9622a7c.png';
-const DeckContainer = ({ selectedCards }: DeckContainer) => {
+const DeckContainer = ({ selectedCards, onPublish }: DeckContainer) => {
   const [name, setName] = useState('卡组名 点击编辑');
   const processCards = useMemo(() => {
     return Array.from(selectedCards?.values() || []).sort((n1, n2) => n1.cost - n2.cost);
@@ -61,7 +61,7 @@ const DeckContainer = ({ selectedCards }: DeckContainer) => {
         {processCards.map((i) => (
           <div
             key={i.id}
-            className="text-[#fff] mb-[5px] border-[3px] border-[#555555] rounded-[3px] font-bold h-[32px] text-[14px] flex items-center relative w-[calc(100%-60px)] mx-auto bg-[#2A2828]">
+            className="text-[#fff] cursor-pointer mb-[5px] border-[3px] border-[#555555] rounded-[3px] font-bold h-[32px] text-[14px] flex items-center relative w-[calc(100%-60px)] mx-auto bg-[#2A2828]">
             <div className="absolute translate-x-[-25%]">
               <Cost over={999} cost={i.cost} containerClassName="w-[38px] h-[34px]" />
             </div>
@@ -80,7 +80,9 @@ const DeckContainer = ({ selectedCards }: DeckContainer) => {
           </div>
         ))}
       </div>
-      <div className="deckFoot w-full h-[fit-content] aspect-[406/109] flex items-center justify-center">
+      <div
+        className="deckFoot w-full h-[fit-content] aspect-[406/109] flex items-center justify-center"
+        onClick={onPublish}>
         <div
           style={{
             background: 'linear-gradient(to right,#510E7D,#B320BE,#510E7D)',
