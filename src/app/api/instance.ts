@@ -1,10 +1,10 @@
 type Params = { [key in string]: string | number | null | boolean };
 type DataParams =
-  | { [key in string]: string | number | null | Blob | FormData | boolean }
+  | { [key in string]: string | number | null | Blob | FormData | boolean | string[] }
   | Blob
   | FormData;
 
-const baseurl = 'https://8.138.99.181:3000';
+const baseurl = 'http://127.0.0.1:3001';
 
 const fetchMethod = async (
   url: string,

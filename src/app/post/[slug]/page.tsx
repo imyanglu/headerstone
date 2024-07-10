@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { getCards } from '@/app/api';
+import { getCards, uploadCardGroup } from '@/app/api';
 import { DeckContainer, ManaControl } from '@/app/components';
 import { Card } from '@/type';
 import Image from 'next/image';
@@ -10,6 +10,8 @@ import EditCardGroupModal from './components/EditCardGroupModal';
 type SelectedCard = Card & { count: number };
 const Page = ({ params }: { params: { slug: string } }) => {
   const [cards, setCards] = useState<Card[]>([]);
+  const [activeModal, setActiveModal] = useState(false);
+  const [name, setName] = useState('');
   const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
   const initCards = () => {
     const slug = params.slug;
@@ -32,8 +34,28 @@ const Page = ({ params }: { params: { slug: string } }) => {
     if (checkVerify(newCard)) setSelectedCards(newCards);
   };
 
-  const publishCards = () => {
-    console.log('pppi');
+  const publishCards = (info: Record<'code' | 'author' | 'rate', string>) => {
+    const { code, author, rate } = info;
+    const cardIds = selectedCards ? Array.from(selectedCards.values()).map((i) => i.id) : [];
+    const req = {
+      code,
+      name,
+      winningRate: rate,
+      owner: author,
+      cards: cardIds,
+      type: params.slug,
+      label: '',
+      desc: '',
+    };
+    uploadCardGroup(req)
+      .then()
+      .finally(() => {
+        setActiveModal(false);
+      });
+  };
+  const showModal = (name: string) => {
+    setName(name);
+    setActiveModal(true);
   };
 
   useEffect(() => {
@@ -100,10 +122,17 @@ const Page = ({ params }: { params: { slug: string } }) => {
           ))}
         </div>
         <div className="h-[calc(100vh-140px)] flex items-center">
-          <DeckContainer selectedCards={selectedCards} onPublish={publishCards} />
+          <DeckContainer selectedCards={selectedCards} onPublish={showModal} />
         </div>
       </div>
-      <EditCardGroupModal visible />
+      <EditCardGroupModal
+        visible={activeModal}
+        name={name}
+        onClose={function (): void {
+          setActiveModal(false);
+        }}
+        onSubmit={publishCards}
+      />
     </div>
   );
 };
