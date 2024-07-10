@@ -16,6 +16,11 @@ const DeckContainer = ({ selectedCards, onPublish }: DeckContainer) => {
   const processCards = useMemo(() => {
     return Array.from(selectedCards?.values() || []).sort((n1, n2) => n1.cost - n2.cost);
   }, [selectedCards]);
+  const num = useMemo(() => {
+    return processCards.reduce((a, sum) => {
+      return a + sum.count;
+    }, 0);
+  }, [processCards]);
   return (
     <div className="flex flex-col h-full max-h-[600px] mx-auto w-[328px] bg-[#372B47]">
       <div className="deckHead">
@@ -47,7 +52,7 @@ const DeckContainer = ({ selectedCards, onPublish }: DeckContainer) => {
                   setName(e.target.value);
                 }}
               />
-              <div className="text-[rgb(252,209,68)]">0/30</div>
+              <div className="text-[rgb(252,209,68)]">{num ?? 0}</div>
             </div>
           </div>
         </div>

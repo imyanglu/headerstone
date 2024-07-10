@@ -23,3 +23,15 @@ export type Card = {
 
   isretine: boolean;
 };
+
+export type CardGroupOverview = {
+  id: string;
+  owner: string;
+  cards: string;
+  type: string;
+  winningRate: string;
+  name: string;
+  label: string;
+  code: string;
+  mark: string;
+};

@@ -1,16 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 import { Title, Card } from '@/app/components';
 import CardGroup from './CardGroup';
+import { JobsData } from '@/app/Const';
+import { CardGroupOverview } from '@/type';
 
-const data = [
-  {
-    name: '铺场骑',
-    code: 'dhjasgdhjasgdhasghdjas',
-    pic: 'https://pic.imgdb.cn/item/66845bc1d9c307b7e9f0d558.png',
-    winningRate: '59.62',
-  },
-];
-const RecommendSection = () => {
+const fetchData = async () => {
+  const cardGroupResult = await fetch('https://8.138.99.181:3000/recommendOverview').then(
+    (d) => d.json() as Promise<{ cards: CardGroupOverview[] }>
+  );
+  const cardsMap = cardGroupResult.cards.map((a) => ({
+    ...a,
+    pic: JobsData.find((i) => i.slug === a.type)?.pic ?? '',
+  }));
+  return cardsMap;
+};
+const RecommendSection = async () => {
+  const data = await fetchData();
+  console.log(data);
   return (
     <div className="">
       <Title
