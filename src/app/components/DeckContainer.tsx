@@ -8,7 +8,7 @@ import Cost from './Cost';
 
 type DeckContainer = {
   selectedCards?: Map<string, Card & { count: number }>;
-  onPublish?: () => void;
+  onPublish?: (name: string) => void;
 };
 
 const DeckContainer = ({ selectedCards, onPublish }: DeckContainer) => {
@@ -82,7 +82,10 @@ const DeckContainer = ({ selectedCards, onPublish }: DeckContainer) => {
       </div>
       <div
         className="deckFoot w-full h-[fit-content] aspect-[406/109] flex items-center justify-center"
-        onClick={onPublish}>
+        onClick={() => {
+          onPublish?.(name);
+          console.log(name);
+        }}>
         <div
           style={{
             background: 'linear-gradient(to right,#510E7D,#B320BE,#510E7D)',

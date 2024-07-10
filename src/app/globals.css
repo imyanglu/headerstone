@@ -94,7 +94,7 @@ body {
 .modalContainer::after {
   content: '';
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   top: 10px;
   width: 50px;
   bottom: 10px;
