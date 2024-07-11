@@ -7,12 +7,21 @@ import Cost from './Cost';
 /* eslint-disable @next/next/no-img-element */
 
 type DeckContainer = {
+  author?: string;
+  defaultName: string;
+  mode: 'show' | 'edit';
   selectedCards?: Map<string, Card & { count: number }>;
   onPublish?: (name: string) => void;
 };
 
-const DeckContainer = ({ selectedCards, onPublish }: DeckContainer) => {
-  const [name, setName] = useState('卡组名 点击编辑');
+const DeckContainer = ({
+  selectedCards,
+  defaultName,
+  author,
+  mode = 'edit',
+  onPublish,
+}: DeckContainer) => {
+  const [name, setName] = useState(defaultName);
   const processCards = useMemo(() => {
     return Array.from(selectedCards?.values() || []).sort((n1, n2) => n1.cost - n2.cost);
   }, [selectedCards]);
@@ -45,13 +54,17 @@ const DeckContainer = ({ selectedCards, onPublish }: DeckContainer) => {
             </div>
 
             <div className="text-[#fff] text-[14px] stroke ml-[8px]">
-              <input
-                value={name}
-                className="bg-transparent outline-none border-none"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
+              {mode === 'edit' ? (
+                <input
+                  value={name || defaultName || '未命名 请编辑'}
+                  className="bg-transparent outline-none border-none"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                />
+              ) : (
+                <div>{defaultName}</div>
+              )}
               <div className="text-[rgb(252,209,68)]">{num ?? 0}</div>
             </div>
           </div>
@@ -88,15 +101,16 @@ const DeckContainer = ({ selectedCards, onPublish }: DeckContainer) => {
       <div
         className="deckFoot w-full h-[fit-content] aspect-[406/109] flex items-center justify-center"
         onClick={() => {
-          onPublish?.(name);
-          console.log(name);
+          if (mode === 'edit') onPublish?.(name);
         }}>
         <div
           style={{
             background: 'linear-gradient(to right,#510E7D,#B320BE,#510E7D)',
           }}
           className="w-[85%] cursor-pointer translate-y-[5px] border-[2px] border-[#a69793] rounded-[8px] flex items-center justify-center h-[40px]  outline outline-[#000] outline-[4px]">
-          <div className="text-[16px] font-bold text-[#fff] ">发布</div>
+          <div className="text-[16px] line-clamp-1 font-bold text-[#fff] ">
+            {mode === 'edit' ? '发布' : `来自${author ?? '佚名'}的卡组`}
+          </div>
         </div>
       </div>
     </div>
