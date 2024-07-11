@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { Title, Card } from '@/app/components';
 import CardGroup from './CardGroup';
 import { JobsData } from '@/app/Const';
@@ -16,7 +15,7 @@ const fetchData = async () => {
 };
 const RecommendSection = async () => {
   const data = await fetchData();
-  console.log(data);
+
   return (
     <div className="">
       <Title

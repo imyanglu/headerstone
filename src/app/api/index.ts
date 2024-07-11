@@ -1,4 +1,4 @@
-import { Card } from '@/type';
+import { Card, CardGroupOverview } from '@/type';
 
 import { get, post } from './instance';
 
@@ -23,4 +23,9 @@ export const getCards = (classes: string) => {
     console.log(data);
     return data;
   });
+};
+export const getCardGroup = (
+  slug: string
+): Promise<{ card: Omit<CardGroupOverview, 'cards'> & { cards: Card[] } }> => {
+  return fetch(`https://8.138.99.181:3000/cardGroup/${slug}`).then((res) => res.json());
 };

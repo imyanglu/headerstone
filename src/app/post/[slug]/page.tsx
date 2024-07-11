@@ -36,7 +36,14 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
   const publishCards = (info: Record<'code' | 'author' | 'rate', string>) => {
     const { code, author, rate } = info;
-    const cardIds = selectedCards ? Array.from(selectedCards.values()).map((i) => i.id) : [];
+    const cardIds = selectedCards
+      ? (Array.from(selectedCards.values())
+          .sort((a1, a2) => a1.cost - a2.cost)
+          .map((i) => {
+            return Array.from({ length: i.count }, () => i.id);
+          })
+          .flat(Infinity) as string[])
+      : [];
     const req = {
       code,
       name,
@@ -122,7 +129,12 @@ const Page = ({ params }: { params: { slug: string } }) => {
           ))}
         </div>
         <div className="h-[calc(100vh-140px)] flex items-center">
-          <DeckContainer selectedCards={selectedCards} onPublish={showModal} />
+          <DeckContainer
+            defaultName=""
+            mode="edit"
+            selectedCards={selectedCards}
+            onPublish={showModal}
+          />
         </div>
       </div>
       <EditCardGroupModal
