@@ -15,7 +15,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
     }
     groupMap.set(card.id, { ...card, count: 1 });
   });
-  console.log(card.cards.length);
+
   return (
     <div className="bg-[#372B47] w-[100vw] flex flex-col h-[100vh]">
       <div className="xs:block  my-[20px] min-h-[500px]">
