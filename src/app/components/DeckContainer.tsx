@@ -3,10 +3,12 @@
 import { Card } from '@/type';
 import { useMemo, useState } from 'react';
 import Cost from './Cost';
+import { JobsData } from '../Const';
 
 /* eslint-disable @next/next/no-img-element */
 
 type DeckContainer = {
+  thumbnail?: string;
   author?: string;
   defaultName: string;
   mode: 'show' | 'edit';
@@ -15,6 +17,7 @@ type DeckContainer = {
 };
 
 const DeckContainer = ({
+  thumbnail,
   selectedCards,
   defaultName,
   author,
@@ -35,7 +38,7 @@ const DeckContainer = ({
       <div className="deckHead">
         <div className="deckAvatar pr-[42px] z-[2] w-[90%] translate-y-[12px] relative pl-[14px] mx-auto pt-[16px] overflow-hidden pb-[12px]">
           <img
-            src="https://pic.imgdb.cn/item/6689730ed9c307b7e9dea892.jpg"
+            src={thumbnail ?? 'https://pic.imgdb.cn/item/6689730ed9c307b7e9dea892.jpg'}
             className="relative z-[-1]"
             alt=""
           />

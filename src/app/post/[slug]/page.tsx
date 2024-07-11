@@ -6,6 +6,7 @@ import { Card } from '@/type';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import EditCardGroupModal from './components/EditCardGroupModal';
+import { JobsData } from '@/app/Const';
 
 type SelectedCard = Card & { count: number };
 const Page = ({ params }: { params: { slug: string } }) => {
@@ -118,18 +119,18 @@ const Page = ({ params }: { params: { slug: string } }) => {
             }
           }}>
           {cards.map((card) => (
-            <div key={card.id} data-id={card.id} className="w-[240px]  cursor-pointer" draggable>
-              <img
-                data-id={card.id}
-                className="w-full aspect-[240/363]"
-                src={card.pic}
-                alt={card.name}
-              />
+            <div
+              key={card.id}
+              data-id={card.id}
+              className="w-[240px]  cursor-pointer aspect-[202/279]"
+              draggable>
+              <img data-id={card.id} className="w-full " src={card.pic} alt={card.name} />
             </div>
           ))}
         </div>
         <div className="h-[calc(100vh-140px)] flex items-center">
           <DeckContainer
+            thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
             defaultName=""
             mode="edit"
             selectedCards={selectedCards}
