@@ -23,13 +23,17 @@ const Page = ({ params }: { params: { slug: string } }) => {
   const [name, setName] = useState('');
   const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
   const [filters, setFilters] = useState<Filters>({ cost: [-1, 100], searchText: '' });
+  const changeFilters = <K extends keyof Filters>(k: K, v: Filters[K]) => {
+    setFilters((prev) => ({ ...prev, [k]: v }));
+  };
   const { professionalCards, regularCards } = useMemo(() => {
+    const processCards = cards.filter((a) => a.name.includes(filters.searchText.trim()));
+
     return {
-      professionalCards: cards.filter((i) => {
-        console.log(i);
+      professionalCards: processCards.filter((i) => {
         return i.classes === params.slug;
       }),
-      regularCards: cards.filter((i) => i.classes === 'all'),
+      regularCards: processCards.filter((i) => i.classes === 'all'),
     };
   }, [cards, filters, params.slug]);
 
@@ -37,6 +41,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
     if (!params.slug) return null;
     return JobsData.find((i) => i.slug === params.slug);
   }, [params.slug]);
+
   const initCards = () => {
     const slug = params.slug;
     getCards(`${slug},all`)
@@ -99,10 +104,14 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
   return (
     <div className="w-[100vw] bg-[#E8D5AA] flex h-[100vh] ">
-      <Header />
+      <Header
+        onSearch={(s) => {
+          changeFilters('searchText', s);
+        }}
+      />
       <div className="flex flex-col mt-[100px] pt-[24px]  flex-1 items-center overflow-y-scroll  h-[calc(100vh-100px)] mainSection px-[32px] hideScrollbar">
         <div className="w-full">
-          {!loading && (
+          {!loading && professionalCards.length > 0 && (
             <Title
               type={type?.slug}
               label={
@@ -133,7 +142,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           ))}
         </div>
         <div className="w-full">
-          {!loading && (
+          {!loading && regularCards.length > 0 && (
             <Title
               label={
                 <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
