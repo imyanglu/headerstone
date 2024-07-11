@@ -1,3 +1,5 @@
+import { title } from 'process';
+
 export const JobsData = [
   {
     name: '死亡骑士',
@@ -16,6 +18,7 @@ export const JobsData = [
     slug: 'druid',
     pic: 'https://pic.imgdb.cn/item/66845b75d9c307b7e9f09452.png',
     thumbnail: 'https://pic.imgdb.cn/item/66901522d9c307b7e9121053.jpg',
+    title: '/druid-title.svg',
   },
   {
     name: '猎人',

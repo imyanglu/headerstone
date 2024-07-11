@@ -15,7 +15,7 @@ const Cost = ({
       <div
         className={`cursor-pointer relative flex justify-center items-center endText w-[58px] h-[32px] ${containerClassName}`}>
         <img className="w-full h-full absolute inset-0" src={endImg} alt="" />
-        <div className="font-bold text-[#fff] relative z-10 text-[14px] leading-[35px] h-[32px] ml-[-2px]">
+        <div className="font-bold text-[#fff] relative z-10 text-[14px] leading-[32px] h-[32px] ml-[-2px]">
           {cost}&nbsp;&nbsp;&nbsp;+
         </div>
       </div>
@@ -24,7 +24,7 @@ const Cost = ({
     <div
       className={`cursor-pointer light relative flex justify-center items-center w-[35px] h-[32px] ${containerClassName}`}>
       <img className="w-full h-full absolute inset-0" src={img} alt="" />
-      <div className="font-black text-[#fff] relative z-10 leading-[35px] h-[32px]">{cost}</div>
+      <div className="font-black text-[#fff] relative z-10 leading-[32px] h-[32px]">{cost}</div>
     </div>
   );
 };

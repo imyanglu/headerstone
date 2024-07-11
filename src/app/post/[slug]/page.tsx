@@ -1,24 +1,51 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import { getCards, uploadCardGroup } from '@/app/api';
-import { DeckContainer, ManaControl } from '@/app/components';
+import { DeckContainer, ManaControl, Title } from '@/app/components';
 import { Card } from '@/type';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import EditCardGroupModal from './components/EditCardGroupModal';
 import { JobsData } from '@/app/Const';
+import Header from './components/Header';
+
+type Filters = {
+  cost: [number, number];
+  searchText: string;
+};
 
 type SelectedCard = Card & { count: number };
+
 const Page = ({ params }: { params: { slug: string } }) => {
+  const [loading, setLoading] = useState(true);
   const [cards, setCards] = useState<Card[]>([]);
   const [activeModal, setActiveModal] = useState(false);
   const [name, setName] = useState('');
   const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
+  const [filters, setFilters] = useState<Filters>({ cost: [-1, 100], searchText: '' });
+  const { professionalCards, regularCards } = useMemo(() => {
+    return {
+      professionalCards: cards.filter((i) => {
+        console.log(i);
+        return i.classes === params.slug;
+      }),
+      regularCards: cards.filter((i) => i.classes === 'all'),
+    };
+  }, [cards, filters, params.slug]);
+
+  const type = useMemo(() => {
+    if (!params.slug) return null;
+    return JobsData.find((i) => i.slug === params.slug);
+  }, [params.slug]);
   const initCards = () => {
     const slug = params.slug;
-    getCards(`${slug},all`).then((data) => {
-      setCards(data.cards);
-    });
+    getCards(`${slug},all`)
+      .then((data) => {
+        setCards(data.cards);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const checkVerify = (newCard: SelectedCard) => {
@@ -71,46 +98,23 @@ const Page = ({ params }: { params: { slug: string } }) => {
   }, []);
 
   return (
-    <div className="w-[100vw] bg-[#E8D5AA] flex flex-col h-[100vh] ">
-      <div className="w-full h-[100px] relative flex items-center shrink-0">
-        <div className="absolute top-[1px] z-[10] h-[40px] w-full ">
-          <Image src="https://pic.imgdb.cn/item/6683b127d9c307b7e99abe59.png" alt="" fill />
-        </div>
-        <div className="absolute top-0 bottom-0 w-full h-[100px] shadow-lg">
-          <Image fill alt="bg1" src="https://pic.imgdb.cn/item/6683ae9bd9c307b7e993615e.jpg" />
-        </div>
-        <div className="absolute bottom-0 h-[20px] w-full">
-          <Image src="https://pic.imgdb.cn/item/6683b07cd9c307b7e998b6a1.png" alt="" fill />
-        </div>
-
-        <img
-          className="relative  z-[2] w-[50px] ml-[24px] shake1"
-          alt=""
-          src="https://pic.imgdb.cn/item/6683bbedd9c307b7e9b96d01.webp"
-        />
-        <div className="border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000] ml-[12px] relative z-[2] rounded-[24px]">
-          <div className="outline-[#E3D07F] flex outline outline-[3px] px-[24px] py-[3px]  rounded-[24px] border-[2px] border-[#000] font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
-            标准卡组
-          </div>
-        </div>
-        <div className="relative z-10">
-          <ManaControl />
-        </div>
-        <div className="ml-[32px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[24px]">
-          <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
-            <input
-              placeholder="搜索卡组..."
-              className="outline-none text-[14px]  py-[3px]  font-bold bg-[#3D0D0D] text-[#fff]"
+    <div className="w-[100vw] bg-[#E8D5AA] flex h-[100vh] ">
+      <Header />
+      <div className="flex flex-col mt-[100px] pt-[24px]  flex-1 items-center overflow-y-scroll  h-[calc(100vh-100px)] mainSection px-[32px] hideScrollbar">
+        <div className="w-full">
+          {!loading && (
+            <Title
+              type={type?.slug}
+              label={
+                <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
+                  {type?.name}
+                </div>
+              }
             />
-            <div className="h-[30px] w-[30px] cursor-pointer absolute right-[10px]  flex items-center justify-end">
-              <img src="/search.svg" alt="search" className="w-[24px] h-[24px]" />
-            </div>
-          </div>
+          )}
         </div>
-      </div>
-      <div className="flex  items-center h-[calc(100vh-100px)] mainSection px-[32px]">
         <div
-          className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] flex-1    px-[12px] overflow-scroll h-full hideScrollbar"
+          className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full   px-[12px]"
           onClick={(e) => {
             const target = e.target;
             if (target && target instanceof HTMLElement && target.dataset.id) {
@@ -118,7 +122,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
               addCards(id);
             }
           }}>
-          {cards.map((card) => (
+          {professionalCards.map((card) => (
             <div
               key={card.id}
               data-id={card.id}
@@ -128,16 +132,47 @@ const Page = ({ params }: { params: { slug: string } }) => {
             </div>
           ))}
         </div>
-        <div className="h-[calc(100vh-140px)] flex items-center">
-          <DeckContainer
-            thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
-            defaultName=""
-            mode="edit"
-            selectedCards={selectedCards}
-            onPublish={showModal}
-          />
+        <div className="w-full">
+          {!loading && (
+            <Title
+              label={
+                <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
+                  常规卡牌
+                </div>
+              }
+            />
+          )}
+        </div>
+        <div
+          className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full   px-[12px]"
+          onClick={(e) => {
+            const target = e.target;
+            if (target && target instanceof HTMLElement && target.dataset.id) {
+              const id = target.dataset.id;
+              addCards(id);
+            }
+          }}>
+          {regularCards.map((card) => (
+            <div
+              key={card.id}
+              data-id={card.id}
+              className="w-[240px]  cursor-pointer aspect-[202/279]"
+              draggable>
+              <img data-id={card.id} className="w-full " src={card.pic} alt={card.name} />
+            </div>
+          ))}
         </div>
       </div>
+      <div className="h-[calc(100vh-100px)] mt-[100px] pr-[48px] my-auto shrink-0 flex items-center">
+        <DeckContainer
+          thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
+          defaultName=""
+          mode="edit"
+          selectedCards={selectedCards}
+          onPublish={showModal}
+        />
+      </div>
+
       <EditCardGroupModal
         visible={activeModal}
         name={name}
