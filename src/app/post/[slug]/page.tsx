@@ -172,14 +172,23 @@ const Page = ({ params }: { params: { slug: string } }) => {
           ))}
         </div>
       </div>
-      <div className="h-[calc(100vh-100px)] mt-[100px] pr-[48px] my-auto shrink-0 flex items-center">
-        <DeckContainer
-          thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
-          defaultName=""
-          mode="edit"
-          selectedCards={selectedCards}
-          onPublish={showModal}
-        />
+      <div className="h-[calc(100vh-100px)] mt-[100px] pr-[48px] my-auto shrink-0 flex justify-center flex-col">
+        <div className="flex-1 flex  flex-col justify-center">
+          <DeckContainer
+            thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
+            defaultName=""
+            mode="edit"
+            selectedCards={selectedCards}
+            onPublish={showModal}
+          />
+          <a
+            href="/cards/post"
+            className="cursor-pointer my-[20px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[8px]">
+            <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[8px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
+              <div className=" text-[#fff] mx-auto font-bold">卡牌上传</div>
+            </div>
+          </a>
+        </div>
       </div>
 
       <EditCardGroupModal
