@@ -1,12 +1,12 @@
 import { getCardGroup } from '@/app/api';
 import { DeckContainer } from '@/app/components';
-import { Card } from '@/type';
+import { Card, HsCard } from '@/type';
 
 export const revalidate = 10;
 
 const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const { card } = await getCardGroup(slug);
-  const groupMap: Map<string, Card & { count: number }> = new Map();
+  const groupMap: Map<string, HsCard & { count: number }> = new Map();
   card.cards.forEach((card) => {
     const preCard = groupMap.get(card.id);
     if (preCard) {
