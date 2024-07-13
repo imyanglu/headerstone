@@ -1,7 +1,8 @@
-import { Card, CardGroupOverview } from '@/type';
+import { Card, CardGroupOverview, HsCard } from '@/type';
 
 import { get, post } from './instance';
 
+type NewCardParams = Omit<HsCard, 'id'>;
 export const uploadNewCard = (params: Omit<Card, 'id'>) => {
   return post('/uploadCard', { data: params });
 };

@@ -36,13 +36,13 @@ const DeckContainer = ({
   return (
     <div className="flex flex-col h-full max-h-[600px] mx-auto w-[328px] bg-[#372B47]">
       <div className="deckHead">
-        <div className="deckAvatar pr-[42px] z-[2] w-[90%] translate-y-[12px] relative pl-[14px] mx-auto pt-[16px] overflow-hidden pb-[12px]">
+        <div className="deckAvatar pr-[42px] top-[8px]  w-[90%]  relative pl-[8px] mx-auto pt-[16px] h-[92px]">
           <img
             src={thumbnail ?? 'https://pic.imgdb.cn/item/6689730ed9c307b7e9dea892.jpg'}
             className="relative z-[-1]"
             alt=""
           />
-          <div className="absolute bg-[#00000086] flex items-center top-[16px] z-[2] lef-[0] h-[calc(100%-28px)] w-[calc(100%-56px)] ">
+          <div className="absolute  bottom-0 bg-[#00000086] flex items-center top-[18px] z-[2] lef-[0] h-[calc(100%-33px)] w-[calc(100%-43px)] ">
             <div className="relative w-[45px]">
               <img
                 className="w-full"
