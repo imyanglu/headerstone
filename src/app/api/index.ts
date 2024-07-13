@@ -3,7 +3,7 @@ import { Card, CardGroupOverview, HsCard } from '@/type';
 import { get, post } from './instance';
 
 type NewCardParams = Omit<HsCard, 'id'>;
-export const uploadNewCard = (params: Omit<Card, 'id'>) => {
+export const uploadNewCard = (params: Omit<HsCard, 'id'>) => {
   return post('/uploadCard', { data: params });
 };
 type Params = {
@@ -20,7 +20,7 @@ export const uploadCardGroup = (params: Params) => {
   return post('/uploadCardGroup', { data: params });
 };
 export const getCards = (classes: string) => {
-  return get<{ cards: Card[] }>(`/getCards?classes=${classes}`).then((data) => {
+  return get<{ cards: HsCard[] }>(`/getCards?faction=${classes}`).then((data) => {
     console.log(data);
     return data;
   });

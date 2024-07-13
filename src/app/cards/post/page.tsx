@@ -3,7 +3,7 @@
 import { uploadNewCard } from '@/app/api';
 import { JobsData } from '@/app/Const';
 import { Card, HsCard } from '@/type';
-import { Input, Select, InputNumber, Checkbox } from 'antd';
+import { Input, Select, InputNumber, Checkbox, Button } from 'antd';
 import { useState } from 'react';
 
 const Page = () => {
@@ -35,10 +35,11 @@ const Page = () => {
   };
   const uploadCard = async () => {
     if (!card) return;
-    // uploadNewCard(card);
+    console.log(card);
+    uploadNewCard(card);
   };
   return (
-    <div className="px-[100px]  min-h-[100vh]">
+    <div className="px-[100px]  min-h-[100vh] flex">
       <div className=" w-[fit-content] pt-[100px]">
         <form className="grid grid-cols-2 gap-[24px]">
           <Input
@@ -145,6 +146,9 @@ const Page = () => {
           <Input addonBefore={<div className="bg-[#]">父卡</div>} placeholder="id,id" />
           <Input addonBefore={<div className="bg-[#]">作者名</div>} placeholder="荒野之地" />
         </form>
+        <Button className="mt-[24px]" type="primary" onClick={uploadCard}>
+          上传
+        </Button>
       </div>
       <div>{card.img && <img src={card.img} alt="w-[300px]" />}</div>
     </div>

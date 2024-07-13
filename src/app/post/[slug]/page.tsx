@@ -2,7 +2,7 @@
 'use client';
 import { getCards, uploadCardGroup } from '@/app/api';
 import { DeckContainer, ManaControl, Title } from '@/app/components';
-import { Card } from '@/type';
+import { Card, HsCard } from '@/type';
 import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import EditCardGroupModal from './components/EditCardGroupModal';
@@ -14,11 +14,11 @@ type Filters = {
   searchText: string;
 };
 
-type SelectedCard = Card & { count: number };
+type SelectedCard = HsCard & { count: number };
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const [loading, setLoading] = useState(true);
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<HsCard[]>([]);
   const [activeModal, setActiveModal] = useState(false);
   const [name, setName] = useState('');
   const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
@@ -31,9 +31,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
     return {
       professionalCards: processCards.filter((i) => {
-        return i.classes === params.slug;
+        return i.faction.split(',').includes(params.slug);
       }),
-      regularCards: processCards.filter((i) => i.classes === 'all'),
+      regularCards: processCards.filter((i) => i.faction === 'all'),
     };
   }, [cards, filters, params.slug]);
 
@@ -71,7 +71,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
     const { code, author, rate } = info;
     const cardIds = selectedCards
       ? (Array.from(selectedCards.values())
-          .sort((a1, a2) => a1.cost - a2.cost)
+          .sort((a1, a2) => a1.manna - a2.manna)
           .map((i) => {
             return Array.from({ length: i.count }, () => i.id);
           })
@@ -137,7 +137,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
               data-id={card.id}
               className="w-[240px]  cursor-pointer aspect-[202/279]"
               draggable>
-              <img data-id={card.id} className="w-full " src={card.pic} alt={card.name} />
+              <img data-id={card.id} className="w-full " src={card.img} alt={card.name} />
             </div>
           ))}
         </div>
@@ -167,7 +167,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
               data-id={card.id}
               className="w-[240px]  cursor-pointer aspect-[202/279]"
               draggable>
-              <img data-id={card.id} className="w-full " src={card.pic} alt={card.name} />
+              <img data-id={card.id} className="w-full " src={card.img} alt={card.name} />
             </div>
           ))}
         </div>
