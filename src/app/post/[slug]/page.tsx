@@ -147,7 +147,14 @@ const Page = ({ params }: { params: { slug: string } }) => {
               data-id={card.id}
               className="w-[240px]  cursor-pointer aspect-[202/279]"
               draggable>
-              <img data-id={card.id} className="w-full " src={card.img} alt={card.name} />
+              <img
+                data-id={card.id}
+                className="w-full "
+                src={card.img}
+                alt={card.name}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           ))}
         </div>
@@ -177,7 +184,14 @@ const Page = ({ params }: { params: { slug: string } }) => {
               data-id={card.id}
               className="w-[240px]  cursor-pointer aspect-[202/279]"
               draggable>
-              <img data-id={card.id} className="w-full " src={card.img} alt={card.name} />
+              <img
+                data-id={card.id}
+                className="w-full "
+                src={card.img}
+                alt={card.name}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           ))}
         </div>

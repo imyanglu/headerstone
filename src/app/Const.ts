@@ -36,7 +36,7 @@ export const JobsData = [
     name: '圣骑士',
     slug: 'paladin',
     pic: 'https://pic.imgdb.cn/item/66845bc1d9c307b7e9f0d558.png',
-    thumbnail: '',
+    thumbnail: 'https://pic.imgdb.cn/item/6689730ed9c307b7e9dea892.jpg',
   },
   {
     name: '牧师',
