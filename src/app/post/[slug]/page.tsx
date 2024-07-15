@@ -147,7 +147,14 @@ const Page = ({ params }: { params: { slug: string } }) => {
               data-id={card.id}
               className="w-[240px]  cursor-pointer aspect-[202/279]"
               draggable>
-              <img data-id={card.id} className="w-full " src={card.img} alt={card.name} />
+              <img
+                data-id={card.id}
+                className="w-full "
+                src={card.img}
+                alt={card.name}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           ))}
         </div>
@@ -177,12 +184,19 @@ const Page = ({ params }: { params: { slug: string } }) => {
               data-id={card.id}
               className="w-[240px]  cursor-pointer aspect-[202/279]"
               draggable>
-              <img data-id={card.id} className="w-full " src={card.img} alt={card.name} />
+              <img
+                data-id={card.id}
+                className="w-full "
+                src={card.img}
+                alt={card.name}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           ))}
         </div>
       </div>
-      <div className="h-[calc(100vh-100px)] mt-[100px] pr-[48px] my-auto shrink-0 flex justify-center flex-col">
+      <div className="h-[calc(100vh-110px)] mt-[100px] pr-[48px] my-auto shrink-0 flex justify-center flex-col">
         <div className="flex-1 flex  flex-col justify-center">
           <DeckContainer
             thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}

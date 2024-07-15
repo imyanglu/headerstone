@@ -6,6 +6,12 @@ import { Card, HsCard } from '@/type';
 import { Input, Select, InputNumber, Checkbox, Button } from 'antd';
 import { useRef, useState } from 'react';
 
+const Rare = [
+  [40, 5],
+  [100, 20],
+  [400, 100],
+  [1600, 400],
+];
 const Page = () => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [card, setCard] = useState<HsCard>({
@@ -47,10 +53,17 @@ const Page = () => {
     });
   };
 
+  const changeRare = (r: number) => {
+    const a = Rare[r];
+    changeCard('forge', a[0]);
+    changeCard('decompose', a[1]);
+  };
   const uploadCard = async () => {
     if (!card) return;
     console.log(card);
-    uploadNewCard(card);
+    uploadNewCard(card).then(() => {
+      window.history.back();
+    });
   };
   return (
     <div className="px-[100px]  min-h-[100vh] flex">
@@ -91,14 +104,40 @@ const Page = () => {
               changeCard('hp', Number(e));
             }}
           />
+          <Select
+            defaultValue="普通"
+            style={{ width: 120 }}
+            onChange={(e) => {
+              changeCard('rare', Number(e));
+              changeRare(Number(e));
+            }}
+            options={[
+              { value: 0, label: '普通' },
+              { value: 1, label: '稀有' },
+              { value: 2, label: '史诗' },
+              { value: 3, label: '传说' },
+            ]}
+          />
+          <Select
+            mode="multiple"
+            allowClear
+            style={{ width: '100%' }}
+            placeholder="选择阵营,中立则不选择."
+            onChange={(e) => {
+              changeCard('faction', e.toString());
+            }}
+            options={JobsData.map((a) => ({ value: a.slug, label: a.name }))}
+          />
           <InputNumber
             addonBefore={<div className="bg-[#]">合成尘</div>}
+            value={card?.forge}
             placeholder="400"
             onChange={(e) => {
               changeCard('forge', Number(e));
             }}
           />
           <InputNumber
+            value={card?.decompose}
             addonBefore={<div className="bg-[#]">分解尘</div>}
             placeholder="400"
             onChange={(e) => {
@@ -135,29 +174,7 @@ const Page = () => {
               }}
             />
           </div>
-          <Select
-            defaultValue="普通"
-            style={{ width: 120 }}
-            onChange={(e) => {
-              changeCard('rare', Number(e));
-            }}
-            options={[
-              { value: 0, label: '普通' },
-              { value: 1, label: '稀有' },
-              { value: 2, label: '史诗' },
-              { value: 3, label: '传说' },
-            ]}
-          />
-          <Select
-            mode="multiple"
-            allowClear
-            style={{ width: '100%' }}
-            placeholder="选择阵营,中立则不选择."
-            onChange={(e) => {
-              changeCard('faction', e.toString());
-            }}
-            options={JobsData.map((a) => ({ value: a.slug, label: a.name }))}
-          />
+
           <Input
             addonBefore={<div className="bg-[#]">卡包名</div>}
             placeholder="荒野之地"
@@ -165,6 +182,7 @@ const Page = () => {
               changeCard('seriesName', e.target.value);
             }}
           />
+          <Input addonBefore={<div className="bg-[#]">作者名</div>} placeholder="荒野之地" />
           <div className="flex items-center">
             <Checkbox onChange={() => {}}>标准卡</Checkbox>
             <Checkbox onChange={() => {}}>狂野卡</Checkbox>
@@ -172,7 +190,6 @@ const Page = () => {
           </div>
           <Input addonBefore={<div className="bg-[#]">子卡</div>} placeholder="id,id" />
           <Input addonBefore={<div className="bg-[#]">父卡</div>} placeholder="id,id" />
-          <Input addonBefore={<div className="bg-[#]">作者名</div>} placeholder="荒野之地" />
         </form>
         <Button className="mt-[24px]" type="primary" onClick={uploadCard}>
           上传
