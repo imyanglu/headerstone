@@ -1,6 +1,8 @@
 import { getCardGroup } from '@/app/api';
 import { DeckContainer } from '@/app/components';
+import { JobsData } from '@/app/Const';
 import { Card, HsCard } from '@/type';
+import Header from './components/Header';
 
 export const revalidate = 10;
 
@@ -18,8 +20,16 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
 
   return (
     <div className="bg-[#372B47] w-[100vw] flex flex-col h-[100vh]">
+      <div className="h-[80px] w-full">
+        <Header code={card.code} />
+      </div>
       <div className="xs:block  my-[20px] min-h-[500px]">
-        <DeckContainer mode="show" defaultName={card.name} selectedCards={groupMap} />
+        <DeckContainer
+          thumbnail={JobsData.find((a) => a.slug === card.type)!.thumbnail}
+          mode="show"
+          defaultName={card.name}
+          selectedCards={groupMap}
+        />
       </div>
     </div>
   );
