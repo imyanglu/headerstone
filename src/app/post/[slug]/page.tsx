@@ -196,7 +196,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           ))}
         </div>
       </div>
-      <div className="h-[calc(100vh-100px)] mt-[100px] pr-[48px] my-auto shrink-0 flex justify-center flex-col">
+      <div className="h-[calc(100vh-110px)] mt-[100px] pr-[48px] my-auto shrink-0 flex justify-center flex-col">
         <div className="flex-1 flex  flex-col justify-center">
           <DeckContainer
             thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
