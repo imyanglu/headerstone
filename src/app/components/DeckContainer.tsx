@@ -3,7 +3,6 @@
 import { Card, HsCard } from '@/type';
 import { useMemo, useState } from 'react';
 import Cost from './Cost';
-import { JobsData } from '../Const';
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -13,6 +12,7 @@ type DeckContainer = {
   defaultName: string;
   mode: 'show' | 'edit';
   selectedCards?: Map<string, HsCard & { count: number }>;
+  onCardClick?(id: string): void;
   onPublish?: (name: string) => void;
 };
 
@@ -22,6 +22,7 @@ const DeckContainer = ({
   defaultName,
   author,
   mode = 'edit',
+  onCardClick,
   onPublish,
 }: DeckContainer) => {
   const [name, setName] = useState(defaultName);
@@ -81,6 +82,9 @@ const DeckContainer = ({
         />
         {processCards.map((i) => (
           <div
+            onClick={() => {
+              onCardClick?.(i.id);
+            }}
             key={i.id}
             className="text-[#fff] cursor-pointer mb-[5px] border-[3px] border-[#555555] rounded-[3px] font-bold h-[32px] text-[14px] flex items-center relative w-[calc(100%-60px)] mx-auto bg-[#2A2828]">
             <div className="absolute translate-x-[-25%]">

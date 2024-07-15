@@ -35,6 +35,16 @@ export type CardGroupOverview = {
   code: string;
   mark: string;
 };
+
+export type Me = {
+  id: string;
+  avatar: string;
+  nickname: string;
+  email: string;
+  isSetup: boolean;
+  bio: string;
+};
+
 export type HsCard = {
   id: string;
   name: string; //卡名

@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { JobsData } from '../Const';
 
 /* eslint-disable @next/next/no-img-element */
-const ShowKeys = ['druid', 'paladin'];
-const Heros = JobsData.filter((item) => ShowKeys.includes(item.slug));
+
+const Heros = JobsData;
 
 const Page = () => {
   return (

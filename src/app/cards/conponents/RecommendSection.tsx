@@ -25,9 +25,11 @@ const RecommendSection = async () => {
           </div>
         }
       />
-      {data.map((i) => (
-        <CardGroup key={i.code} {...i} cards={[]} />
-      ))}
+      <div className="flex gap-x-[20px]">
+        {data.map((i) => (
+          <CardGroup key={i.code} {...i} cards={[]} />
+        ))}
+      </div>
     </div>
   );
 };

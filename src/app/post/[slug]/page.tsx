@@ -33,7 +33,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       professionalCards: processCards.filter((i) => {
         return i.faction.split(',').includes(params.slug);
       }),
-      regularCards: processCards.filter((i) => i.faction === 'all'),
+      regularCards: processCards.filter((i) => i.faction === 'neutral'),
     };
   }, [cards, filters, params.slug]);
 
@@ -44,7 +44,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
   const initCards = () => {
     const slug = params.slug;
-    getCards(`${slug},all`)
+    getCards(`${slug},neutral`)
       .then((data) => {
         setCards(data.cards);
       })
@@ -52,7 +52,17 @@ const Page = ({ params }: { params: { slug: string } }) => {
         setLoading(false);
       });
   };
-
+  const removeCard = (id: string) => {
+    const card = selectedCards?.get(id);
+    if (!card) return;
+    const newCards = new Map(selectedCards);
+    if (card.count > 1) {
+      newCards.set(id, { ...card, count: card.count - 1 });
+    } else {
+      newCards.delete(id);
+    }
+    setSelectedCards(newCards);
+  };
   const checkVerify = (newCard: SelectedCard) => {
     return true;
   };
@@ -180,6 +190,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
             mode="edit"
             selectedCards={selectedCards}
             onPublish={showModal}
+            onCardClick={removeCard}
           />
           <a
             href="/cards/post"

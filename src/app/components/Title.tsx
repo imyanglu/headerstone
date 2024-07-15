@@ -26,6 +26,7 @@ const Title = ({ label = 'title', type = 'neutral' }: Title) => {
           alt=""
         />
       </div>
+
       <div className="w-[250px] mx-[24px] relative">
         <img src={`/${type}-title.svg`} className="w-[250px] max-w-[none]" alt="" />
         <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">

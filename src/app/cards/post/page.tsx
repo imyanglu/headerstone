@@ -1,12 +1,13 @@
 'use client';
 
-import { uploadNewCard } from '@/app/api';
+import { getUploadUrl, uploadFile, uploadNewCard } from '@/app/api';
 import { JobsData } from '@/app/Const';
 import { Card, HsCard } from '@/type';
 import { Input, Select, InputNumber, Checkbox, Button } from 'antd';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const Page = () => {
+  const fileRef = useRef<HTMLInputElement>(null);
   const [card, setCard] = useState<HsCard>({
     id: '',
     name: '',
@@ -33,6 +34,19 @@ const Page = () => {
   const changeCard = <K extends keyof HsCard>(k: K, v: HsCard[K]) => {
     setCard((a) => ({ ...a, [k]: v }));
   };
+  const onChange = () => {
+    uploadCardImg();
+  };
+
+  const uploadCardImg = async () => {
+    const file = fileRef.current?.files?.[0];
+    const res = await getUploadUrl();
+    if (!res.uploadUrl || !file) return;
+    uploadFile(file, res.uploadUrl).then((d) => {
+      changeCard('img', d.url);
+    });
+  };
+
   const uploadCard = async () => {
     if (!card) return;
     console.log(card);
@@ -105,14 +119,22 @@ const Page = () => {
               changeCard('description', e.target.value);
             }}
           />
-          <Input
-            addonBefore={<div className="bg-[#]">卡牌地址</div>}
-            placeholder="https://"
-            onChange={(e) => {
-              changeCard('img', e.target.value);
-            }}
-          />
-
+          <div className="flex gap-x-[12px]">
+            <Button
+              onClick={() => {
+                fileRef.current?.click();
+              }}>
+              图片上传
+            </Button>
+            <Input
+              disabled
+              addonBefore={<div className="bg-[#]">卡牌地址</div>}
+              placeholder="https://"
+              onChange={(e) => {
+                changeCard('img', e.target.value);
+              }}
+            />
+          </div>
           <Select
             defaultValue="普通"
             style={{ width: 120 }}
@@ -136,7 +158,13 @@ const Page = () => {
             }}
             options={JobsData.map((a) => ({ value: a.slug, label: a.name }))}
           />
-          <Input addonBefore={<div className="bg-[#]">卡包名</div>} placeholder="荒野之地" />
+          <Input
+            addonBefore={<div className="bg-[#]">卡包名</div>}
+            placeholder="荒野之地"
+            onChange={(e) => {
+              changeCard('seriesName', e.target.value);
+            }}
+          />
           <div className="flex items-center">
             <Checkbox onChange={() => {}}>标准卡</Checkbox>
             <Checkbox onChange={() => {}}>狂野卡</Checkbox>
@@ -151,6 +179,7 @@ const Page = () => {
         </Button>
       </div>
       <div>{card.img && <img src={card.img} alt="w-[300px]" />}</div>
+      <input type="file" accept="image/*" className="hidden" ref={fileRef} onChange={onChange} />
     </div>
   );
 };
