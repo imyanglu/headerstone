@@ -65,14 +65,13 @@ const Login = () => {
         const me = { email: value, isSetup: false, id: '', nickname: '', avatar: '', bio: '' };
         deleteCookie('user');
         setTimeout(() => {
-          setCookie('user', me, 14);
-          router.push('/setup');
+          alert('该用户未注册!');
 
           return;
         }, 0);
       }
       setCookie('user', me, 14);
-      router.push('/profile');
+      router.push('/');
     });
   };
 
@@ -84,7 +83,7 @@ const Login = () => {
     <div className="w-[100vw] bg-white h-[100vh] fixed top-0 bottom-0 left-0 right-0 z-[3]">
       <div className="flex flex-row w-[450px] mx-auto pt-[100px]">
         <div className="flex-1  pl-[16px] pr-[40px]">
-          <p className="text-[#000] font-bold text-[30px]">登录/注册</p>
+          <p className="text-[#000] font-bold text-[30px]">登录</p>
           <p className="text-[14px] font-normal text-[#000] mb-[24px] leading-[21px]  mt-[16px]">
             验证码可能在垃圾邮箱哦。
           </p>
