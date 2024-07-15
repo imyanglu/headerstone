@@ -12,6 +12,7 @@
     "@react-spring/web": "^9.7.3",
     "antd": "^5.19.1",
     "axios": "^1.7.2",
+    "jotai": "^2.9.0",
     "nanoid": "^5.0.7",
     "next": "14.2.4",
     "rc-virtual-list": "^3.14.5",

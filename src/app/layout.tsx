@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { PreLoad } from './components';
+import Toast from './components/Toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,7 +33,10 @@ export default function RootLayout({
           { type: 'img', src: 'https://pic.imgdb.cn/item/66845bc1d9c307b7e9f0d558.png' },
         ]}
       />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Toast />
+      </body>
     </html>
   );
 }
