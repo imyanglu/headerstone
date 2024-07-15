@@ -1,9 +1,8 @@
 'use client';
 
-import { Card } from '@/type';
+import { Card, HsCard } from '@/type';
 import { useMemo, useState } from 'react';
 import Cost from './Cost';
-import { JobsData } from '../Const';
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -12,7 +11,8 @@ type DeckContainer = {
   author?: string;
   defaultName: string;
   mode: 'show' | 'edit';
-  selectedCards?: Map<string, Card & { count: number }>;
+  selectedCards?: Map<string, HsCard & { count: number }>;
+  onCardClick?(id: string): void;
   onPublish?: (name: string) => void;
 };
 
@@ -22,11 +22,12 @@ const DeckContainer = ({
   defaultName,
   author,
   mode = 'edit',
+  onCardClick,
   onPublish,
 }: DeckContainer) => {
   const [name, setName] = useState(defaultName);
   const processCards = useMemo(() => {
-    return Array.from(selectedCards?.values() || []).sort((n1, n2) => n1.cost - n2.cost);
+    return Array.from(selectedCards?.values() || []).sort((n1, n2) => n1.manna - n2.manna);
   }, [selectedCards]);
   const num = useMemo(() => {
     return processCards.reduce((a, sum) => {
@@ -36,13 +37,13 @@ const DeckContainer = ({
   return (
     <div className="flex flex-col h-full max-h-[600px] mx-auto w-[328px] bg-[#372B47]">
       <div className="deckHead">
-        <div className="deckAvatar pr-[42px] z-[2] w-[90%] translate-y-[12px] relative pl-[14px] mx-auto pt-[16px] overflow-hidden pb-[12px]">
+        <div className="deckAvatar pr-[42px] z-[2] top-[8px]  w-[90%]  relative pl-[8px] mx-auto pt-[16px] h-[92px]">
           <img
             src={thumbnail ?? 'https://pic.imgdb.cn/item/6689730ed9c307b7e9dea892.jpg'}
             className="relative z-[-1]"
             alt=""
           />
-          <div className="absolute bg-[#00000086] flex items-center top-[16px] z-[2] lef-[0] h-[calc(100%-28px)] w-[calc(100%-56px)] ">
+          <div className="absolute  bottom-0 bg-[#00000086] flex items-center top-[16px] z-[2] lef-[0] h-[calc(100%-32px)] w-[calc(100%-43px)] ">
             <div className="relative w-[45px]">
               <img
                 className="w-full"
@@ -81,15 +82,18 @@ const DeckContainer = ({
         />
         {processCards.map((i) => (
           <div
+            onClick={() => {
+              onCardClick?.(i.id);
+            }}
             key={i.id}
             className="text-[#fff] cursor-pointer mb-[5px] border-[3px] border-[#555555] rounded-[3px] font-bold h-[32px] text-[14px] flex items-center relative w-[calc(100%-60px)] mx-auto bg-[#2A2828]">
             <div className="absolute translate-x-[-25%]">
-              <Cost over={999} cost={i.cost} containerClassName="w-[38px] h-[34px]" />
+              <Cost over={999} cost={i.manna} containerClassName="w-[38px] h-[34px]" />
             </div>
             <div
               className=" h-full w-full flex items-center pl-[40px] border-[1px] border-[#000]"
               style={{
-                backgroundImage: `url(${i.pic})`,
+                backgroundImage: `url(${i.img})`,
                 backgroundPosition: '40% 30%',
                 backgroundSize: '240%',
               }}>

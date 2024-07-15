@@ -5,7 +5,7 @@ export const JobsData = [
     name: '死亡骑士',
     slug: 'deathknight',
     pic: 'https://pic.imgdb.cn/item/66845b2ed9c307b7e9f05c72.png',
-    thumbnail: '',
+    thumbnail: 'https://pic.imgdb.cn/item/669537ebd9c307b7e9b068f1.jpg',
   },
   {
     name: '恶魔猎人',

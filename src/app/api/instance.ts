@@ -1,3 +1,5 @@
+import { getCookie } from '../lib';
+
 type Params = { [key in string]: string | number | null | boolean };
 type DataParams =
   | { [key in string]: string | number | null | Blob | FormData | boolean | string[] }
@@ -13,7 +15,7 @@ const fetchMethod = async (
   headers?: object
 ) => {
   let params = '';
-
+  const token = getCookie('token');
   const paramsObj = data.params;
   if (paramsObj) {
     params = '?';
@@ -25,9 +27,9 @@ const fetchMethod = async (
   const result = await fetch(targetUrl + params, {
     method: method,
     body: JSON.stringify(data.data),
-
     headers: {
       'Content-Type': 'application/json',
+      'X-Auth-Token': token ?? '',
       ...headers,
     },
   });

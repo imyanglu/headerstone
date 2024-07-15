@@ -2,7 +2,7 @@
 'use client';
 import { getCards, uploadCardGroup } from '@/app/api';
 import { DeckContainer, ManaControl, Title } from '@/app/components';
-import { Card } from '@/type';
+import { Card, HsCard } from '@/type';
 import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import EditCardGroupModal from './components/EditCardGroupModal';
@@ -14,11 +14,11 @@ type Filters = {
   searchText: string;
 };
 
-type SelectedCard = Card & { count: number };
+type SelectedCard = HsCard & { count: number };
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const [loading, setLoading] = useState(true);
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<HsCard[]>([]);
   const [activeModal, setActiveModal] = useState(false);
   const [name, setName] = useState('');
   const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
@@ -31,9 +31,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
     return {
       professionalCards: processCards.filter((i) => {
-        return i.classes === params.slug;
+        return i.faction.split(',').includes(params.slug);
       }),
-      regularCards: processCards.filter((i) => i.classes === 'all'),
+      regularCards: processCards.filter((i) => i.faction === 'neutral'),
     };
   }, [cards, filters, params.slug]);
 
@@ -44,7 +44,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
   const initCards = () => {
     const slug = params.slug;
-    getCards(`${slug},all`)
+    getCards(`${slug},neutral`)
       .then((data) => {
         setCards(data.cards);
       })
@@ -52,7 +52,17 @@ const Page = ({ params }: { params: { slug: string } }) => {
         setLoading(false);
       });
   };
-
+  const removeCard = (id: string) => {
+    const card = selectedCards?.get(id);
+    if (!card) return;
+    const newCards = new Map(selectedCards);
+    if (card.count > 1) {
+      newCards.set(id, { ...card, count: card.count - 1 });
+    } else {
+      newCards.delete(id);
+    }
+    setSelectedCards(newCards);
+  };
   const checkVerify = (newCard: SelectedCard) => {
     return true;
   };
@@ -71,7 +81,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
     const { code, author, rate } = info;
     const cardIds = selectedCards
       ? (Array.from(selectedCards.values())
-          .sort((a1, a2) => a1.cost - a2.cost)
+          .sort((a1, a2) => a1.manna - a2.manna)
           .map((i) => {
             return Array.from({ length: i.count }, () => i.id);
           })
@@ -137,7 +147,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
               data-id={card.id}
               className="w-[240px]  cursor-pointer aspect-[202/279]"
               draggable>
-              <img data-id={card.id} className="w-full " src={card.pic} alt={card.name} />
+              <img data-id={card.id} className="w-full " src={card.img} alt={card.name} />
             </div>
           ))}
         </div>
@@ -167,19 +177,29 @@ const Page = ({ params }: { params: { slug: string } }) => {
               data-id={card.id}
               className="w-[240px]  cursor-pointer aspect-[202/279]"
               draggable>
-              <img data-id={card.id} className="w-full " src={card.pic} alt={card.name} />
+              <img data-id={card.id} className="w-full " src={card.img} alt={card.name} />
             </div>
           ))}
         </div>
       </div>
-      <div className="h-[calc(100vh-100px)] mt-[100px] pr-[48px] my-auto shrink-0 flex items-center">
-        <DeckContainer
-          thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
-          defaultName=""
-          mode="edit"
-          selectedCards={selectedCards}
-          onPublish={showModal}
-        />
+      <div className="h-[calc(100vh-100px)] mt-[100px] pr-[48px] my-auto shrink-0 flex justify-center flex-col">
+        <div className="flex-1 flex  flex-col justify-center">
+          <DeckContainer
+            thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
+            defaultName=""
+            mode="edit"
+            selectedCards={selectedCards}
+            onPublish={showModal}
+            onCardClick={removeCard}
+          />
+          <a
+            href="/cards/post"
+            className="cursor-pointer my-[20px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[8px]">
+            <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[8px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
+              <div className=" text-[#fff] mx-auto font-bold">卡牌上传</div>
+            </div>
+          </a>
+        </div>
       </div>
 
       <EditCardGroupModal

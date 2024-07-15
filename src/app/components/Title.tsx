@@ -26,10 +26,14 @@ const Title = ({ label = 'title', type = 'neutral' }: Title) => {
           alt=""
         />
       </div>
-      <div className="w-[250px] mx-[24px]">
+
+      <div className="w-[250px] mx-[24px] relative">
         <img src={`/${type}-title.svg`} className="w-[250px] max-w-[none]" alt="" />
+        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+          {label}
+        </div>
       </div>
-      <div className="flex opacity-[0.4] flex-1  hidden sm:flex">
+      <div className="opacity-[0.4] flex-1  hidden sm:flex">
         <img
           src="https://pic.imgdb.cn/item/66840f5dd9c307b7e968b267.png"
           className="w-[20px] h-[10px] max-w-[none]"
@@ -45,9 +49,6 @@ const Title = ({ label = 'title', type = 'neutral' }: Title) => {
           className="w-[20px] h-[30px]"
           alt=""
         />
-      </div>
-      <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
-        {label}
       </div>
     </div>
   );
