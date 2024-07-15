@@ -1,8 +1,10 @@
 'use client';
 
-import { Card, HsCard } from '@/type';
+import { HsCard } from '@/type';
 import { useMemo, useState } from 'react';
 import Cost from './Cost';
+import List from 'rc-virtual-list';
+import Image from 'next/image';
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -87,17 +89,23 @@ const DeckContainer = ({
             }}
             key={i.id}
             className="text-[#fff] cursor-pointer mb-[5px] border-[3px] border-[#555555] rounded-[3px] font-bold h-[32px] text-[14px] flex items-center relative w-[calc(100%-60px)] mx-auto bg-[#2A2828]">
-            <div className="absolute translate-x-[-25%]">
+            <div className="absolute translate-x-[-25%] z-[2]">
               <Cost over={999} cost={i.manna} containerClassName="w-[38px] h-[34px]" />
             </div>
-            <div
-              className=" h-full w-full flex items-center pl-[40px] border-[1px] border-[#000]"
-              style={{
-                backgroundImage: `url(${i.img})`,
-                backgroundPosition: '40% 30%',
-                backgroundSize: '240%',
-              }}>
-              {i.name}
+            <div className="h-full w-full relative flex items-center border-[1px] border-[#000]">
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="w-[240%] absolute h-full ">
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src={i.img}
+                    alt=""
+                    object-fit="cover"
+                    className="absolute  top-0  aspect-[64/97] translate-x-[-126px] translate-y-[-231px]"
+                  />
+                </div>
+              </div>
+              <div className="relative z-[2]  pl-[40px]"> {i.name}</div>
             </div>
             <div className="bg-[#2A2828] w-[30px] text-center font-bold text-[rgb(252,209,68)]">
               {i.count > 1 ? i.count : ''}
