@@ -168,6 +168,7 @@ const Page = () => {
             <Input
               disabled
               addonBefore={<div className="bg-[#]">卡牌地址</div>}
+              value={card.img}
               placeholder="https://"
               onChange={(e) => {
                 changeCard('img', e.target.value);
