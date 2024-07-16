@@ -69,3 +69,13 @@ export const verifyCodeById = (data: { code: string; id: string }) => {
     }
   );
 };
+
+export const getHeroDeckByFaction = (f: string): Promise<{ decks: CardGroupOverview[] }> => {
+  return fetch(`https://8.138.99.181:3000/cardGroup/faction/${f}`, { cache: 'no-cache' })
+    .then((d) => d.json())
+    .catch((d) => {
+      return {
+        decks: [],
+      };
+    });
+};
