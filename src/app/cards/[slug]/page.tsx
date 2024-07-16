@@ -42,12 +42,12 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
               />
             )}
           </div>
-          <div className="grid grid-cols-[repeat(auto-fit,_minmax(220px,_1fr))] w-full gap-[12px]   px-[12px]">
+          <div className="grid grid-cols-[repeat(auto-fit,_minmax(260px,_1fr))] w-full gap-[8px] ">
             {decks.map((card) => (
               <div
                 key={card.id}
                 data-id={card.id}
-                className="w-[240px]  cursor-pointer aspect-[202/279]"
+                className="w-[260px]  cursor-pointer aspect-[202/279]"
                 draggable>
                 <img
                   data-id={card.id}
@@ -73,12 +73,12 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
               />
             )}
           </div>
-          <div className="grid grid-cols-[repeat(auto-fit,_minmax(220px,_1fr))] gap-[12px] w-full   px-[12px]">
+          <div className="grid grid-cols-[repeat(auto-fit,_minmax(260px,_1fr))] gap-[8px] w-full  ">
             {regularCards.map((card) => (
               <div
                 key={card.id}
                 data-id={card.id}
-                className="w-[240px]  cursor-pointer aspect-[202/279]"
+                className="w-[260px]  cursor-pointer aspect-[202/279]"
                 draggable>
                 <img
                   data-id={card.id}
