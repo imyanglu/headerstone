@@ -26,6 +26,7 @@ const CopyBtn = ({ code }: { code: string }) => {
     <div
       className="shrink-0 px-[6px] font-bold cursor-pointer"
       onClick={(e) => {
+        e.preventDefault();
         e.stopPropagation();
         copyCode();
       }}>
