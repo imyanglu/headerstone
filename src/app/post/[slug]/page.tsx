@@ -30,10 +30,14 @@ const Page = ({ params }: { params: { slug: string } }) => {
     const processCards = cards.filter((a) => a.name.includes(filters.searchText.trim()));
 
     return {
-      professionalCards: processCards.filter((i) => {
-        return i.faction.split(',').includes(params.slug);
-      }),
-      regularCards: processCards.filter((i) => i.faction === 'neutral'),
+      professionalCards: processCards
+        .filter((i) => {
+          return i.faction.split(',').includes(params.slug);
+        })
+        .sort((a, b) => a.manna - b.manna),
+      regularCards: processCards
+        .filter((i) => i.faction === 'neutral')
+        .sort((a, b) => a.manna - b.manna),
     };
   }, [cards, filters, params.slug]);
 
@@ -133,7 +137,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           )}
         </div>
         <div
-          className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full   px-[12px]"
+          className="grid grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))] w-full   px-[12px]"
           onClick={(e) => {
             const target = e.target;
             if (target && target instanceof HTMLElement && target.dataset.id) {
@@ -170,7 +174,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           )}
         </div>
         <div
-          className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full   px-[12px]"
+          className="grid grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))] w-full   px-[12px]"
           onClick={(e) => {
             const target = e.target;
             if (target && target instanceof HTMLElement && target.dataset.id) {
