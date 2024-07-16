@@ -23,7 +23,12 @@ const CopyBtn = ({ code }: { code: string }) => {
       });
   };
   return (
-    <div className="shrink-0 px-[6px] font-bold cursor-pointer" onClick={copyCode}>
+    <div
+      className="shrink-0 px-[6px] font-bold cursor-pointer"
+      onClick={(e) => {
+        e.stopPropagation();
+        copyCode();
+      }}>
       复制
     </div>
   );

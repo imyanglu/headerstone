@@ -19,7 +19,9 @@ type CardGroupProps = {
 const CardGroup = ({ code, name, pic, winningRate, id }: CardGroupProps) => {
   return (
     <div className="flex flex-col w-[220px] items-center mx-auto">
-      <img src={pic} className="w-[160px] h-[132px]" alt="" />
+      <a href={`/cards/${id}`}>
+        <img src={pic} className="w-[160px] h-[132px]" alt="" />
+      </a>
       <div className="text-[rgb(33,163,25)] font-bold mt-[2px] text-[12px]">胜率{winningRate}%</div>
       <a
         className="w-[200px] text-[20px] text-[#614326] text-center font-bold"
