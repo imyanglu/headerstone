@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
-import { RecommendSection } from './conponents';
+import { HeroDecks, RecommendSection } from './conponents';
 import { JobsData } from '../Const';
 import { CardGroupOverview } from '@/type';
 
@@ -46,18 +46,9 @@ const Page = async () => {
       </div>
       <div className="h-[4px] w-full bg-[#fff]"></div>
       <div className="h-[2px] mt-[6px] w-full bg-[#fff]"></div>
-      <div className="grid grid-cols-[repeat(auto-fit,_minmax(130px,_1fr))] md:grid-cols-[repeat(auto-fit,220px)]  mt-[16px] px-[24px] justify-center">
+      <div className="flex flex-col pt-[16px]">
         {JobsData.map((i) => {
-          return (
-            <div
-              key={i.slug}
-              className="mx-auto md:w-[180px] cursor-pointer w-full aspect-[215/349] relative">
-              <Image src={i.tile} className="w-full" alt={''} fill />
-              <div className="absolute bottom-[90px] text-center left-0 right-0 text-[#fff] stroke font-bold text-[18px]">
-                {i.name}
-              </div>
-            </div>
-          );
+          return <HeroDecks key={i.slug} faction={i.slug} />;
         })}
       </div>
     </div>
