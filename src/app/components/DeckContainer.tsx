@@ -63,7 +63,7 @@ const DeckContainer = ({
               {mode === 'edit' ? (
                 <input
                   value={name}
-                  placeholder={defaultName}
+                  placeholder={'请编辑'}
                   className="bg-transparent outline-none border-none"
                   onChange={(e) => {
                     setName(e.target.value);
