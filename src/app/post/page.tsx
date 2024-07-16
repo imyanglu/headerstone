@@ -24,7 +24,7 @@ const Page = () => {
           标准卡组
         </div>
       </div>
-      <div className="grid grid-cols-2 mt-[24px] md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[8px] sm:gap-[20px]">
+      <div className="grid grid-cols-2 mt-[24px] md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-[8px] sm:gap-[20px]">
         {Heros.map((item, index) => {
           return (
             <Link

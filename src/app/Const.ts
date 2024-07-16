@@ -24,7 +24,7 @@ export const JobsData = [
     name: '猎人',
     slug: 'hunter',
     pic: 'https://pic.imgdb.cn/item/66845b90d9c307b7e9f0ab9a.png',
-    thumbnail: '',
+    thumbnail: 'https://pic.imgdb.cn/item/669660bed9c307b7e90bf9ad.jpg',
   },
   {
     name: '法师',
@@ -63,7 +63,7 @@ export const JobsData = [
     pic: 'https://pic.imgdb.cn/item/66845bfbd9c307b7e9f109a2.png',
   },
   {
-    thumbnail: '',
+    thumbnail: 'https://pic.imgdb.cn/item/66965fc9d9c307b7e9098d1f.jpg',
     name: '战士',
     slug: 'warrior',
     pic: 'https://pic.imgdb.cn/item/66845c0ad9c307b7e9f11afc.png',
