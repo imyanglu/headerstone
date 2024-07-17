@@ -25,7 +25,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
 
   return (
     <div className="bg-[#372B47] w-[100vw] flex flex-col h-[100vh]">
-      <div className="h-[80px] w-full">
+      <div className="h-[40px] w-full">
         <Header code={card.code} />
       </div>
       <div className="flex px-[24px] h-[calc(100vh-80px)]">

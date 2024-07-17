@@ -3,8 +3,6 @@
 import { HsCard } from '@/type';
 import { useMemo, useState } from 'react';
 import Cost from './Cost';
-import List from 'rc-virtual-list';
-import Image from 'next/image';
 
 /* eslint-disable @next/next/no-img-element */
 
