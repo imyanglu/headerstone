@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-import Image from 'next/image';
-import { HeroDecks, RecommendSection } from './conponents';
 import { JobsData } from '../Const';
 import { CardGroupOverview } from '@/type';
 import ClientSection from './conponents/ClientSection';
