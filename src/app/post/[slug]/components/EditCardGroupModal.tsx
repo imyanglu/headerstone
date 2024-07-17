@@ -6,6 +6,7 @@ type Info = {
   code: string;
   author: string;
   rate: string;
+  forge: string;
 };
 type EditCardGroupModal = {
   visible: boolean;
@@ -16,7 +17,7 @@ type EditCardGroupModal = {
 };
 
 const EditCardGroupModal = ({ visible, name, onClose, onSubmit }: EditCardGroupModal) => {
-  const [info, setInfo] = useState<Info>({ code: '', author: '', rate: '' });
+  const [info, setInfo] = useState<Info>({ code: '', author: '', rate: '', forge: '' });
   const changeInfo = <T extends keyof Info>(k: T, v: Info[T]) => {
     setInfo((prev) => ({ ...prev, [k]: v }));
   };
@@ -46,6 +47,21 @@ const EditCardGroupModal = ({ visible, name, onClose, onSubmit }: EditCardGroupM
             value={info.rate ?? ''}
             onChange={(e) => {
               changeInfo('rate', e.target.value);
+            }}
+          />
+        </div>
+        <div className="flex items-center mt-[24px]">
+          <label htmlFor="cardName" className="w-[50px]  font-bold text-[14px]">
+            奥术尘:
+          </label>
+          <input
+            className="ml-[12px] text-[14px] line-clamp-1 py-[1px] bg-transparent outline-none border-b-[1px]"
+            id="cardName"
+            placeholder=""
+            type="number"
+            value={info.forge ?? ''}
+            onChange={(e) => {
+              changeInfo('forge', e.target.value);
             }}
           />
         </div>
