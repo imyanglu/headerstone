@@ -4,7 +4,7 @@ import { CardGroupOverview } from '@/type';
 import CopyBtn from './CopyBtn';
 
 const CardItem = (data: CardGroupOverview) => {
-  const { name, winningRate, code } = data;
+  const { name, winningRate, code, id, forge } = data;
   const hero = JobsData.find((a) => a.slug === data.type);
   if (!hero) return null;
   return (
@@ -12,14 +12,20 @@ const CardItem = (data: CardGroupOverview) => {
       <div className="py-[12px] flex w-full items-center">
         <img className=" w-[32px] h-[32px] rounded-full" src={hero.weapon} alt="" />
         <div className="w-[60px] sm:w-[100px] ml-[16px]">
-          <div className="font-bold line-clamp-1 break-all">{name}</div>
-          <div className="flex items-center mt-[4px]">
-            <img
-              className="w-[12px] h-[17px]"
-              src="https://pic.imgdb.cn/item/6697b0ddd9c307b7e96455fc.png"
-              alt=""
-            />
-            <p className="text-[12px] ml-[4px]">5240</p>
+          <a href={`/cards/${id}`} className="font-bold line-clamp-1 break-all">
+            {name}
+          </a>
+          <div className="flex items-center mt-[4px] h-[18px]">
+            {forge && (
+              <>
+                <img
+                  className="w-[12px] h-[17px]"
+                  src="https://pic.imgdb.cn/item/6697b0ddd9c307b7e96455fc.png"
+                  alt=""
+                />
+                <p className="text-[12px] ml-[4px]">{forge}</p>
+              </>
+            )}
           </div>
         </div>
         <div className="ml-[8px] text-[12px] sm:text-[16px]">
