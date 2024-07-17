@@ -3,7 +3,9 @@ import { CardGroupOverview } from '@/type';
 import Image from 'next/image';
 import CardItem from './CardItem';
 import CardGroup from './CardGroup';
+import { checkPrimeSync } from 'crypto';
 const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })[] }) => {
+  console.log(decks);
   return (
     <div className="w-[100vw] bg-[#76191A] flex flex-col min-h-[100vh] ]">
       <div className="fixed top-0 w-full h-[100px] flex items-center bg-[#561212] ">

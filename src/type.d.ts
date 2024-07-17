@@ -34,6 +34,7 @@ export type CardGroupOverview = {
   label: string;
   code: string;
   mark: string;
+  forge?: number;
 };
 
 export type Me = {
