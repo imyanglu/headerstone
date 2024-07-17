@@ -1,22 +1,11 @@
 'use client';
 
+import { CardGroupOverview } from '@/type';
 import CopyBtn from './CopyBtn';
 
 /* eslint-disable @next/next/no-img-element */
 
-type CardGroupProps = {
-  code?: string;
-  name: string;
-  pic: string;
-  author?: string;
-  intr?: string;
-  winningRate: string;
-  cards: [];
-  id: string;
-  onCopy?(code: string): void;
-};
-
-const CardGroup = ({ code, name, pic, winningRate, id }: CardGroupProps) => {
+const CardGroup = ({ code, name, pic, winningRate, id }: CardGroupOverview & { pic: string }) => {
   return (
     <div className="flex flex-col w-[220px] items-center mx-auto">
       <a href={`/cards/${id}`}>

@@ -3,8 +3,6 @@
 import { HsCard } from '@/type';
 import { useMemo, useState } from 'react';
 import Cost from './Cost';
-import List from 'rc-virtual-list';
-import Image from 'next/image';
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -63,7 +61,7 @@ const DeckContainer = ({
               {mode === 'edit' ? (
                 <input
                   value={name}
-                  placeholder={defaultName}
+                  placeholder={'请编辑'}
                   className="bg-transparent outline-none border-none"
                   onChange={(e) => {
                     setName(e.target.value);
