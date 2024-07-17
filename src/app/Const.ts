@@ -39,8 +39,8 @@ export const JobsData = [
     slug: 'mage',
     pic: 'https://pic.imgdb.cn/item/66845bafd9c307b7e9f0c626.png',
     tile: '/tiles/mage-tile.avif',
-    thumbnail: '',
-    weapon: '/weapon/warrior.png',
+    thumbnail: 'https://pic.imgdb.cn/item/66981809d9c307b7e9db2925.jpg',
+    weapon: '/weapon/mage.png',
   },
   {
     name: '圣骑士',

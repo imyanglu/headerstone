@@ -8,6 +8,7 @@ import { useEffect, useMemo, useState } from 'react';
 import EditCardGroupModal from './components/EditCardGroupModal';
 import { JobsData } from '@/app/Const';
 import Header from './components/Header';
+import useToast from '@/app/lib/hooks';
 
 type Filters = {
   cost: [number, number];
@@ -17,6 +18,7 @@ type Filters = {
 type SelectedCard = HsCard & { count: number };
 
 const Page = ({ params }: { params: { slug: string } }) => {
+  const { addToast } = useToast();
   const [loading, setLoading] = useState(true);
   const [cards, setCards] = useState<HsCard[]>([]);
   const [activeModal, setActiveModal] = useState(false);
@@ -81,16 +83,17 @@ const Page = ({ params }: { params: { slug: string } }) => {
     if (checkVerify(newCard)) setSelectedCards(newCards);
   };
 
-  const publishCards = (info: Record<'code' | 'author' | 'rate', string>) => {
-    const { code, author, rate } = info;
-    const cardIds = selectedCards
-      ? (Array.from(selectedCards.values())
-          .sort((a1, a2) => a1.manna - a2.manna)
-          .map((i) => {
-            return Array.from({ length: i.count }, () => i.id);
-          })
-          .flat(Infinity) as string[])
-      : [];
+  const publishCards = (info: Record<'code' | 'author' | 'rate' | 'forge', string>) => {
+    const { code, author, rate, forge } = info;
+    const cardsArr = selectedCards ? Array.from(selectedCards.values()) : [];
+    const cardIds = cardsArr
+      .sort((a1, a2) => a1.manna - a2.manna)
+      .map((i) => {
+        return Array.from({ length: i.count }, () => i.id);
+      })
+      .flat(Infinity) as string[];
+
+    const mana = cardIds.map((a) => cards.find((i) => i.id === a)?.manna);
     const req = {
       code,
       name,
@@ -98,9 +101,16 @@ const Page = ({ params }: { params: { slug: string } }) => {
       owner: author,
       cards: cardIds,
       type: params.slug,
+      mana,
+      forge,
       label: '',
       desc: '',
     };
+
+    if (!req.name || !req.code || !forge) {
+      return addToast({ type: 'error', message: '缺少必要信息', title: '' });
+    }
+
     uploadCardGroup(req)
       .then()
       .finally(() => {
@@ -117,106 +127,108 @@ const Page = ({ params }: { params: { slug: string } }) => {
   }, []);
 
   return (
-    <div className="w-[100vw] bg-[#E8D5AA] flex h-[100vh] ">
+    <div className="w-[100vw] bg-[#E8D5AA]  h-[100vh] flex flex-col">
       <Header
         onSearch={(s) => {
           changeFilters('searchText', s);
         }}
       />
-      <div className="flex flex-col mt-[100px] pt-[24px]  flex-1 items-center overflow-y-scroll  h-[calc(100vh-100px)] mainSection px-[32px] hideScrollbar">
-        <div className="w-full">
-          {!loading && professionalCards.length > 0 && (
-            <Title
-              type={type?.slug}
-              label={
-                <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
-                  {type?.name}
-                </div>
-              }
-            />
-          )}
-        </div>
-        <div
-          className="grid grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))] w-full   px-[12px]"
-          onClick={(e) => {
-            const target = e.target;
-            if (target && target instanceof HTMLElement && target.dataset.id) {
-              const id = target.dataset.id;
-              addCards(id);
-            }
-          }}>
-          {professionalCards.map((card) => (
-            <div
-              key={card.id}
-              data-id={card.id}
-              className="w-[240px]  cursor-pointer aspect-[202/279]"
-              draggable>
-              <img
-                data-id={card.id}
-                className="w-full "
-                src={card.img}
-                alt={card.name}
-                loading="lazy"
-                decoding="async"
+      <div className="flex mt-[100px]">
+        <div className="flex flex-col  pt-[24px]  h-[calc(100vh-100px)] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
+          <div className="w-full">
+            {!loading && professionalCards.length > 0 && (
+              <Title
+                type={type?.slug}
+                label={
+                  <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
+                    {type?.name}
+                  </div>
+                }
               />
-            </div>
-          ))}
-        </div>
-        <div className="w-full">
-          {!loading && regularCards.length > 0 && (
-            <Title
-              label={
-                <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
-                  常规卡牌
-                </div>
+            )}
+          </div>
+          <div
+            className="grid grid-cols-[repeat(auto-fit,_minmax(270px,_1fr))] w-full "
+            onClick={(e) => {
+              const target = e.target;
+              if (target && target instanceof HTMLElement && target.dataset.id) {
+                const id = target.dataset.id;
+                addCards(id);
               }
-            />
-          )}
-        </div>
-        <div
-          className="grid grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))] w-full   px-[12px]"
-          onClick={(e) => {
-            const target = e.target;
-            if (target && target instanceof HTMLElement && target.dataset.id) {
-              const id = target.dataset.id;
-              addCards(id);
-            }
-          }}>
-          {regularCards.map((card) => (
-            <div
-              key={card.id}
-              data-id={card.id}
-              className="w-[240px]  cursor-pointer aspect-[202/279]"
-              draggable>
-              <img
+            }}>
+            {professionalCards.map((card) => (
+              <div
+                key={card.id}
                 data-id={card.id}
-                className="w-full "
-                src={card.img}
-                alt={card.name}
-                loading="lazy"
-                decoding="async"
+                className="w-[240px]  cursor-pointer aspect-[202/279]"
+                draggable>
+                <img
+                  data-id={card.id}
+                  className="w-full "
+                  src={card.img}
+                  alt={card.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="w-full">
+            {!loading && regularCards.length > 0 && (
+              <Title
+                label={
+                  <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
+                    常规卡牌
+                  </div>
+                }
               />
-            </div>
-          ))}
+            )}
+          </div>
+          <div
+            className="grid grid-cols-[repeat(auto-fit,_minmax(270px,_1fr))] w-full "
+            onClick={(e) => {
+              const target = e.target;
+              if (target && target instanceof HTMLElement && target.dataset.id) {
+                const id = target.dataset.id;
+                addCards(id);
+              }
+            }}>
+            {regularCards.map((card) => (
+              <div
+                key={card.id}
+                data-id={card.id}
+                className="w-[240px]  cursor-pointer aspect-[202/279]"
+                draggable>
+                <img
+                  data-id={card.id}
+                  className="w-full "
+                  src={card.img}
+                  alt={card.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="h-[calc(100vh-110px)] mt-[100px] pr-[48px] my-auto shrink-0 flex justify-center flex-col">
-        <div className="flex-1 flex  flex-col justify-center">
-          <DeckContainer
-            thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
-            defaultName=""
-            mode="edit"
-            selectedCards={selectedCards}
-            onPublish={showModal}
-            onCardClick={removeCard}
-          />
-          <a
-            href="/cards/post"
-            className="cursor-pointer my-[20px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[8px]">
-            <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[8px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
-              <div className=" text-[#fff] mx-auto font-bold">卡牌上传</div>
-            </div>
-          </a>
+        <div className="h-[calc(100vh-120px)]  pr-[48px] my-auto shrink-0 flex justify-center flex-col">
+          <div className="flex-1 flex  flex-col justify-center">
+            <DeckContainer
+              thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
+              defaultName=""
+              mode="edit"
+              selectedCards={selectedCards}
+              onPublish={showModal}
+              onCardClick={removeCard}
+            />
+            <a
+              href="/cards/post"
+              className="cursor-pointer my-[20px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[8px]">
+              <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[8px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
+                <div className=" text-[#fff] mx-auto font-bold">卡牌上传</div>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
 
