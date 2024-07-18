@@ -28,7 +28,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
       <div className="h-[100px] w-full">
         <Header code={card.code} />
       </div>
-      <div className="flex px-[24px] h-[calc(100vh-80px)]">
+      <div className="flex px-[24px] h-[calc(100vh-100px)]">
         <div className="overflow-y-scroll flex-1 hideScrollbar   hideScrollbar hidden md:flex flex-col pr-[24px]">
           <div className="w-full">
             {hero && (
@@ -92,7 +92,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
             ))}
           </div>
         </div>
-        <div className="xs:block mx-auto py-[20px] min-h-[500px]">
+        <div className="xs:block mx-auto py-[20px]">
           <DeckContainer
             thumbnail={JobsData.find((a) => a.slug === card.type)!.thumbnail}
             mode="show"
