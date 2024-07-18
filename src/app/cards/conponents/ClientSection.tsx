@@ -3,9 +3,20 @@ import { CardGroupOverview } from '@/type';
 import Image from 'next/image';
 import CardItem from './CardItem';
 import CardGroup from './CardGroup';
-import { checkPrimeSync } from 'crypto';
+import { useMemo, useState } from 'react';
+
 const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })[] }) => {
-  const bestDeck = decks.sort((a, b) => Number(b.winningRate) - Number(a.winningRate))[0];
+  const [searchText, setSearchText] = useState('');
+
+  const bestDeck = useMemo(() => {
+    const dArr = decks.sort((a, b) => Number(b.winningRate) - Number(a.winningRate));
+    return dArr[0];
+  }, [decks]);
+
+  const processDecks = useMemo(() => {
+    return decks.filter((a) => a.name.includes(searchText));
+  }, [searchText, decks]);
+
   return (
     <div className="w-[100vw] bg-[#76191A] flex flex-col min-h-[100vh] ]">
       <div className="fixed top-0 w-full h-[100px] flex items-center bg-[#561212] ">
@@ -31,6 +42,8 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
         <div className="ml-[32px] mr-[12px] md:mr-[24px] border-[3px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[20] rounded-[12px]">
           <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[12px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
             <input
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
               placeholder="搜索卡组..."
               className="outline-none text-[14px] w-full md:w-[180px]  py-[4px]  font-bold bg-[#3D0D0D] text-[#fff]"
             />
@@ -47,7 +60,7 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
           <CardGroup {...bestDeck} />
         </div>
         <div className="flex flex-col px-[16px] w-full pb-[60px]">
-          {decks.map((d) => (
+          {processDecks.map((d) => (
             <CardItem key={d.id} {...d} />
           ))}
         </div>
