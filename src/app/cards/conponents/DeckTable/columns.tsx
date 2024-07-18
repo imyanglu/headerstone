@@ -14,10 +14,7 @@ export const WeaponColumn: ColumnDef<CardGroupOverview> = {
   size: 40,
 };
 export const NameColumn: ColumnDef<CardGroupOverview> = {
-  id: 'name',
-
-  accessorFn: (row) => row.name,
-  header: () => <span className="">卡组名</span>,
+  header: '卡组名',
   cell: ({ row }) => {
     const { id, name, forge } = row.original;
     return (
@@ -43,7 +40,9 @@ export const NameColumn: ColumnDef<CardGroupOverview> = {
 };
 
 export const WinRateColumn: ColumnDef<CardGroupOverview> = {
-  header: '胜率',
+  id: 'winningRate',
+  accessorFn: (row) => row.winningRate,
+  header: () => <span className="">胜率</span>,
   cell: ({ row }) => {
     const rate = row.original.winningRate;
     return (
