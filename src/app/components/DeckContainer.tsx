@@ -104,7 +104,7 @@ const DeckContainer = ({
                   />
                 </div>
               </div>
-              <div className="relative z-[2]  pl-[40px]"> {i.name}</div>
+              <div className="relative z-[2]  pl-[40px] stroke"> {i.name}</div>
             </div>
             <div className="bg-[#2A2828] w-[30px] text-center font-bold text-[rgb(252,209,68)]">
               {i.count > 1 ? i.count : ''}
