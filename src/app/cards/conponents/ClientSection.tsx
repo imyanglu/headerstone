@@ -5,7 +5,7 @@ import CardItem from './CardItem';
 import CardGroup from './CardGroup';
 import { checkPrimeSync } from 'crypto';
 const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })[] }) => {
-  console.log(decks);
+  const bestDeck = decks.sort((a, b) => Number(b.winningRate) - Number(a.winningRate))[0];
   return (
     <div className="w-[100vw] bg-[#76191A] flex flex-col min-h-[100vh] ]">
       <div className="fixed top-0 w-full h-[100px] flex items-center bg-[#561212] ">
@@ -44,7 +44,7 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
       <div className="flex-1 mainSection flex flex-col lg:flex-row">
         <div className="lg:w-[300px] w-full shrink-0 bg-[#531211] pb-[20px]">
           <div className="text-[#fff] font-bold text-center py-[16px]">卡组推荐</div>
-          <CardGroup {...decks[0]} />
+          <CardGroup {...bestDeck} />
         </div>
         <div className="flex flex-col px-[16px] w-full pb-[60px]">
           {decks.map((d) => (
