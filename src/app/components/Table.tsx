@@ -1,11 +1,15 @@
 'use client';
 import {
+  ColumnDef,
   flexRender,
   getCoreRowModel,
-  useReactTable,
-  ColumnDef,
   getSortedRowModel,
+  Row,
+  useReactTable,
 } from '@tanstack/react-table';
+
+import { useVirtualizer } from '@tanstack/react-virtual';
+import { useState } from 'react';
 
 type Table<K> = {
   data: K[];
@@ -13,11 +17,16 @@ type Table<K> = {
 };
 
 const Table = <T extends object>({ data, columns }: Table<T>) => {
+  const [sorting, setSorting] = useState<SortingState>([]);
   const table = useReactTable({
     data,
     columns,
+    state: {
+      sorting,
+    },
     getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
+    onSortingChange: setSorting,
   });
   return (
     <table className="w-full">

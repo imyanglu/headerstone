@@ -59,7 +59,7 @@ export const CodeColumn: ColumnDef<CardGroupOverview> = {
   cell: ({ row }) => {
     const code = row.original.code;
     return (
-      <div className="border-[4px] w-[100px] mx-auto md:w-[200px] mt-[4px] shadow-lg outline-[#e1c892] outline-[5px] outline border-[#000]  relative z-[2] rounded-[10px]">
+      <div className="border-[4px] w-[100px] mx-auto md:w-[200px] lg:w-[300px] shrink-0 mt-[4px] shadow-lg outline-[#e1c892] outline-[5px] outline border-[#000]  relative z-[2] rounded-[10px]">
         <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] pl-[8px] text-[14px]  py-[3px]  rounded-[10px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[#fff]">
           <div className="flex-1 line-clamp-1 break-all">{code}</div>
           {code && <CopyBtn code={code} />}
