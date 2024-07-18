@@ -4,6 +4,8 @@ import Image from 'next/image';
 import CardItem from './CardItem';
 import CardGroup from './CardGroup';
 import { useMemo, useState } from 'react';
+import { Table } from '@/app/components';
+import DeckTable from './DeckTable';
 
 const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })[] }) => {
   const [searchText, setSearchText] = useState('');
@@ -59,10 +61,8 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
           <div className="text-[#fff] font-bold text-center py-[16px]">卡组推荐</div>
           <CardGroup {...bestDeck} />
         </div>
-        <div className="flex flex-col px-[16px] w-full pb-[60px]">
-          {processDecks.map((d) => (
-            <CardItem key={d.id} {...d} />
-          ))}
+        <div className="flex flex-col px-[16px] w-full pb-[60px] pt-[20px]">
+          <DeckTable data={processDecks} />
         </div>
       </div>
     </div>
