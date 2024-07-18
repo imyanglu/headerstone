@@ -35,7 +35,7 @@ const DeckContainer = ({
     }, 0);
   }, [processCards]);
   return (
-    <div className="flex flex-col h-full max-h-[600px] mx-auto w-[328px] bg-[#372B47]">
+    <div className="flex flex-col h-full mx-auto w-[328px] bg-[#372B47]">
       <div className="deckHead">
         <div className="deckAvatar pr-[42px] z-[2] top-[8px]  w-[90%]  relative pl-[8px] mx-auto pt-[16px] h-[92px]">
           <img
@@ -75,7 +75,7 @@ const DeckContainer = ({
           </div>
         </div>
       </div>
-      <div className="deckContainer flex-1 w-full relative overflow-y-scroll hideScrollbar">
+      <div className="deckContainer h-[calc(100%-202px)] w-full relative overflow-y-scroll hideScrollbar">
         <img
           src="https://pic.imgdb.cn/item/668ae290d9c307b7e9ce6bf2.png"
           className="absolute w-[80px] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"

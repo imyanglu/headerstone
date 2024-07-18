@@ -24,7 +24,7 @@ export const JobsData = [
     thumbnail: 'https://pic.imgdb.cn/item/66901522d9c307b7e9121053.jpg',
     title: '/druid-title.svg',
     tile: '/tiles/druid-tile.avif',
-    weapon: '/weapon/warrior.png',
+    weapon: '/weapon/druid.png',
   },
   {
     name: '猎人',

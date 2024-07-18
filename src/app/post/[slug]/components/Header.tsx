@@ -35,6 +35,13 @@ const Header = ({ onSearch }: Header) => {
         <div className="relative z-10 lg:block hidden">
           <ManaControl />
         </div>
+        <a
+          href="/cards/post"
+          className="cursor-pointer  w-[200px] block ml-[20px] my-[20px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[8px]">
+          <div className=" outline-[#E3D07F] w-full flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[8px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
+            <div className=" text-[#fff] mx-auto font-bold">卡牌上传</div>
+          </div>
+        </a>
         <div className="ml-auto mr-[24px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[24px]">
           <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
             <input
