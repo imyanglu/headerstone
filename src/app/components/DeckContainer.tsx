@@ -35,7 +35,7 @@ const DeckContainer = ({
     }, 0);
   }, [processCards]);
   return (
-    <div className="flex flex-col h-full mx-auto w-[328px] bg-[#372B47]">
+    <div className="flex flex-col h-full max-h-[700px] mx-auto w-[328px] bg-[#372B47]">
       <div className="deckHead">
         <div className="deckAvatar pr-[42px] z-[2] top-[8px]  w-[90%]  relative pl-[8px] mx-auto pt-[16px] h-[92px]">
           <img

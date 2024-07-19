@@ -148,7 +148,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
             )}
           </div>
           <div
-            className="grid grid-cols-[repeat(auto-fit,_minmax(270px,_1fr))] w-full "
+            className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full justify-center "
             onClick={(e) => {
               const target = e.target;
               if (target && target instanceof HTMLElement && target.dataset.id) {
@@ -185,7 +185,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
             )}
           </div>
           <div
-            className="grid grid-cols-[repeat(auto-fit,_minmax(270px,_1fr))] w-full "
+            className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full "
             onClick={(e) => {
               const target = e.target;
               if (target && target instanceof HTMLElement && target.dataset.id) {
