@@ -89,7 +89,12 @@ const DeckContainer = ({
             key={i.id}
             className="text-[#fff] cursor-pointer mb-[5px] border-[3px] border-[#555555] rounded-[3px] font-bold h-[32px] text-[14px] flex items-center relative w-[calc(100%-60px)] mx-auto bg-[#2A2828]">
             <div className="absolute translate-x-[-25%] z-[2]">
-              <Cost over={999} cost={i.manna} containerClassName="w-[38px] h-[34px]" />
+              <Cost
+                isSelected={false}
+                over={999}
+                cost={i.manna}
+                containerClassName="w-[38px] h-[34px]"
+              />
             </div>
             <div className="h-full w-full relative flex items-center border-[1px] border-[#000]">
               <div className="absolute inset-0 overflow-hidden">
