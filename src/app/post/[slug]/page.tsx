@@ -3,7 +3,6 @@
 import { getCards, uploadCardGroup } from '@/app/api';
 import { DeckContainer, ManaControl, Title } from '@/app/components';
 import { Card, HsCard } from '@/type';
-import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import EditCardGroupModal from './components/EditCardGroupModal';
 import { JobsData } from '@/app/Const';
@@ -13,6 +12,7 @@ import useToast from '@/app/lib/hooks';
 type Filters = {
   cost: [number, number];
   searchText: string;
+  mana: number[];
 };
 
 type SelectedCard = HsCard & { count: number };
@@ -24,7 +24,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
   const [activeModal, setActiveModal] = useState(false);
   const [name, setName] = useState('');
   const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
-  const [filters, setFilters] = useState<Filters>({ cost: [-1, 100], searchText: '' });
+  const [filters, setFilters] = useState<Filters>({ cost: [-1, 100], searchText: '', mana: [] });
   const changeFilters = <K extends keyof Filters>(k: K, v: Filters[K]) => {
     setFilters((prev) => ({ ...prev, [k]: v }));
   };
@@ -121,6 +121,16 @@ const Page = ({ params }: { params: { slug: string } }) => {
     setName(name);
     setActiveModal(true);
   };
+  const onToggleManaClick = (m: number) => {
+    if (filters.mana.includes(m)) {
+      changeFilters(
+        'mana',
+        filters.mana.filter((i) => i !== m)
+      );
+      return;
+    }
+    changeFilters('mana', [...filters.mana, m]);
+  };
 
   useEffect(() => {
     initCards();
@@ -129,9 +139,12 @@ const Page = ({ params }: { params: { slug: string } }) => {
   return (
     <div className="w-[100vw] bg-[#E8D5AA]  h-[100vh] flex flex-col">
       <Header
+        mana={filters.mana}
         onSearch={(s) => {
+          console.log('xxx');
           changeFilters('searchText', s);
         }}
+        onManaClick={onToggleManaClick}
       />
       <div className="flex mt-[100px]">
         <div className="flex flex-col    h-[calc(100vh-100px)] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">

@@ -213,11 +213,21 @@ body {
   opacity: 0;
   transition: opacity 0.5s ease;
 }
+.selectedCost::after {
+  filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
+  opacity: 1;
+  background-color: #f00;
+}
+.selectedCost {
+  filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
+  opacity: 1;
+}
 .endText:hover::after {
   filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
   opacity: 1;
 }
 .light:hover::after {
+  filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
   opacity: 1;
 }
 

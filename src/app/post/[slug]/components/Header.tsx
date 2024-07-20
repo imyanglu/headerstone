@@ -4,10 +4,12 @@ import Image from 'next/image';
 import { useRef } from 'react';
 
 type Header = {
+  mana?: number[];
+  onManaClick?: (mana: number) => void;
   onSearch(s: string): void;
 };
 
-const Header = ({ onSearch }: Header) => {
+const Header = ({ mana, onSearch, onManaClick }: Header) => {
   const inputRef = useRef<HTMLInputElement>(null);
   return (
     <>
@@ -33,7 +35,7 @@ const Header = ({ onSearch }: Header) => {
           </div>
         </div>
         <div className="relative z-10 lg:block hidden">
-          <ManaControl />
+          <ManaControl onManaClick={onManaClick} selectedMana={mana} />
         </div>
         <a
           href="/cards/post"
