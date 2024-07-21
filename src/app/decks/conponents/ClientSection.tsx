@@ -42,6 +42,7 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
             卡组查询
           </div>
         </div>
+        <div className="ml-auto mr-[24px] flex items-center"></div>
       </div>
       <div className="h-[100px]" />
 
@@ -51,8 +52,8 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
           <CardGroup {...bestDeck} />
         </div>
         <div className="flex flex-col flex-1 pt-[20px]">
-          <div className=" border-[4px] w-[fit-content] shadow-lg outline-[#c1b79f] outline-[2px] mx-auto outline border-[#827878]  relative z-[2] rounded-[24px]">
-            <div className=" outline-[#b7aa8b] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
+          <div className=" border-[4px] w-[fit-content] shadow-lg outline-[#c1b79f] outline-[2px] mx-auto outline border-[#d5bebe]  relative z-[2] rounded-[24px]">
+            <div className=" outline-[#c2b085] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
               <input
                 placeholder="搜索..."
                 className="outline-none text-[14px]  py-[3px]  font-bold bg-[#3D0D0D] text-[#fff]"

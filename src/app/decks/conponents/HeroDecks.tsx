@@ -28,7 +28,7 @@ const HeroDecks = async ({ faction }: Props) => {
       <div className="flex flex-wrap py-[12px] ml-[12px]">
         {decks.map((a) => (
           <a
-            href={`/cards/${a.id}`}
+            href={`/decks/${a.id}`}
             key={a.id}
             className="w-[fit-content] max-w-[160px] text-[#fff] rounded-[4px] outline-[#D7B96D] border-[1px] bg-[#3D0D0D] outline h-[fit-content] px-[8px] py-[8px]">
             <div className="text-[14px] underline">{a.name}</div>
