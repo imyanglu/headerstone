@@ -37,12 +37,21 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
           className="relative z-2 px-[24px] text-[#fff] font-bold text-[16px] md:text-[26px]">
           LSCX.Xyz
         </a>
-        <div className="hidden md:block border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000] ml-[12px] relative z-[2] rounded-[8px]">
+        <div className="hidden md:block border-[4px] shadow-lg outline-[#681715] outline-[5px] outline border-[#000] ml-[12px] relative z-[2] rounded-[8px]">
           <div className="outline-[#E3D07F] flex outline outline-[3px] px-[24px] text-[16px] py-[4px]  rounded-[6px] border-[2px] border-[#000] font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
             卡组查询
           </div>
         </div>
-        <div className="ml-auto mr-[24px] flex items-center"></div>
+        <div className="ml-auto relative z-[3] mr-[24px] flex items-center">
+          {/* <a className="flex outline outline-[3px] px-[16px] text-[12px] sm:text-[16px] py-[4px]  rounded-[6px] border-[2px]  font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
+            新卡速递🥵
+          </a> */}
+          <a
+            href="/cards/query"
+            className="flex ml-[4px] sm:ml-[12px] outline outline-[3px] text-[12px] px-[16px] sm:text-[16px] py-[4px]  rounded-[6px] border-[2px]  font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
+            单卡查询
+          </a>
+        </div>
       </div>
       <div className="h-[100px]" />
 
