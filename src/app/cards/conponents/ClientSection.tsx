@@ -99,7 +99,7 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
               {({ height, width }) => (
                 <List
                   rowCount={processDecks.length}
-                  rowHeight={70}
+                  rowHeight={72}
                   height={height}
                   width={width}
                   rowRenderer={({ index }) => {
