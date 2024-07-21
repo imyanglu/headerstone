@@ -4,7 +4,6 @@ import Image from 'next/image';
 import CardItem from './CardItem';
 import CardGroup from './CardGroup';
 import { useMemo, useState } from 'react';
-import HsDecks from './HsDecks';
 import { AutoSizer, List } from 'react-virtualized';
 
 const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })[] }) => {
@@ -22,7 +21,7 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
 
   return (
     <div className="w-[100vw] bg-[#76191A] flex flex-col min-h-[100vh] ]">
-      <div className="fixed top-0 w-full h-[100px] flex items-center bg-[#561212] ">
+      <div className="fixed top-0 z-[10] w-full h-[100px] flex items-center bg-[#561212] ">
         <div className="absolute top-[1px] z-[10] h-[30px] w-full ">
           <Image src="https://pic.imgdb.cn/item/6683b127d9c307b7e99abe59.png" alt="" fill />
         </div>
