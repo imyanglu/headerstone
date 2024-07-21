@@ -21,7 +21,7 @@ export default function Home() {
               <div className="btn1 px-[4px] py-[4px] text-center shadow-lg  rounded-[6px] flex justify-center items-center">
                 <div className="py-[2px] px-[2px] bg-[#7e3690] rounded-[6px]">
                   <Link
-                    href="/cards"
+                    href="/decks"
                     className="block w-[110px] shadow-lg h-[40px] leading-[40px]  bg-gradient-to-r from-[#5A1B87] via-[#AB28C1] to-[#591C87] rounded-[4px]">
                     卡组查询
                   </Link>

@@ -12,7 +12,7 @@ const CardItem = (data: CardGroupOverview) => {
       <div className="py-[12px] flex w-full items-center">
         <img className=" w-[32px] h-[32px] rounded-full" src={hero.weapon} alt="" />
         <div className="w-[60px] sm:w-[100px] ml-[16px]">
-          <a href={`/cards/${id}`} className="font-bold line-clamp-1 break-all">
+          <a href={`/decks/${id}`} className="font-bold line-clamp-1 break-all">
             {name}
           </a>
           <div className="flex items-center mt-[4px] h-[18px]">
