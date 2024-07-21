@@ -69,4 +69,14 @@ export type HsCard = {
   // visible: boolean; //是否可见
   child: boolean; //是否为子卡牌
   artist: string; //作家名字
-};
+}
+export type ReHsCard ={
+  cardClass:string;
+  dbfId:number;
+  health:number;
+  heroPowerDbfId:number;
+  id:string;
+  name:string;
+  set:string;
+  type:string
+}

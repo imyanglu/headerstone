@@ -218,6 +218,10 @@ body {
   opacity: 1;
   background-color: #f00;
 }
+.ReactVirtualized__List {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 .selectedCost {
   filter: drop-shadow(rgb(255, 255, 255) 0px 0px 3px);
   opacity: 1;
