@@ -9,9 +9,14 @@ export const revalidate = 10;
 
 const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const { card } = await getCardGroup(slug);
+
   const groupMap: Map<string, HsCard & { count: number }> = new Map();
-  card.cards.forEach((card) => {
-    const preCard = groupMap.get(card.id);
+  card.cards.forEach((card, idx) => {
+    if (!card) {
+      console.log(idx);
+      return;
+    }
+    const preCard = groupMap.get(card?.id);
     if (preCard) {
       groupMap.set(card.id, { ...card, count: preCard.count + 1 });
       return;
@@ -19,9 +24,9 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
     groupMap.set(card.id, { ...card, count: 1 });
   });
 
-  const regularCards = Array.from(groupMap.values()).filter((a) => a.faction === 'neutral');
-  const decks = Array.from(groupMap.values()).filter((a) => a.faction !== 'neutral');
-  const hero = JobsData.find((a) => a.slug === decks[0].faction);
+  const regularCards = Array.from(groupMap.values()).filter((a) => a?.faction === 'neutral');
+  const decks = Array.from(groupMap.values()).filter((a) => a?.faction !== 'neutral');
+  const hero = JobsData.find((a) => a.slug === decks[0]?.faction);
 
   return (
     <div className="bg-[#372B47] w-[100vw] flex flex-col h-[100vh]">

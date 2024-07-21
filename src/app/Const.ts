@@ -59,12 +59,12 @@ export const JobsData = [
     weapon: '/weapon/warrior.png',
   },
   {
-    thumbnail: '',
+    thumbnail: 'https://pic.imgdb.cn/item/669d5e45d9c307b7e929e15c.jpg',
     name: '盗贼',
     slug: 'rogue',
     pic: 'https://pic.imgdb.cn/item/66845bdcd9c307b7e9f0ee87.png',
     tile: '/tiles/rogue-tile.avif',
-    weapon: '/weapon/warrior.png',
+    weapon: '/weapon/rogue.png',
   },
   {
     thumbnail: '',

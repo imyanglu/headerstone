@@ -4,7 +4,6 @@ import Image from 'next/image';
 import CardItem from './CardItem';
 import CardGroup from './CardGroup';
 import { useMemo, useState } from 'react';
-import HsDecks from './HsDecks';
 import { AutoSizer, List } from 'react-virtualized';
 
 const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })[] }) => {
@@ -22,7 +21,7 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
 
   return (
     <div className="w-[100vw] bg-[#76191A] flex flex-col min-h-[100vh] ]">
-      <div className="fixed top-0 w-full h-[100px] flex items-center bg-[#561212] ">
+      <div className="fixed top-0 z-[10] w-full h-[100px] flex items-center bg-[#561212] ">
         <div className="absolute top-[1px] z-[10] h-[30px] w-full ">
           <Image src="https://pic.imgdb.cn/item/6683b127d9c307b7e99abe59.png" alt="" fill />
         </div>
@@ -37,12 +36,21 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
           className="relative z-2 px-[24px] text-[#fff] font-bold text-[16px] md:text-[26px]">
           LSCX.Xyz
         </a>
-        <div className="hidden md:block border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000] ml-[12px] relative z-[2] rounded-[8px]">
+        <div className="hidden md:block border-[4px] shadow-lg outline-[#681715] outline-[5px] outline border-[#000] ml-[12px] relative z-[2] rounded-[8px]">
           <div className="outline-[#E3D07F] flex outline outline-[3px] px-[24px] text-[16px] py-[4px]  rounded-[6px] border-[2px] border-[#000] font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
             卡组查询
           </div>
         </div>
-        <div className="ml-auto mr-[24px] flex items-center"></div>
+        <div className="ml-auto relative z-[3] mr-[24px] flex items-center">
+          {/* <a className="flex outline outline-[3px] px-[16px] text-[12px] sm:text-[16px] py-[4px]  rounded-[6px] border-[2px]  font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
+            新卡速递🥵
+          </a> */}
+          <a
+            href="/cards/query"
+            className="flex ml-[4px] sm:ml-[12px] outline outline-[3px] text-[12px] px-[16px] sm:text-[16px] py-[4px]  rounded-[6px] border-[2px]  font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
+            单卡查询
+          </a>
+        </div>
       </div>
       <div className="h-[100px]" />
 
