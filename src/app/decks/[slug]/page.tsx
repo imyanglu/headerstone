@@ -11,8 +11,11 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const { card } = await getCardGroup(slug);
 
   const groupMap: Map<string, HsCard & { count: number }> = new Map();
-  card.cards.forEach((card) => {
-    if (!card) return;
+  card.cards.forEach((card, idx) => {
+    if (!card) {
+      console.log(idx);
+      return;
+    }
     const preCard = groupMap.get(card?.id);
     if (preCard) {
       groupMap.set(card.id, { ...card, count: preCard.count + 1 });
