@@ -42,27 +42,29 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
             卡组查询
           </div>
         </div>
-        <div className="ml-[32px] mr-[12px] md:mr-[24px] border-[3px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[20] rounded-[12px]">
-          <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[12px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
-            <input
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              placeholder="搜索卡组..."
-              className="outline-none text-[14px] w-full md:w-[180px]  py-[4px]  font-bold bg-[#3D0D0D] text-[#fff]"
-            />
-            <div className="h-[30px] w-[30px] cursor-pointer absolute right-[10px]  flex items-center justify-end">
-              <img src="/search.svg" alt="search" className="w-[24px] h-[24px]" />
-            </div>
-          </div>
-        </div>
       </div>
       <div className="h-[100px]" />
+
       <div className="flex-1 mainSection flex flex-col lg:flex-row">
         <div className="lg:w-[300px] w-full shrink-0 bg-[#531211] pb-[20px]">
           <div className="text-[#fff] font-bold text-center py-[16px]">卡组推荐</div>
           <CardGroup {...bestDeck} />
         </div>
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 pt-[20px]">
+          <div className=" border-[4px] w-[fit-content] shadow-lg outline-[#c1b79f] outline-[2px] mx-auto outline border-[#827878]  relative z-[2] rounded-[24px]">
+            <div className=" outline-[#b7aa8b] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
+              <input
+                placeholder="搜索..."
+                className="outline-none text-[14px]  py-[3px]  font-bold bg-[#3D0D0D] text-[#fff]"
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+              <div
+                className="h-[30px] w-[30px] cursor-pointer absolute right-[10px]  flex items-center justify-end"
+                onClick={() => {}}>
+                <img src="/search.svg" alt="search" className="w-[24px] h-[24px]" />
+              </div>
+            </div>
+          </div>
           <div className="stroke text-[#FFFF94] relative">
             <div className="w-full flex px-[16px] pt-[24px]">
               <div
@@ -90,11 +92,8 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
               <div className="border-1 absolute bottom-0 left-0 right-0 h-[3px] bg-[#5F1615] " />
             </div>
           </div>
-          {/* {processDecks.map((a) => (
-            <CardItem key={a.id} {...a} />
-          ))} */}
 
-          <div className="flex h-full transition-opacity flex-col px-[16px] w-full pb-[60px] pt-[8px]">
+          <div className="flex h-full min-h-[400px] transition-opacity flex-col px-[16px] w-full pb-[30px] pt-[8px]">
             <AutoSizer>
               {({ height, width }) => (
                 <List

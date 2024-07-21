@@ -44,27 +44,6 @@ const Header = ({ mana, onSearch, onManaClick }: Header) => {
             <div className=" text-[#fff] mx-auto font-bold">卡牌上传</div>
           </div>
         </a>
-        <div className="ml-auto mr-[24px] border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000]  relative z-[2] rounded-[24px]">
-          <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
-            <input
-              ref={inputRef}
-              placeholder="搜索卡牌..."
-              className="outline-none text-[14px]  py-[3px]  font-bold bg-[#3D0D0D] text-[#fff]"
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  onSearch(inputRef.current?.value as string);
-                }
-              }}
-            />
-            <div
-              className="h-[30px] w-[30px] cursor-pointer absolute right-[10px]  flex items-center justify-end"
-              onClick={() => {
-                onSearch(inputRef.current?.value as string);
-              }}>
-              <img src="/search.svg" alt="search" className="w-[24px] h-[24px]" />
-            </div>
-          </div>
-        </div>
       </div>
       <div className="h-[110px]" />
     </>
