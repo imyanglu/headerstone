@@ -5,6 +5,7 @@ import CardItem from './CardItem';
 import CardGroup from './CardGroup';
 import { useMemo, useState } from 'react';
 import HsDecks from './HsDecks';
+import { AutoSizer, List } from 'react-virtualized';
 
 const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })[] }) => {
   const [searchText, setSearchText] = useState('');
@@ -89,15 +90,26 @@ const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })
               <div className="border-1 absolute bottom-0 left-0 right-0 h-[3px] bg-[#5F1615] " />
             </div>
           </div>
-          {isSelectedAll ? (
-            <HsDecks />
-          ) : (
-            <div className="flex transition-opacity flex-col px-[16px] w-full pb-[60px] pt-[8px]">
-              {processDecks.map((a) => (
-                <CardItem key={a.id} {...a} />
-              ))}
-            </div>
-          )}
+          {/* {processDecks.map((a) => (
+            <CardItem key={a.id} {...a} />
+          ))} */}
+
+          <div className="flex h-full transition-opacity flex-col px-[16px] w-full pb-[60px] pt-[8px]">
+            <AutoSizer>
+              {({ height, width }) => (
+                <List
+                  rowCount={processDecks.length}
+                  rowHeight={70}
+                  height={height}
+                  width={width}
+                  rowRenderer={({ index }) => {
+                    const i = processDecks[index];
+                    return <CardItem {...i} />;
+                  }}
+                />
+              )}
+            </AutoSizer>
+          </div>
         </div>
       </div>
     </div>
