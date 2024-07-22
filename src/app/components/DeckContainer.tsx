@@ -25,9 +25,10 @@ const DeckContainer = ({
   onCardClick,
   onPublish,
 }: DeckContainer) => {
+  console.log(selectedCards);
   const [name, setName] = useState(defaultName);
   const processCards = useMemo(() => {
-    return Array.from(selectedCards?.values() || []).sort((n1, n2) => n1.manna - n2.manna);
+    return Array.from(selectedCards?.values() || []).sort((n1, n2) => n1.cost - n2.cost);
   }, [selectedCards]);
   const num = useMemo(() => {
     return processCards.reduce((a, sum) => {
@@ -92,20 +93,19 @@ const DeckContainer = ({
               <Cost
                 isSelected={false}
                 over={999}
-                cost={i.manna}
+                cost={i.cost}
                 containerClassName="w-[38px] h-[34px]"
               />
             </div>
             <div className="h-full w-full relative flex items-center border-[1px] border-[#000]">
               <div className="absolute inset-0 overflow-hidden">
-                <div className="w-[240%] absolute h-full ">
+                <div className="w-full absolute h-full ">
                   <img
                     loading="lazy"
                     decoding="async"
-                    src={i.img}
+                    src={`https://art.hearthstonejson.com/v1/tiles/${i.id}.webp`}
                     alt=""
-                    object-fit="cover"
-                    className="absolute  top-0  aspect-[64/97] translate-x-[-126px] translate-y-[-231px]"
+                    className="absolute  w-full  aspect-[256/59] "
                   />
                 </div>
               </div>

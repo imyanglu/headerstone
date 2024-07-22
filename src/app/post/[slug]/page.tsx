@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { getCards, uploadCardGroup } from '@/app/api';
-import { DeckContainer, ManaControl, Title } from '@/app/components';
-import { Card, HsCard } from '@/type';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { uploadCardGroup } from '@/app/api';
+import { DeckContainer, Title } from '@/app/components';
+import { HsCard } from '@/type';
+import { useMemo, useRef, useState } from 'react';
 import EditCardGroupModal from './components/EditCardGroupModal';
 import { JobsData } from '@/app/Const';
 import Header from './components/Header';
@@ -21,9 +21,8 @@ type SelectedCard = HsCard & { count: number };
 const Page = ({ params }: { params: { slug: string } }) => {
   const slug = params.slug.toLocaleUpperCase();
   const { addToast } = useToast();
-
   const cardsRef = useRef(StandardCards.filter((a) => ['NEUTRAL', slug].includes(a.cardClass)));
-  const [cards, setCards] = useState<HsCard[]>([]);
+
   const [activeModal, setActiveModal] = useState(false);
   const [name, setName] = useState('');
   const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
@@ -48,7 +47,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
         .filter((i) => i.cardClass === 'NEUTRAL')
         .sort((a, b) => a.cost - b.cost),
     };
-  }, [cards, filters, params.slug]);
+  }, [filters, params.slug]);
 
   const type = useMemo(() => {
     if (!params.slug) return null;
@@ -66,13 +65,14 @@ const Page = ({ params }: { params: { slug: string } }) => {
     }
     setSelectedCards(newCards);
   };
+
   const checkVerify = (newCard: SelectedCard) => {
     return true;
   };
 
   const addCards = (id: string) => {
     const newCards = new Map(selectedCards);
-    const sCard = cards.find((i) => i.id === id);
+    const sCard = cardsRef.current.find((i) => i.id === id);
     if (!sCard) return;
     const count = selectedCards?.has(id) ? (selectedCards?.get(id) as SelectedCard).count + 1 : 1;
     const newCard = { ...sCard, count };
@@ -84,13 +84,13 @@ const Page = ({ params }: { params: { slug: string } }) => {
     const { code, author, rate, forge } = info;
     const cardsArr = selectedCards ? Array.from(selectedCards.values()) : [];
     const cardIds = cardsArr
-      .sort((a1, a2) => a1.manna - a2.manna)
+      .sort((a1, a2) => a1.cost - a2.cost)
       .map((i) => {
         return Array.from({ length: i.count }, () => i.id);
       })
       .flat(Infinity) as string[];
 
-    const mana = cardIds.map((a) => cards.find((i) => i.id === a)?.manna);
+    const mana = cardIds.map((a) => cardsRef.current.find((i) => i.id === a)?.cost);
     const req = {
       code,
       name,
@@ -139,7 +139,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
         onManaClick={onToggleManaClick}
       />
       <div className="flex mt-[100px]">
-        <div className="flex flex-col    h-[calc(100vh-100px)] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
+        <div className="flex flex-col pt-[24px]   h-[calc(100vh-100px)] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
           <div className="w-full">
             {professionalCards.length > 0 && (
               <Title
@@ -153,7 +153,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
             )}
           </div>
           <div
-            className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full justify-center "
+            className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full justify-center"
             onClick={(e) => {
               const target = e.target;
               if (target && target instanceof HTMLElement && target.dataset.id) {

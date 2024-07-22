@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-const img = 'https://pic.imgdb.cn/item/66840c49d9c307b7e9622a7c.png';
+const img = '/mana.png';
 const endImg = 'https://pic.imgdb.cn/item/668586b4d9c307b7e90f56b0.png';
 const Cost = ({
   over = 10,

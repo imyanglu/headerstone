@@ -26,10 +26,8 @@ export const getCards = (classes: string) => {
     return data;
   });
 };
-export const getCardGroup = (
-  slug: string
-): Promise<{ card: Omit<CardGroupOverview, 'cards'> & { cards: HsCard[] } }> => {
-  return fetch(`https://8.138.99.181:3000/cardGroup/${slug}`).then((res) => res.json());
+export const getCardGroup = (slug: string): Promise<{ card: CardGroupOverview }> => {
+  return fetch(`http://127.0.0.1:3001/cardGroup/${slug}`).then((res) => res.json());
 };
 
 export const getUploadUrl = (type?: string) => {
