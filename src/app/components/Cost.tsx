@@ -10,7 +10,7 @@ const Cost = ({
   over?: number;
   cost: number;
   containerClassName?: string;
-  isSelected: boolean;
+  isSelected?: boolean;
 }) => {
   if (cost >= over)
     return (

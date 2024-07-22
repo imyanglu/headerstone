@@ -3,6 +3,7 @@ import { AutoSizer, List } from 'react-virtualized';
 import Cards from '../../../../public/data/cards.json';
 import { useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
+import { Cost } from '@/app/components';
 
 type Card = {
   artist: string;
@@ -80,18 +81,21 @@ const Page = () => {
           {({ height, width }) => (
             <List
               rowCount={processCards.length}
-              rowHeight={72}
+              rowHeight={73}
               height={height}
               width={width}
               rowRenderer={({ index, style, key }) => {
                 const i = processCards[index];
                 return (
                   <div style={style} key={key}>
-                    <div className="flex items-center h-[72px]">
+                    <div className="flex items-center h-[72px] relative">
+                      <Cost over={9999} cost={i.cost} containerClassName="scale-[0.75]" />
+
                       <div className="font-bold">{i.name}</div>
                       <div className="ml-[12px]">
                         <div dangerouslySetInnerHTML={{ __html: i.text }} />
                       </div>
+                      <div className="absolute  bottom-0 left-0 h-[1px] w-full bg-black"></div>
                     </div>
                   </div>
                 );
