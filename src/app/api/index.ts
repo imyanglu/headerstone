@@ -3,7 +3,7 @@ import { Card, CardGroupOverview, HsCard, Me } from '@/type';
 import { get, post } from './instance';
 import { setCookie } from '../lib';
 
-type NewCardParams = Omit<HsCard, 'id'>;
+const url = 'https://8.138.99.181:3000';
 export const uploadNewCard = (params: Omit<HsCard, 'id'>) => {
   return post('/uploadCard', { data: params });
 };
@@ -26,10 +26,8 @@ export const getCards = (classes: string) => {
     return data;
   });
 };
-export const getCardGroup = (
-  slug: string
-): Promise<{ card: Omit<CardGroupOverview, 'cards'> & { cards: HsCard[] } }> => {
-  return fetch(`https://8.138.99.181:3000/cardGroup/${slug}`).then((res) => res.json());
+export const getCardGroup = (slug: string): Promise<{ card: CardGroupOverview }> => {
+  return fetch(`${url}/cardGroup/${slug}`).then((res) => res.json());
 };
 
 export const getUploadUrl = (type?: string) => {
@@ -78,4 +76,7 @@ export const getHeroDeckByFaction = (f: string): Promise<{ decks: CardGroupOverv
         decks: [],
       };
     });
+};
+export const uploadHsCard = (p: any) => {
+  return post('/uploadHsCard', { data: p });
 };

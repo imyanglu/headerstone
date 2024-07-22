@@ -4,34 +4,37 @@ import { DeckContainer, Title } from '@/app/components';
 import { JobsData } from '@/app/Const';
 import { HsCard } from '@/type';
 import Header from './components/Header';
-
+import { StandardCards } from '@/app/lib/data';
+import { getImgSrc } from '@/app/lib/help';
 export const revalidate = 10;
 
 const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const { card } = await getCardGroup(slug);
+  const cardIdx = card.cards.split(',');
 
+  const cards = StandardCards.filter((a) => cardIdx.includes(a.id));
   const groupMap: Map<string, HsCard & { count: number }> = new Map();
-  card.cards.forEach((card, idx) => {
-    if (!card) {
-      console.log(idx);
-      return;
-    }
-    const preCard = groupMap.get(card?.id);
+
+  cardIdx.forEach((id) => {
+    const preCard = groupMap.get(id);
+    const cCard = cards.find((a) => a.id === id);
+    if (!cCard) return;
+
     if (preCard) {
-      groupMap.set(card.id, { ...card, count: preCard.count + 1 });
+      groupMap.set(id, { ...cCard, count: 2 });
       return;
     }
-    groupMap.set(card.id, { ...card, count: 1 });
+    groupMap.set(id, { ...cCard, count: 1 });
   });
 
-  const regularCards = Array.from(groupMap.values()).filter((a) => a?.faction === 'neutral');
-  const decks = Array.from(groupMap.values()).filter((a) => a?.faction !== 'neutral');
-  const hero = JobsData.find((a) => a.slug === decks[0]?.faction);
+  const regularCards = Array.from(groupMap.values()).filter((a) => a?.cardClass === 'NEUTRAL');
+  const decks = Array.from(groupMap.values()).filter((a) => a?.cardClass !== 'NEUTRAL');
+  const hero = JobsData.find((a) => a.slug === decks[0]?.cardClass);
 
   return (
     <div className="bg-[#372B47] w-[100vw] flex flex-col h-[100vh]">
       <div className="h-[100px] w-full">
-        <Header code={card.code} />
+        <Header code={''} />
       </div>
       <div className="flex px-[24px] h-[calc(100vh-100px)]">
         <div className="overflow-y-scroll flex-1 hideScrollbar   hideScrollbar hidden md:flex flex-col pr-[24px]">
@@ -49,15 +52,10 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
           </div>
           <div className="grid grid-cols-[repeat(auto-fit,_minmax(260px,_1fr))] w-full gap-[8px] ">
             {decks.map((card) => (
-              <div
-                key={card.id}
-                data-id={card.id}
-                className="w-[260px]  cursor-pointer aspect-[202/279]"
-                draggable>
+              <div key={card.id} className="w-[260px]  cursor-pointer aspect-[202/279]">
                 <img
-                  data-id={card.id}
                   className="w-full "
-                  src={card.img}
+                  src={getImgSrc(card.id)}
                   alt={card.name}
                   loading="lazy"
                   decoding="async"
@@ -80,15 +78,10 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
           </div>
           <div className="grid grid-cols-[repeat(auto-fit,_minmax(260px,_1fr))] gap-[8px] w-full  ">
             {regularCards.map((card) => (
-              <div
-                key={card.id}
-                data-id={card.id}
-                className="w-[260px]  cursor-pointer aspect-[202/279]"
-                draggable>
+              <div key={card.id} className="w-[260px]  cursor-pointer aspect-[202/279]" draggable>
                 <img
-                  data-id={card.id}
                   className="w-full "
-                  src={card.img}
+                  src={getImgSrc(card.id)}
                   alt={card.name}
                   loading="lazy"
                   decoding="async"

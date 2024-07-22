@@ -1,13 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { getCards, uploadCardGroup } from '@/app/api';
-import { DeckContainer, ManaControl, Title } from '@/app/components';
-import { Card, HsCard } from '@/type';
-import { useEffect, useMemo, useState } from 'react';
+import { uploadCardGroup } from '@/app/api';
+import { DeckContainer, Title } from '@/app/components';
+import { HsCard } from '@/type';
+import { useMemo, useRef, useState } from 'react';
 import EditCardGroupModal from './components/EditCardGroupModal';
 import { JobsData } from '@/app/Const';
 import Header from './components/Header';
 import useToast from '@/app/lib/hooks';
+import { StandardCards } from '@/app/lib/data';
 
 type Filters = {
   cost: [number, number];
@@ -18,9 +19,14 @@ type Filters = {
 type SelectedCard = HsCard & { count: number };
 
 const Page = ({ params }: { params: { slug: string } }) => {
+  const slug = params.slug.toLocaleUpperCase();
   const { addToast } = useToast();
-  const [loading, setLoading] = useState(true);
-  const [cards, setCards] = useState<HsCard[]>([]);
+  const cardsRef = useRef(
+    StandardCards.filter((a) => {
+      return ['NEUTRAL', slug].includes(a.cardClass) || a.classes?.includes(slug);
+    })
+  );
+
   const [activeModal, setActiveModal] = useState(false);
   const [name, setName] = useState('');
   const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
@@ -28,36 +34,30 @@ const Page = ({ params }: { params: { slug: string } }) => {
   const changeFilters = <K extends keyof Filters>(k: K, v: Filters[K]) => {
     setFilters((prev) => ({ ...prev, [k]: v }));
   };
+  const getSrc = (id: string) => {
+    return `https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/${id}.png`;
+  };
+
   const { professionalCards, regularCards } = useMemo(() => {
-    const processCards = cards.filter((a) => a.name.includes(filters.searchText.trim()));
+    const processCards = cardsRef.current.filter((a) => a.name.includes(filters.searchText.trim()));
 
     return {
       professionalCards: processCards
         .filter((i) => {
-          return i.faction.split(',').includes(params.slug);
+          return i.cardClass === slug || i.classes?.includes(slug);
         })
-        .sort((a, b) => a.manna - b.manna),
+        .sort((a, b) => a.cost - b.cost),
       regularCards: processCards
-        .filter((i) => i.faction === 'neutral')
-        .sort((a, b) => a.manna - b.manna),
+        .filter((i) => i.cardClass === 'NEUTRAL')
+        .sort((a, b) => a.cost - b.cost),
     };
-  }, [cards, filters, params.slug]);
+  }, [filters, params.slug]);
 
   const type = useMemo(() => {
     if (!params.slug) return null;
     return JobsData.find((i) => i.slug === params.slug);
   }, [params.slug]);
 
-  const initCards = () => {
-    const slug = params.slug;
-    getCards(`${slug},neutral`)
-      .then((data) => {
-        setCards(data.cards);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
   const removeCard = (id: string) => {
     const card = selectedCards?.get(id);
     if (!card) return;
@@ -69,13 +69,14 @@ const Page = ({ params }: { params: { slug: string } }) => {
     }
     setSelectedCards(newCards);
   };
+
   const checkVerify = (newCard: SelectedCard) => {
     return true;
   };
 
   const addCards = (id: string) => {
     const newCards = new Map(selectedCards);
-    const sCard = cards.find((i) => i.id === id);
+    const sCard = cardsRef.current.find((i) => i.id === id);
     if (!sCard) return;
     const count = selectedCards?.has(id) ? (selectedCards?.get(id) as SelectedCard).count + 1 : 1;
     const newCard = { ...sCard, count };
@@ -87,13 +88,13 @@ const Page = ({ params }: { params: { slug: string } }) => {
     const { code, author, rate, forge } = info;
     const cardsArr = selectedCards ? Array.from(selectedCards.values()) : [];
     const cardIds = cardsArr
-      .sort((a1, a2) => a1.manna - a2.manna)
+      .sort((a1, a2) => a1.cost - a2.cost)
       .map((i) => {
         return Array.from({ length: i.count }, () => i.id);
       })
       .flat(Infinity) as string[];
 
-    const mana = cardIds.map((a) => cards.find((i) => i.id === a)?.manna);
+    const mana = cardIds.map((a) => cardsRef.current.find((i) => i.id === a)?.cost);
     const req = {
       code,
       name,
@@ -132,24 +133,19 @@ const Page = ({ params }: { params: { slug: string } }) => {
     changeFilters('mana', [...filters.mana, m]);
   };
 
-  useEffect(() => {
-    initCards();
-  }, []);
-
   return (
     <div className="w-[100vw] bg-[#E8D5AA]  h-[100vh] flex flex-col">
       <Header
         mana={filters.mana}
         onSearch={(s) => {
-          console.log('xxx');
           changeFilters('searchText', s);
         }}
         onManaClick={onToggleManaClick}
       />
       <div className="flex mt-[100px]">
-        <div className="flex flex-col    h-[calc(100vh-100px)] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
+        <div className="flex flex-col pt-[24px]   h-[calc(100vh-100px)] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
           <div className="w-full">
-            {!loading && professionalCards.length > 0 && (
+            {professionalCards.length > 0 && (
               <Title
                 type={type?.slug}
                 label={
@@ -161,7 +157,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
             )}
           </div>
           <div
-            className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full justify-center "
+            className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full justify-center"
             onClick={(e) => {
               const target = e.target;
               if (target && target instanceof HTMLElement && target.dataset.id) {
@@ -178,7 +174,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
                 <img
                   data-id={card.id}
                   className="w-full "
-                  src={card.img}
+                  src={getSrc(card.id)}
                   alt={card.name}
                   loading="lazy"
                   decoding="async"
@@ -187,7 +183,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
             ))}
           </div>
           <div className="w-full">
-            {!loading && regularCards.length > 0 && (
+            {regularCards.length > 0 && (
               <Title
                 label={
                   <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
@@ -215,7 +211,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
                 <img
                   data-id={card.id}
                   className="w-full "
-                  src={card.img}
+                  src={getSrc(card.id)}
                   alt={card.name}
                   loading="lazy"
                   decoding="async"

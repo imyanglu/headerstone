@@ -2,8 +2,9 @@ import { JobsData } from '../Const';
 import { CardGroupOverview } from '@/type';
 import ClientSection from './conponents/ClientSection';
 
+const baseUrl = 'https://8.138.99.181:3000/recommendOverview';
 const fetchData = async () => {
-  const cardGroupResult = await fetch('https://8.138.99.181:3000/recommendOverview', {
+  const cardGroupResult = await fetch(baseUrl, {
     cache: 'no-cache',
   }).then((d) => d.json() as Promise<{ cards: CardGroupOverview[] }>);
   const cardsMap = cardGroupResult.cards.map((a) => ({
