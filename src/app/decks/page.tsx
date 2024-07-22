@@ -4,7 +4,7 @@ import ClientSection from './conponents/ClientSection';
 
 const baseUrl = 'https://8.138.99.181:3000/recommendOverview';
 const fetchData = async () => {
-  const cardGroupResult = await fetch('http://127.0.0.1:3001/recommendOverview', {
+  const cardGroupResult = await fetch(baseUrl, {
     cache: 'no-cache',
   }).then((d) => d.json() as Promise<{ cards: CardGroupOverview[] }>);
   const cardsMap = cardGroupResult.cards.map((a) => ({

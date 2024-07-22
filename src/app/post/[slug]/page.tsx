@@ -21,7 +21,11 @@ type SelectedCard = HsCard & { count: number };
 const Page = ({ params }: { params: { slug: string } }) => {
   const slug = params.slug.toLocaleUpperCase();
   const { addToast } = useToast();
-  const cardsRef = useRef(StandardCards.filter((a) => ['NEUTRAL', slug].includes(a.cardClass)));
+  const cardsRef = useRef(
+    StandardCards.filter((a) => {
+      return ['NEUTRAL', slug].includes(a.cardClass) || a.classes?.includes(slug);
+    })
+  );
 
   const [activeModal, setActiveModal] = useState(false);
   const [name, setName] = useState('');
@@ -40,7 +44,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
     return {
       professionalCards: processCards
         .filter((i) => {
-          return i.cardClass === slug;
+          return i.cardClass === slug || i.classes?.includes(slug);
         })
         .sort((a, b) => a.cost - b.cost),
       regularCards: processCards

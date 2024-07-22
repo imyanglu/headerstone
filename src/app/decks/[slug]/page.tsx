@@ -11,19 +11,20 @@ export const revalidate = 10;
 const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const { card } = await getCardGroup(slug);
   const cardIdx = card.cards.split(',');
+
   const cards = StandardCards.filter((a) => cardIdx.includes(a.id));
   const groupMap: Map<string, HsCard & { count: number }> = new Map();
-  cards.forEach((card, idx) => {
-    if (!card) {
-      console.log(idx);
-      return;
-    }
-    const preCard = groupMap.get(card?.id);
+
+  cardIdx.forEach((id) => {
+    const preCard = groupMap.get(id);
+    const cCard = cards.find((a) => a.id === id);
+    if (!cCard) return;
+
     if (preCard) {
-      groupMap.set(card.id, { ...card, count: preCard.count + 1 });
+      groupMap.set(id, { ...cCard, count: 2 });
       return;
     }
-    groupMap.set(card.id, { ...card, count: 1 });
+    groupMap.set(id, { ...cCard, count: 1 });
   });
 
   const regularCards = Array.from(groupMap.values()).filter((a) => a?.cardClass === 'NEUTRAL');

@@ -6,8 +6,7 @@ type DataParams =
   | Blob
   | FormData;
 
-// const baseurl = 'https://8.138.99.181:3000';
-const baseurl = 'http://127.0.0.1:3001';
+const baseurl = 'https://8.138.99.181:3000';
 
 const fetchMethod = async (
   url: string,
