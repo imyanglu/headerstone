@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import { AutoSizer, List } from 'react-virtualized';
 import Cards from '../../../../public/data/cards.json';
@@ -21,6 +22,17 @@ type Card = {
   type: string;
 };
 
+const keys = new Set();
+if (Array.isArray(Cards)) {
+  Cards.forEach((i) => {
+    Object.keys(i).forEach((j) => {
+      if (!keys.has(j)) {
+        keys.add(j);
+      }
+    });
+  });
+}
+console.log(keys);
 const Page = () => {
   const allCards = useRef<Card[]>(Cards);
   const [s, setS] = useState('');
@@ -71,11 +83,6 @@ const Page = () => {
             className="outline-none text-[14px]  py-[3px]  font-bold bg-[#fff] text-[#000]"
             onChange={(e) => setS(e.target.value)}
           />
-          <div
-            className="h-[30px] w-[30px] cursor-pointer absolute right-[10px]  flex items-center justify-end"
-            onClick={() => {}}>
-            <img src="/search.svg" alt="search" className="w-[24px] h-[24px]" />
-          </div>
         </div>
         <AutoSizer>
           {({ height, width }) => (
@@ -91,7 +98,16 @@ const Page = () => {
                     <div className="flex items-center h-[72px] relative">
                       <Cost over={9999} cost={i.cost} containerClassName="scale-[0.75]" />
 
-                      <div className="font-bold">{i.name}</div>
+                      <div className="font-bold relative w-[200px]  rounded-[4px] border-[1px] outline outline-[#c8bb9a] h-[40px] overflow-hidden flex items-center">
+                        <img
+                          src={`https://art.hearthstonejson.com/v1/tiles/${i.id}.webp`}
+                          className="w-full inset-0	aspect-[256/59] absolute"
+                          loading="lazy"
+                          decoding="async"
+                          alt=""
+                        />
+                        <div className="relative z-2 stroke text-[#fff] pl-[12px]">{i.name}</div>
+                      </div>
                       <div className="ml-[12px]">
                         <div dangerouslySetInnerHTML={{ __html: i.text }} />
                       </div>

@@ -79,3 +79,6 @@ export const getHeroDeckByFaction = (f: string): Promise<{ decks: CardGroupOverv
       };
     });
 };
+export const uploadHsCard = (p: any) => {
+  return post('/uploadHsCard', { data: p });
+};
