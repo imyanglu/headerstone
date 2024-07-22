@@ -75,12 +75,12 @@ export const JobsData = [
     weapon: '/weapon/warrior.png',
   },
   {
-    thumbnail: '',
+    thumbnail: 'https://pic.imgdb.cn/item/669eb580d9c307b7e94c8e0e.jpg',
     name: '术士',
     slug: 'warlock',
     pic: 'https://pic.imgdb.cn/item/66845bfbd9c307b7e9f109a2.png',
     tile: '/tiles/warlock-tile.avif',
-    weapon: '/weapon/warrior.png',
+    weapon: '/weapon/warlock.png',
   },
   {
     thumbnail: 'https://pic.imgdb.cn/item/66965fc9d9c307b7e9098d1f.jpg',
