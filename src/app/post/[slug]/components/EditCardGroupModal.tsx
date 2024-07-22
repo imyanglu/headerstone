@@ -69,7 +69,7 @@ const EditCardGroupModal = ({ visible, name, onClose, onSubmit }: EditCardGroupM
           <label htmlFor="cardName" className="w-[50px]  font-bold text-[14px]">
             代码:
           </label>
-          <input
+          <textarea
             className="ml-[12px] text-[14px] line-clamp-1 py-[1px] bg-transparent outline-none border-b-[1px]"
             id="cardName"
             placeholder=""
