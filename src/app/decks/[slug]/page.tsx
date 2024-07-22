@@ -29,12 +29,12 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
 
   const regularCards = Array.from(groupMap.values()).filter((a) => a?.cardClass === 'NEUTRAL');
   const decks = Array.from(groupMap.values()).filter((a) => a?.cardClass !== 'NEUTRAL');
-  const hero = JobsData.find((a) => a.slug === decks[0]?.cardClass);
+  const hero = JobsData.find((a) => a.slug === card.type);
 
   return (
     <div className="bg-[#372B47] w-[100vw] flex flex-col h-[100vh]">
       <div className="h-[100px] w-full">
-        <Header code={''} />
+        <Header code={card.code} />
       </div>
       <div className="flex px-[24px] h-[calc(100vh-100px)]">
         <div className="overflow-y-scroll flex-1 hideScrollbar   hideScrollbar hidden md:flex flex-col pr-[24px]">

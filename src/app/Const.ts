@@ -54,9 +54,9 @@ export const JobsData = [
     name: '牧师',
     slug: 'priest',
     pic: 'https://pic.imgdb.cn/item/66845bcdd9c307b7e9f0e2de.png',
-    thumbnail: '',
+    thumbnail: 'https://pic.imgdb.cn/item/669eaf54d9c307b7e9496fbf.jpg',
     tile: '/tiles/priest-tile.avif',
-    weapon: '/weapon/warrior.png',
+    weapon: '/weapon/priest.png',
   },
   {
     thumbnail: 'https://pic.imgdb.cn/item/669d5e45d9c307b7e929e15c.jpg',
