@@ -5,6 +5,7 @@ import Cards from '../../../../public/data/cards.json';
 import { useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Cost } from '@/app/components';
+import { useRouter } from 'next/navigation';
 
 type Card = {
   artist: string;
@@ -35,6 +36,7 @@ if (Array.isArray(Cards)) {
 console.log(keys);
 const Page = () => {
   const allCards = useRef<Card[]>(Cards);
+  const router = useRouter();
   const [s, setS] = useState('');
   const processCards = useMemo(() => {
     return allCards.current.filter((i) => i.name.includes(s));
@@ -84,41 +86,57 @@ const Page = () => {
             onChange={(e) => setS(e.target.value)}
           />
         </div>
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              rowCount={processCards.length}
-              rowHeight={73}
-              height={height}
-              width={width}
-              rowRenderer={({ index, style, key }) => {
-                const i = processCards[index];
-                return (
-                  <div style={style} key={key}>
-                    <div className="flex items-center h-[72px] relative">
-                      <Cost over={9999} cost={i.cost} containerClassName="scale-[0.75]" />
-
-                      <div className="font-bold relative w-[200px]  rounded-[4px] border-[1px] outline outline-[#c8bb9a] h-[40px] overflow-hidden flex items-center">
-                        <img
-                          src={`https://art.hearthstonejson.com/v1/tiles/${i.id}.webp`}
-                          className="w-full inset-0	aspect-[256/59] absolute"
-                          loading="lazy"
-                          decoding="async"
-                          alt=""
+        <div
+          className="h-full"
+          onClick={(e) => {
+            const target = e.target;
+            if (target && target instanceof HTMLElement && target.dataset.slug) {
+              const slug = target.dataset.slug;
+              router.push(`/cards/query/${slug}`);
+            }
+          }}>
+          <AutoSizer>
+            {({ height, width }) => (
+              <List
+                rowCount={processCards.length}
+                rowHeight={73}
+                height={height}
+                width={width}
+                rowRenderer={({ index, style, key }) => {
+                  const i = processCards[index];
+                  return (
+                    <div style={style} key={key}>
+                      <div className="flex items-center  h-[72px] relative">
+                        <Cost
+                          over={9999}
+                          cost={i.cost}
+                          containerClassName="scale-[0.85] shrink-0"
                         />
-                        <div className="relative z-2 stroke text-[#fff] pl-[12px]">{i.name}</div>
+                        <div
+                          data-slug={i.dbfId}
+                          className="font-bold cursor-pointer shrink-0 relative w-[200px] ml-[12px] rounded-[4px] border-[1px] outline outline-[#c8bb9a] h-[40px] overflow-hidden flex items-center">
+                          <img
+                            data-slug={i.dbfId}
+                            src={`https://art.hearthstonejson.com/v1/tiles/${i.id}.webp`}
+                            className="w-full inset-0	aspect-[256/59] absolute"
+                            loading="lazy"
+                            decoding="async"
+                            alt=""
+                          />
+                          <div className="relative z-2 stroke text-[#fff] pl-[12px]">{i.name}</div>
+                        </div>
+                        <div className="ml-[12px] line-clamp-1">
+                          <div dangerouslySetInnerHTML={{ __html: i.text }} />
+                        </div>
+                        <div className="absolute  bottom-0 left-0 h-[1px] w-full bg-black"></div>
                       </div>
-                      <div className="ml-[12px]">
-                        <div dangerouslySetInnerHTML={{ __html: i.text }} />
-                      </div>
-                      <div className="absolute  bottom-0 left-0 h-[1px] w-full bg-black"></div>
                     </div>
-                  </div>
-                );
-              }}
-            />
-          )}
-        </AutoSizer>
+                  );
+                }}
+              />
+            )}
+          </AutoSizer>
+        </div>
       </div>
     </div>
   );

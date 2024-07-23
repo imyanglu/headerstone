@@ -36,5 +36,15 @@ const BanSet = [
   'WONDERS',
   'YEAR_OF_THE_DRAGON',
 ];
-const StandardCards = Cards.filter((a) => !BanSet.includes(a.set));
-export { StandardCards };
+const Heros: any[] = [];
+const StandardCards: any[] = [];
+Cards.forEach((a) => {
+  if (a.type === 'HERO') {
+    Heros.push(a);
+  }
+  if (a.set && !BanSet.includes(a.set)) {
+    StandardCards.push(a);
+  }
+});
+
+export { StandardCards, Cards, Heros };
