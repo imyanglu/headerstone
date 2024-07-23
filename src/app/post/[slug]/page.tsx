@@ -116,8 +116,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
     const cardsArr = selectedCards ? Array.from(selectedCards.values()) : [];
     selectedCards?.forEach((i) => dbfIdMap.set(i.dbfId, i.count));
     const newCode = createCode([...dbfIdMap], slug.toLowerCase() as keyof typeof ISLAND_VACATION);
-    console.log(newCode);
-    return;
+
     const cardIds = cardsArr
       .sort((a1, a2) => a1.cost - a2.cost)
       .map((i) => {
@@ -143,7 +142,6 @@ const Page = ({ params }: { params: { slug: string } }) => {
     if (!req.name || !req.code || !forge) {
       return addToast({ type: 'error', message: '缺少必要信息', title: '' });
     }
-    return;
 
     uploadCardGroup(req)
       .then()
