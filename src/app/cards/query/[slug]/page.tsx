@@ -1,6 +1,7 @@
 import { Cards } from '@/app/lib/data';
 import { getImgSrc } from '@/app/lib/help';
 
+export const runtime = 'edge';
 const getCard = (id: string) => {
   const d = Cards.find((card) => card.dbfId == id);
 

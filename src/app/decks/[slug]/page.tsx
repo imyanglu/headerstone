@@ -8,6 +8,8 @@ import { StandardCards } from '@/app/lib/data';
 import { getImgSrc } from '@/app/lib/help';
 export const revalidate = 10;
 
+export const runtime = 'edge';
+
 const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const { card } = await getCardGroup(slug);
   const cardIdx = card.cards.split(',');
