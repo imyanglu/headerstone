@@ -37,7 +37,7 @@ const CardItem = (data: CardGroupOverview & { isPreview?: boolean }) => {
         </div>
         <div
           className={`border-[4px]   md:w-[200px] ml-auto mt-[4px] shadow-lg outline-[#e1c892] outline-[5px] outline border-[#000]  relative z-[2] rounded-[10px] ${
-            isPreview ? 'w-[150px]' : 'w-[110px]'
+            isPreview ? 'w-[150px]' : 'w-[115px]'
           }`}>
           <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] pl-[8px] text-[14px]  py-[3px]  rounded-[10px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[#fff]">
             <div className="flex-1 line-clamp-1 break-all">{code}</div>
