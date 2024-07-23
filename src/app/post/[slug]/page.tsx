@@ -9,6 +9,7 @@ import { JobsData } from '@/app/Const';
 import Header from './components/Header';
 import useToast from '@/app/lib/hooks';
 import { StandardCards } from '@/app/lib/data';
+import { createCode } from '@/app/lib/help';
 
 type Filters = {
   cost: [number, number];
@@ -18,14 +19,35 @@ type Filters = {
 
 type SelectedCard = HsCard & { count: number };
 
+const ISLAND_VACATION: {
+  [key in (typeof JobsData)[number]['slug']]: (typeof JobsData)[number]['slug'];
+} = {
+  paladin: 'rogue',
+  rogue: 'warlock',
+  warlock: 'deathknight',
+  deathknight: 'shaman',
+  shaman: 'demonhunter',
+  demonhunter: 'priest',
+  priest: 'hunter',
+  hunter: 'warrior',
+  warrior: 'druid',
+  druid: 'mage',
+  mage: 'paladin',
+} as const;
+
+const getCards = (slug: string) => {
+  const Vacation =
+    ISLAND_VACATION[slug.toLowerCase() as keyof typeof ISLAND_VACATION].toUpperCase();
+  return StandardCards.filter((a) => {
+    const isVacation = a.set === 'ISLAND_VACATION' && a.cardClass === Vacation;
+    const isInClasses = ['NEUTRAL', slug].includes(a.cardClass) || a.classes?.includes(slug);
+    return isVacation || isInClasses;
+  });
+};
 const Page = ({ params }: { params: { slug: string } }) => {
   const slug = params.slug.toLocaleUpperCase();
   const { addToast } = useToast();
-  const cardsRef = useRef(
-    StandardCards.filter((a) => {
-      return ['NEUTRAL', slug].includes(a.cardClass) || a.classes?.includes(slug);
-    })
-  );
+  const cardsRef = useRef(getCards(slug as any));
 
   const [activeModal, setActiveModal] = useState(false);
   const [name, setName] = useState('');
@@ -39,18 +61,22 @@ const Page = ({ params }: { params: { slug: string } }) => {
   };
 
   const { professionalCards, regularCards } = useMemo(() => {
-    const processCards = cardsRef.current.filter((a) => a.name.includes(filters.searchText.trim()));
+    const processCards = cardsRef.current.filter((a) => {
+      const isMana = filters.mana.length === 0 || filters.mana.includes(a.cost);
+      return isMana && a.name.includes(filters.searchText.trim());
+    });
 
     return {
       professionalCards: processCards
         .filter((i) => {
-          return i.cardClass === slug || i.classes?.includes(slug);
+          return i.cardClass !== 'NEUTRAL';
         })
         .sort((a, b) => a.cost - b.cost),
       regularCards: processCards
         .filter((i) => i.cardClass === 'NEUTRAL')
         .sort((a, b) => a.cost - b.cost),
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, params.slug]);
 
   const type = useMemo(() => {
@@ -86,7 +112,11 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
   const publishCards = (info: Record<'code' | 'author' | 'rate' | 'forge', string>) => {
     const { code, author, rate, forge } = info;
+    const dbfIdMap = new Map<number, number>();
     const cardsArr = selectedCards ? Array.from(selectedCards.values()) : [];
+    selectedCards?.forEach((i) => dbfIdMap.set(i.dbfId, i.count));
+    const newCode = createCode([...dbfIdMap], slug.toLowerCase() as keyof typeof ISLAND_VACATION);
+
     const cardIds = cardsArr
       .sort((a1, a2) => a1.cost - a2.cost)
       .map((i) => {
@@ -106,6 +136,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       forge,
       label: '',
       desc: '',
+      preview: true,
     };
 
     if (!req.name || !req.code || !forge) {
@@ -143,7 +174,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
         onManaClick={onToggleManaClick}
       />
       <div className="flex mt-[100px]">
-        <div className="flex flex-col pt-[24px]   h-[calc(100vh-100px)] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
+        <div className="flex flex-col pt-[24px]   h-[calc(100vh-100px)] bg-[#E9D6AB] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
           <div className="w-full">
             {professionalCards.length > 0 && (
               <Title
