@@ -39,7 +39,10 @@ const Page = ({ params }: { params: { slug: string } }) => {
   };
 
   const { professionalCards, regularCards } = useMemo(() => {
-    const processCards = cardsRef.current.filter((a) => a.name.includes(filters.searchText.trim()));
+    const processCards = cardsRef.current.filter((a) => {
+      const isMana = filters.mana.length === 0 || filters.mana.includes(a.cost);
+      return isMana && a.name.includes(filters.searchText.trim());
+    });
 
     return {
       professionalCards: processCards
@@ -51,6 +54,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
         .filter((i) => i.cardClass === 'NEUTRAL')
         .sort((a, b) => a.cost - b.cost),
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, params.slug]);
 
   const type = useMemo(() => {
@@ -143,7 +147,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
         onManaClick={onToggleManaClick}
       />
       <div className="flex mt-[100px]">
-        <div className="flex flex-col pt-[24px]   h-[calc(100vh-100px)] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
+        <div className="flex flex-col pt-[24px]   h-[calc(100vh-100px)] bg-[#E9D6AB] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
           <div className="w-full">
             {professionalCards.length > 0 && (
               <Title
