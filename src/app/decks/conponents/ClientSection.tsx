@@ -14,7 +14,9 @@ const ClientSection = ({
   previewDecks: (CardGroupOverview & { pic: string })[];
 }) => {
   const [searchText, setSearchText] = useState('');
-  const [selectedSection, setSelectedSection] = useState<'recommend' | 'preview'>('recommend');
+  const [selectedSection, setSelectedSection] = useState<'recommend' | 'preview'>(
+    window.location.hash === '#preview' ? 'preview' : 'recommend'
+  );
   const bestDeck = useMemo(() => {
     const dArr = decks.sort((a, b) => Number(b.winningRate) - Number(a.winningRate));
     return dArr[0];
@@ -83,28 +85,30 @@ const ClientSection = ({
           </div>
           <div className="stroke text-[#FFFF94] relative">
             <div className="w-full flex px-[16px] pt-[24px]">
-              <div
+              <a
+                href="#recommend"
                 style={{
                   backgroundColor: isRecommend ? '#C09B41' : '#ccc',
                   transform: isRecommend ? 'scale(1)' : 'scale(0.85)',
                 }}
-                onClick={() => {
+                onClick={(e) => {
                   setSelectedSection('recommend');
                 }}
                 className="px-[12px] text-[14px] cursor-pointer transition-transform origin-bottom py-[6px] rounded-[8px]  rounded-b-none border-[1px]   outline-[#EAD5A8] outline-[2px] outline">
                 推荐卡组
-              </div>
-              <div
+              </a>
+              <a
                 style={{
                   backgroundColor: !isRecommend ? '#C09B41' : '#ccc',
                   transform: !isRecommend ? 'scale(1)' : 'scale(0.85)',
                 }}
-                onClick={() => {
+                href="#preview"
+                onClick={(e) => {
                   setSelectedSection('preview');
                 }}
                 className="ml-[2px] text-[14px] cursor-pointer origin-bottom transition-transform px-[12px] py-[6px] rounded-[8px] rounded-b-none ">
                 预构卡组
-              </div>
+              </a>
               <div className="border-1 absolute bottom-0 left-0 right-0 h-[3px] bg-[#5F1615] " />
             </div>
           </div>
