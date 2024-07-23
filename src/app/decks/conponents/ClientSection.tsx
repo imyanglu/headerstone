@@ -141,7 +141,7 @@ const ClientSection = ({
                       const i = processDecks[index];
                       return (
                         <div style={style} key={key}>
-                          <CardItem {...i} />
+                          <CardItem {...i} isPreview />
                         </div>
                       );
                     }}
