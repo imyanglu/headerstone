@@ -28,7 +28,7 @@ const fetchPreview = async () => {
       ...a,
       pic: JobsData.find((i) => i.slug === a.type)?.pic ?? '',
     }));
-    return cardsMap;
+    return cardsMap.reverse();
   } catch (err) {
     console.log(err, 'preview');
     return [];
