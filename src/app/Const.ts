@@ -67,12 +67,12 @@ export const JobsData = [
     weapon: '/weapon/rogue.png',
   },
   {
-    thumbnail: '',
+    thumbnail: 'https://pic.imgdb.cn/item/66a0c18dd9c307b7e928d129.jpg',
     name: '萨满',
     slug: 'shaman',
     pic: 'https://pic.imgdb.cn/item/66845be8d9c307b7e9f0f9a0.png',
     tile: '/tiles/shaman-tile.avif',
-    weapon: '/weapon/warrior.png',
+    weapon: '/weapon/shaman.png',
   },
   {
     thumbnail: 'https://pic.imgdb.cn/item/669eb580d9c307b7e94c8e0e.jpg',
