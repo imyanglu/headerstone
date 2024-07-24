@@ -11,6 +11,7 @@ import useToast from '@/app/lib/hooks';
 import { StandardCards } from '@/app/lib/data';
 import { createCode } from '@/app/lib/help';
 
+export const runtime = 'edge';
 type Filters = {
   cost: [number, number];
   searchText: string;

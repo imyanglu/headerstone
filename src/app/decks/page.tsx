@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import { JobsData } from '../Const';
 import { CardGroupOverview } from '@/type';
 
+export const runtime = 'edge';
 const ClientSection = dynamic(() => import('./conponents/ClientSection'), { ssr: false });
 const baseUrl = 'https://8.138.99.181:3000/recommendOverview';
 const fetchData = async () => {
@@ -28,6 +29,6 @@ const fetchPreview = async () => {
 const Page = async () => {
   const data = await fetchData();
   const previewDecks = await fetchPreview();
-  return <ClientSection decks={data} previewDecks={previewDecks} />;
+  return <ClientSection decks={[...data, ...previewDecks]} previewDecks={previewDecks} />;
 };
 export default Page;

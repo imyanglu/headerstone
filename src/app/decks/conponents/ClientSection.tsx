@@ -107,7 +107,7 @@ const ClientSection = ({
                   setSelectedSection('preview');
                 }}
                 className="ml-[2px] text-[14px] cursor-pointer origin-bottom transition-transform px-[12px] py-[6px] rounded-[8px] rounded-b-none ">
-                预构卡组
+                新版本卡组
               </a>
               <div className="border-1 absolute bottom-0 left-0 right-0 h-[3px] bg-[#5F1615] " />
             </div>
