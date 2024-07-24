@@ -110,7 +110,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
     if (checkVerify(newCard)) setSelectedCards(newCards);
   };
 
-  const publishCards = (info: Record<'code' | 'author' | 'rate' | 'forge', string>) => {
+  const publishCards = (
+    info: Record<'code' | 'author' | 'rate' | 'forge' | 'desc', string> & { time: number }
+  ) => {
     const { code, author, rate, forge } = info;
     const dbfIdMap = new Map<number, number>();
     const cardsArr = selectedCards ? Array.from(selectedCards.values()) : [];
@@ -135,8 +137,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
       mana,
       forge,
       label: '',
-      desc: '',
       preview: true,
+      time: info.time,
+      desc: info.desc,
     };
 
     if (!req.name || !req.code || !forge) {
