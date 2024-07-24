@@ -25,7 +25,6 @@ const DeckContainer = ({
   onCardClick,
   onPublish,
 }: DeckContainer) => {
-  console.log(selectedCards);
   const [name, setName] = useState(defaultName);
   const processCards = useMemo(() => {
     return Array.from(selectedCards?.values() || []).sort((n1, n2) => n1.cost - n2.cost);

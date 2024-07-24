@@ -13,7 +13,7 @@ export const JobsData = [
     name: '恶魔猎人',
     slug: 'demonhunter',
     pic: 'https://pic.imgdb.cn/item/66845b4fd9c307b7e9f07312.png',
-    thumbnail: '',
+    thumbnail: 'https://pic.imgdb.cn/item/66a0bf4ed9c307b7e926cc5a.jpg',
     tile: '/tiles/demonhunter-tile.avif',
     weapon: '/weapon/demonhunter.png',
   },

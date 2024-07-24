@@ -6,13 +6,13 @@ export const getImgSrc = (id: string) => {
 };
 export const createCode = (decks: [number, number][], type: (typeof JobsData)[number]['slug']) => {
   const hero = Heros.find((a) => a.type === 'HERO' && a.cardClass === type.toUpperCase());
-  console.log(hero);
+
   if (!hero) return;
   const deck = {
     cards: decks,
     heroes: [hero.dbfId as number],
     format: 2 as FormatType,
   };
-  console.log(deck);
+
   return encode(deck);
 };

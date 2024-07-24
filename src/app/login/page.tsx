@@ -32,9 +32,7 @@ const Login = () => {
     if (!isReg) setError('邮箱地址格式错误');
   };
 
-  const addToast = (data: { type: string; message: string; title: string }) => {
-    console.log(data);
-  };
+  const addToast = (data: { type: string; message: string; title: string }) => {};
   const getCode = async () => {
     try {
       if (!verifyEmail(value)) {
@@ -46,7 +44,6 @@ const Login = () => {
       await getVerifyCode(value, id);
       addToast({ type: 'success', message: '验证码已发送', title: '' });
     } catch (err) {
-      console.log(err);
       addToast({ type: 'error', message: '发生错误', title: '' });
     } finally {
       setIsLoading((a) => ({ ...a, loadingVerifyCode: false }));
