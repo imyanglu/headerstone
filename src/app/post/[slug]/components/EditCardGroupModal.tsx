@@ -7,6 +7,8 @@ type Info = {
   author: string;
   rate: string;
   forge: string;
+  time: number;
+  desc: string;
 };
 type EditCardGroupModal = {
   visible: boolean;
@@ -17,7 +19,14 @@ type EditCardGroupModal = {
 };
 
 const EditCardGroupModal = ({ visible, name, onClose, onSubmit }: EditCardGroupModal) => {
-  const [info, setInfo] = useState<Info>({ code: '', author: '', rate: '', forge: '' });
+  const [info, setInfo] = useState<Info>({
+    code: '',
+    author: '',
+    rate: '',
+    forge: '',
+    time: 0,
+    desc: '',
+  });
   const changeInfo = <T extends keyof Info>(k: T, v: Info[T]) => {
     setInfo((prev) => ({ ...prev, [k]: v }));
   };
@@ -76,6 +85,35 @@ const EditCardGroupModal = ({ visible, name, onClose, onSubmit }: EditCardGroupM
             value={info.code ?? ''}
             onChange={(e) => {
               changeInfo('code', e.target.value);
+            }}
+          />
+        </div>
+        <div className="flex items-center mt-[24px]">
+          <label htmlFor="cardName" className="w-[50px]  font-bold text-[14px]">
+            时间/秒:
+          </label>
+          <input
+            className="ml-[12px] text-[14px] line-clamp-1 py-[1px] bg-transparent outline-none border-b-[1px]"
+            id="cardName"
+            placeholder=""
+            type="number"
+            value={info.time || ''}
+            onChange={(e) => {
+              changeInfo('time', Number(e.target.value));
+            }}
+          />
+        </div>
+        <div className="flex items-center mt-[24px]">
+          <label htmlFor="cardName" className="w-[50px]  font-bold text-[14px]">
+            描述:
+          </label>
+          <input
+            className="ml-[12px] font-bold text-[14px] line-clamp-1 bg-transparent outline-none  py-[2px] border-b-[1px]"
+            id="cardName"
+            placeholder=""
+            value={info.desc ?? ''}
+            onChange={(e) => {
+              changeInfo('desc', e.target.value);
             }}
           />
         </div>
