@@ -22,7 +22,6 @@ export const uploadCardGroup = (params: Params) => {
 };
 export const getCards = (classes: string) => {
   return get<{ cards: HsCard[] }>(`/getCards?faction=${classes}`).then((data) => {
-    console.log(data);
     return data;
   });
 };

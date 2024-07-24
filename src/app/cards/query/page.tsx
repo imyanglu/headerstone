@@ -33,7 +33,7 @@ if (Array.isArray(Cards)) {
     });
   });
 }
-console.log(keys);
+
 const Page = () => {
   const allCards = useRef<Card[]>(Cards);
   const router = useRouter();
