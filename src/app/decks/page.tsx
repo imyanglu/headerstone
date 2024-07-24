@@ -38,6 +38,6 @@ const fetchPreview = async () => {
 const Page = async () => {
   const data = await fetchData();
   const previewDecks = await fetchPreview();
-  return <ClientSection decks={[...data, ...previewDecks]} previewDecks={previewDecks} />;
+  return <ClientSection decks={[...data, ...previewDecks]} previewDecks={previewDecks.reverse()} />;
 };
 export default Page;
