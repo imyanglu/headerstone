@@ -22,9 +22,11 @@ const Header = ({ code }: { code: string }) => {
       </div>
 
       <div className="border-[4px] shadow-lg outline-[#7c221f] outline-[5px] outline border-[#000] ml-[12px] relative z-[2] rounded-[8px]">
-        <div className="outline-[#E3D07F] flex outline outline-[3px] px-[24px] py-[3px]  rounded-[8px] border-[2px] border-[#000] font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
-          标准卡组
-        </div>
+        <a
+          href="/decks"
+          className="outline-[#E3D07F] flex outline outline-[3px] px-[24px] py-[3px]  rounded-[8px] border-[2px] border-[#000] font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
+          返回卡组库
+        </a>
       </div>
       <div className="ml-auto mr-[24px] border-[4px] shadow-lg   relative z-[99] rounded-[4px]">
         <div
