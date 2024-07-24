@@ -6,26 +6,17 @@ import CardGroup from './CardGroup';
 import { useMemo, useState } from 'react';
 import { AutoSizer, List } from 'react-virtualized';
 
-const ClientSection = ({
-  decks,
-  previewDecks,
-}: {
-  decks: (CardGroupOverview & { pic: string })[];
-  previewDecks: (CardGroupOverview & { pic: string })[];
-}) => {
+const ClientSection = ({ decks }: { decks: (CardGroupOverview & { pic: string })[] }) => {
   const [searchText, setSearchText] = useState('');
-  const [selectedSection, setSelectedSection] = useState<'recommend' | 'preview'>(
-    window.location.hash === '#preview' ? 'preview' : 'recommend'
-  );
+
   const bestDeck = useMemo(() => {
     const dArr = decks.sort((a, b) => Number(b.winningRate) - Number(a.winningRate));
     return dArr[0];
   }, [decks]);
 
-  const isRecommend = selectedSection === 'recommend';
   const processDecks = useMemo(() => {
-    return (isRecommend ? decks : previewDecks).filter((a) => a.name.includes(searchText));
-  }, [searchText, decks, isRecommend]);
+    return decks.filter((a) => a.name.includes(searchText));
+  }, [searchText, decks]);
 
   return (
     <div className="w-[100vw] bg-[#76191A] flex flex-col min-h-[100vh] ]">
@@ -86,68 +77,36 @@ const ClientSection = ({
           <div className="stroke text-[#FFFF94] relative">
             <div className="w-full flex px-[16px] pt-[24px]">
               <a
-                href="#recommend"
+                href="#"
                 style={{
-                  backgroundColor: isRecommend ? '#C09B41' : '#ccc',
-                  transform: isRecommend ? 'scale(1)' : 'scale(0.85)',
-                }}
-                onClick={(e) => {
-                  setSelectedSection('recommend');
+                  backgroundColor: '#C09B41',
                 }}
                 className="px-[12px] text-[14px] cursor-pointer transition-transform origin-bottom py-[6px] rounded-[8px]  rounded-b-none border-[1px]   outline-[#EAD5A8] outline-[2px] outline">
                 推荐卡组
               </a>
-              <a
-                style={{
-                  backgroundColor: !isRecommend ? '#C09B41' : '#ccc',
-                  transform: !isRecommend ? 'scale(1)' : 'scale(0.85)',
-                }}
-                href="#preview"
-                onClick={(e) => {
-                  setSelectedSection('preview');
-                }}
-                className="ml-[2px] text-[14px] cursor-pointer origin-bottom transition-transform px-[12px] py-[6px] rounded-[8px] rounded-b-none ">
-                新版本卡组
-              </a>
+
               <div className="border-1 absolute bottom-0 left-0 right-0 h-[3px] bg-[#5F1615] " />
             </div>
           </div>
 
           <div className="flex h-full min-h-[400px] transition-opacity flex-col px-[16px] w-full pb-[30px] pt-[8px]">
             <AutoSizer>
-              {({ height, width }) =>
-                isRecommend ? (
-                  <List
-                    rowCount={processDecks.length}
-                    rowHeight={72}
-                    height={height}
-                    width={width}
-                    rowRenderer={({ index, style, key }) => {
-                      const i = processDecks[index];
-                      return (
-                        <div style={style} key={key}>
-                          <CardItem {...i} />
-                        </div>
-                      );
-                    }}
-                  />
-                ) : (
-                  <List
-                    rowCount={processDecks.length}
-                    rowHeight={72}
-                    height={height}
-                    width={width}
-                    rowRenderer={({ index, style, key }) => {
-                      const i = processDecks[index];
-                      return (
-                        <div style={style} key={key}>
-                          <CardItem {...i} isPreview />
-                        </div>
-                      );
-                    }}
-                  />
-                )
-              }
+              {({ height, width }) => (
+                <List
+                  rowCount={processDecks.length}
+                  rowHeight={72}
+                  height={height}
+                  width={width}
+                  rowRenderer={({ index, style, key }) => {
+                    const i = processDecks[index];
+                    return (
+                      <div style={style} key={key}>
+                        <CardItem {...i} />
+                      </div>
+                    );
+                  }}
+                />
+              )}
             </AutoSizer>
           </div>
         </div>

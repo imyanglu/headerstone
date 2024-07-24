@@ -19,25 +19,10 @@ const fetchData = async () => {
     return [];
   }
 };
-const fetchPreview = async () => {
-  try {
-    const cardGroupResult = await fetch(baseUrl + '?preview=true', {
-      cache: 'no-cache',
-    }).then((d) => d.json() as Promise<{ cards: CardGroupOverview[] }>);
-    const cardsMap = cardGroupResult.cards.map((a) => ({
-      ...a,
-      pic: JobsData.find((i) => i.slug === a.type)?.pic ?? '',
-    }));
-    return cardsMap.reverse();
-  } catch (err) {
-    console.log(err, 'preview');
-    return [];
-  }
-};
 
 const Page = async () => {
   const data = await fetchData();
-  const previewDecks = await fetchPreview();
-  return <ClientSection decks={[...data, ...previewDecks]} previewDecks={previewDecks} />;
+
+  return <ClientSection decks={data} />;
 };
 export default Page;
