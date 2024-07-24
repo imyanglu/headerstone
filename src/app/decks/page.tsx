@@ -29,6 +29,6 @@ const fetchPreview = async () => {
 const Page = async () => {
   const data = await fetchData();
   const previewDecks = await fetchPreview();
-  return <ClientSection decks={data} previewDecks={previewDecks} />;
+  return <ClientSection decks={[...data, ...previewDecks]} previewDecks={previewDecks} />;
 };
 export default Page;
