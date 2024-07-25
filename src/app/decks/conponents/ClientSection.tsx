@@ -38,7 +38,7 @@ const ClientSection = ({
         pic: a.weapon,
       };
     });
-    f.push({ key: '', label: '所有职业', pic: '/faction.png' });
+    f.unshift({ key: '', label: '所有职业', pic: '/faction.png' });
     return f;
   }, []);
 
