@@ -6,3 +6,4 @@ export { default as Cost } from './Cost';
 export { default as Modal } from './Modal';
 export { default as PreLoad } from './PreLoad';
 export { default as CardsContainer } from './CardsContainer';
+export { default as Select } from './Select';

@@ -1,11 +1,18 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import { CardGroupOverview } from '@/type';
 import Image from 'next/image';
 import CardItem from './CardItem';
 import CardGroup from './CardGroup';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { AutoSizer, List } from 'react-virtualized';
+import { JobsData } from '@/app/Const';
+import { Select } from '@/app/components';
 
+type Filters = {
+  searchText: string;
+  selectedKey: string;
+};
 const ClientSection = ({
   decks,
   previewDecks,
@@ -13,19 +20,64 @@ const ClientSection = ({
   decks: (CardGroupOverview & { pic: string })[];
   previewDecks: (CardGroupOverview & { pic: string })[];
 }) => {
-  const [searchText, setSearchText] = useState('');
+  const [filters, setFilters] = useState<Filters>({ searchText: '', selectedKey: '' });
+
   const [selectedSection, setSelectedSection] = useState<'recommend' | 'preview'>(
     window.location.hash === '#preview' ? 'preview' : 'recommend'
   );
+
+  const changeFilters = <T extends keyof Filters>(k: T, v: Filters[T]) => {
+    setFilters((s) => ({ ...s, [k]: v }));
+  };
+
+  const Factions = useMemo(() => {
+    const f: Record<'key' | 'label' | 'pic', string>[] = JobsData.map((a) => {
+      return {
+        key: a.slug,
+        label: a.name,
+        pic: a.weapon,
+      };
+    });
+    f.push({ key: '', label: '所有职业', pic: '/faction.png' });
+    return f;
+  }, []);
+
+  const selectedFaction = Factions.find((a) => a.key === filters.selectedKey);
+
   const bestDeck = useMemo(() => {
     const dArr = decks.sort((a, b) => Number(b.winningRate) - Number(a.winningRate));
     return dArr[0];
   }, [decks]);
 
+  const renderItem = useCallback(
+    (data: { item: Record<'key' | 'label' | 'pic', string>; index: number }) => {
+      const { item } = data;
+      return (
+        <div
+          className="flex w-[132px] items-center py-[6px] pl-[6px] cursor-pointer "
+          onClick={() => {
+            changeFilters('selectedKey', item.key);
+          }}>
+          <img
+            className="w-[32px] h-[32px] border-[2px] rounded-[16px] border-[#AC6625]"
+            src={item.pic}
+            alt=""
+          />
+          <div className="text-[14px] ml-[8px] text-[#fff] stroke">{item.label}</div>
+        </div>
+      );
+    },
+    []
+  );
+
   const isRecommend = selectedSection === 'recommend';
+
   const processDecks = useMemo(() => {
-    return (isRecommend ? decks : previewDecks).filter((a) => a.name.includes(searchText));
-  }, [searchText, decks, isRecommend]);
+    const { searchText, selectedKey } = filters;
+    return (isRecommend ? decks : previewDecks).filter(
+      (a) => a.name.includes(searchText) && (!selectedKey || a.type === filters.selectedKey)
+    );
+  }, [filters, decks, isRecommend]);
 
   return (
     <div className="w-[100vw] bg-[#76191A] flex flex-col min-h-[100vh] ]">
@@ -53,7 +105,6 @@ const ClientSection = ({
           {/* <a className="flex outline outline-[3px] px-[16px] text-[12px] sm:text-[16px] py-[4px]  rounded-[6px] border-[2px]  font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
             新卡速递🥵
           </a> */}
-
           <a
             href="/cards/query"
             className="flex ml-[4px] sm:ml-[12px]  text-[12px] px-[16px] sm:text-[16px] py-[4px]  rounded-[6px]  font-bold  text-[#fff]">
@@ -68,18 +119,35 @@ const ClientSection = ({
           <div className="text-[#fff] font-bold text-center py-[16px]">卡组推荐</div>
           <CardGroup {...bestDeck} />
         </div>
-        <div className="flex flex-col flex-1 pt-[20px]">
-          <div className=" border-[4px] w-[fit-content] shadow-lg outline-[#c1b79f] outline-[2px] mx-auto outline border-[#d5bebe]  relative z-[2] rounded-[24px]">
-            <div className=" outline-[#c2b085] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
-              <input
-                placeholder="搜索..."
-                className="outline-none text-[14px]  py-[3px]  font-bold bg-[#3D0D0D] text-[#fff]"
-                onChange={(e) => setSearchText(e.target.value)}
-              />
-              <div
-                className="h-[30px] w-[30px] cursor-pointer absolute right-[10px]  flex items-center justify-end"
-                onClick={() => {}}>
-                <img src="/search.svg" alt="search" className="w-[24px] h-[24px]" />
+        <div className="flex flex-col flex-1 pt-[20px]  w-full">
+          <div className="flex items-center w-full px-[16px]">
+            <Select
+              containerClassName="bg-[#3D362F] border-[2px] border-[#000]"
+              list={Factions.filter((a) => a.key !== filters.selectedKey)}
+              renderItem={renderItem}>
+              <div className="flex items-center cursor-pointer pl-[2px] bg-[#FFFF94] outline outline-[3px] outline-[#dbc17f]  border-[#000] h-[36px] rounded-[18px]">
+                <img
+                  src={selectedFaction?.pic}
+                  className="w-[32px] h-[32px] border-[2px] rounded-[16px] border-[#AC6625]"
+                  alt=""
+                />
+                <div className="hidden sm:block font-bold text-[rgb(97,67,38)] ml-[8px] text-[14px] w-[100px]">
+                  {selectedFaction?.label}
+                </div>
+              </div>
+            </Select>
+            <div className="border-[4px] w-[fit-content] shadow-lg outline-[#c1b79f] outline-[2px] mx-auto outline border-[#d5bebe]  relative z-[2] rounded-[24px]">
+              <div className=" outline-[#c2b085] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[rgb(97,67,38)]">
+                <input
+                  placeholder="搜索..."
+                  className="outline-none text-[14px]  py-[3px]  font-bold bg-[#3D0D0D] text-[#fff]"
+                  onChange={(e) => changeFilters('searchText', e.target.value)}
+                />
+                <div
+                  className="h-[30px] w-[30px] cursor-pointer absolute right-[10px]  flex items-center justify-end"
+                  onClick={() => {}}>
+                  <img src="/search.svg" alt="search" className="w-[24px] h-[24px]" />
+                </div>
               </div>
             </div>
           </div>
