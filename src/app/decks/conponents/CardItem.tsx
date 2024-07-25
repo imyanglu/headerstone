@@ -3,8 +3,13 @@ import { JobsData } from '@/app/Const';
 import { CardGroupOverview } from '@/type';
 import CopyBtn from './CopyBtn';
 
+const getTime = (time: number) => {
+  if (!time) return '--';
+
+  return (time / 60).toFixed(1) + '分';
+};
 const CardItem = (data: CardGroupOverview & { isPreview?: boolean }) => {
-  const { name, winningRate, code, id, forge, isPreview } = data;
+  const { name, winningRate, code, id, forge, isPreview, desc, time } = data;
   const hero = JobsData.find((a) => a.slug === data.type);
   if (!hero) return null;
   return (
@@ -29,11 +34,16 @@ const CardItem = (data: CardGroupOverview & { isPreview?: boolean }) => {
           </div>
         </div>
         <div
-          className={`ml-[8px] text-[12px] sm:text-[16px] ${isPreview ? 'hidden sm:block' : ''}`}>
+          className={`ml-[8px] w-[100px] text-[12px] sm:text-[16px] ${
+            isPreview ? 'hidden sm:block' : ''
+          }`}>
           胜率:&nbsp;
           <strong className="text-[rgb(31,173,30)]">
             {Number(winningRate) === 0 ? '--' : winningRate + '%'}
           </strong>
+        </div>
+        <div className="text-[14px] font-bold pl-[12px] w-[150px] hidden sm:block ">
+          平均用时:🕒{getTime(time)}
         </div>
         <div
           className={`border-[4px]   md:w-[200px] ml-auto mt-[4px] shadow-lg outline-[#e1c892] outline-[5px] outline border-[#000]  relative z-[2] rounded-[10px] ${
