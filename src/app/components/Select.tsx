@@ -19,7 +19,7 @@ const Select = <T extends object>({
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const click = () => {
-      console.log('ccc');
+      setVisible(false);
     };
     document.addEventListener('click', click);
     return () => {
