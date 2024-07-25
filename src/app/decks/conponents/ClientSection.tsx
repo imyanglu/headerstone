@@ -125,7 +125,7 @@ const ClientSection = ({
               containerClassName="bg-[#3D362F] border-[2px] border-[#000]"
               list={Factions.filter((a) => a.key !== filters.selectedKey)}
               renderItem={renderItem}>
-              <div className="flex items-center cursor-pointer pl-[2px] bg-[#FFFF94] outline outline-[3px] outline-[#dbc17f]  border-[#000] h-[36px] rounded-[18px]">
+              <div className="flex items-center cursor-pointer px-[2px] bg-[#FFFF94] outline outline-[3px] outline-[#dbc17f]  border-[#000] h-[36px] rounded-[18px]">
                 <img
                   src={selectedFaction?.pic}
                   className="w-[32px] h-[32px] border-[2px] rounded-[16px] border-[#AC6625]"
