@@ -10,6 +10,7 @@ import Header from './components/Header';
 import useToast from '@/app/lib/hooks';
 import { StandardCards } from '@/app/lib/data';
 import { createCode } from '@/app/lib/help';
+import SectionCard from './components/SectionCard';
 
 type Filters = {
   cost: [number, number];
@@ -48,7 +49,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
   const slug = params.slug.toLocaleUpperCase();
   const { addToast } = useToast();
   const cardsRef = useRef(getCards(slug as any));
-
+  const [isNeutral, setOsNeutral] = useState(false);
   const [activeModal, setActiveModal] = useState(false);
   const [name, setName] = useState('');
   const [selectedCards, setSelectedCards] = useState<Map<string, SelectedCard>>();
@@ -60,23 +61,12 @@ const Page = ({ params }: { params: { slug: string } }) => {
     return `https://art.hearthstonejson.com/v1/render/latest/zhCN/512x/${id}.png`;
   };
 
-  const { professionalCards, regularCards } = useMemo(() => {
+  const processCards = useMemo(() => {
     const processCards = cardsRef.current.filter((a) => {
       const isMana = filters.mana.length === 0 || filters.mana.includes(a.cost);
       return isMana && a.name.includes(filters.searchText.trim());
     });
-
-    return {
-      professionalCards: processCards
-        .filter((i) => {
-          return i.cardClass !== 'NEUTRAL';
-        })
-        .sort((a, b) => a.cost - b.cost),
-      regularCards: processCards
-        .filter((i) => i.cardClass === 'NEUTRAL')
-        .sort((a, b) => a.cost - b.cost),
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return processCards.sort((a, b) => a.cost - b.cost);
   }, [filters, params.slug]);
 
   const type = useMemo(() => {
@@ -176,85 +166,11 @@ const Page = ({ params }: { params: { slug: string } }) => {
         }}
         onManaClick={onToggleManaClick}
       />
-      <div className="flex mt-[100px]">
-        <div className="flex flex-col pt-[24px]   h-[calc(100vh-100px)] bg-[#E9D6AB] flex-1 items-center overflow-y-scroll   mainSection px-[32px] hideScrollbar">
-          <div className="w-full">
-            {professionalCards.length > 0 && (
-              <Title
-                type={type?.slug}
-                label={
-                  <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
-                    {type?.name}
-                  </div>
-                }
-              />
-            )}
-          </div>
-          <div
-            className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full justify-center"
-            onClick={(e) => {
-              const target = e.target;
-              if (target && target instanceof HTMLElement && target.dataset.id) {
-                const id = target.dataset.id;
-                addCards(id);
-              }
-            }}>
-            {professionalCards.map((card) => (
-              <div
-                key={card.id}
-                data-id={card.id}
-                className="w-[240px]  cursor-pointer aspect-[202/279]"
-                draggable>
-                <img
-                  data-id={card.id}
-                  className="w-full "
-                  src={getSrc(card.id)}
-                  alt={card.name}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="w-full">
-            {regularCards.length > 0 && (
-              <Title
-                label={
-                  <div className="text-[rgb(97,67,38)] w-[fit-content] translate-y-[-2px] font-bold text-[16px]">
-                    常规卡牌
-                  </div>
-                }
-              />
-            )}
-          </div>
-          <div
-            className="grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] w-full "
-            onClick={(e) => {
-              const target = e.target;
-              if (target && target instanceof HTMLElement && target.dataset.id) {
-                const id = target.dataset.id;
-                addCards(id);
-              }
-            }}>
-            {regularCards.map((card) => (
-              <div
-                key={card.id}
-                data-id={card.id}
-                className="w-[240px]  cursor-pointer aspect-[202/279]"
-                draggable>
-                <img
-                  data-id={card.id}
-                  className="w-full "
-                  src={getSrc(card.id)}
-                  alt={card.name}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))}
-          </div>
+      <div className="flex flex-1">
+        <div className="flex flex-col flex-1 py-[24px] h-[calc(100vh-100px)]  bg-[#E9D6AB]  items-center  px-[32px] ">
+          <SectionCard type={type!.slug} cards={processCards} onCardClick={addCards} />
         </div>
-        <div className="h-[calc(100vh-100px)] py-[20px] pr-[48px] my-auto  justify-center">
+        <div className="h-[calc(100vh-100px)] py-[20px] flex items-center pr-[48px]  justify-center">
           <DeckContainer
             thumbnail={JobsData.find((a) => a.slug === params.slug)?.thumbnail ?? ''}
             defaultName=""

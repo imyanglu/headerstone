@@ -1,5 +1,5 @@
 'use client';
-import { maxHeaderSize } from 'http';
+
 import { ReactNode, useEffect, useState } from 'react';
 
 type Select<T extends object> = {
@@ -27,7 +27,7 @@ const Select = <T extends object>({
     };
   }, []);
   return (
-    <div>
+    <>
       <div
         className="relative"
         onClick={(e) => {
@@ -46,7 +46,7 @@ const Select = <T extends object>({
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

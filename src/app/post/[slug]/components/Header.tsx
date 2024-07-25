@@ -10,10 +10,9 @@ type Header = {
 };
 
 const Header = ({ mana, onSearch, onManaClick }: Header) => {
-  const inputRef = useRef<HTMLInputElement>(null);
   return (
     <>
-      <div className="w-full h-[100px]  flex items-center shrink-0 fixed top-0 left-0 right-0">
+      <div className="w-full h-[100px]  flex items-center shrink-0 fixed top-0 left-0 right-0 z-[10]">
         <div className="absolute top-[1px] z-[10] h-[40px] w-full ">
           <Image src="https://pic.imgdb.cn/item/6683b127d9c307b7e99abe59.png" alt="" fill />
         </div>
@@ -42,7 +41,7 @@ const Header = ({ mana, onSearch, onManaClick }: Header) => {
           </div>
         </div>
       </div>
-      <div className="h-[110px]" />
+      <div className="h-[100px]" />
     </>
   );
 };
