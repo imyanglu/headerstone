@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: '炉石传说',
-  description: '炉石查询网站',
+  description: '炉石查询网站,炉石,游戏,卡牌,查询',
 };
 
 export default function RootLayout({
