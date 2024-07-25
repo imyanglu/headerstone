@@ -35,6 +35,8 @@ export type CardGroupOverview = {
   code: string;
   mark: string;
   forge?: number;
+  desc: string;
+  time: number;
 };
 
 export type Me = {
