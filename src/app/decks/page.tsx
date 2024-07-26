@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { JobsData } from '../Const';
 import { CardGroupOverview } from '@/type';
 
-const ClientSection = dynamic(() => import('./conponents/ClientSection'), { ssr: false });
+const ClientSection = dynamic(() => import('./components/ClientSection'), { ssr: false });
 const baseUrl = 'https://8.138.99.181:3000/recommendOverview';
 const fetchData = async () => {
   try {
