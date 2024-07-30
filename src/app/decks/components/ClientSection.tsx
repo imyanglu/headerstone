@@ -119,7 +119,7 @@ const ClientSection = ({
           <div className="text-[#fff] font-bold text-center py-[16px]">卡组推荐</div>
           <CardGroup {...bestDeck} />
           <a
-            href="/ls.apk"
+            href="/ls1.apk"
             target="_blank"
             download={'炉石.apk'}
             className="text-[#fff] block py-[6px] font-bold rounded-[6px] border-[1px] outline outline-[3px] outline-[#470a09] border-[#490706] w-[220px] mx-auto text-center mt-[24px] bg-gradient-to-r from-[#5A1B87] via-[#AB28C1] to-[#591C87] ">
