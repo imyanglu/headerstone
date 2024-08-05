@@ -86,7 +86,7 @@ type RankR = {
   data: {
     rankList: {
       pagination: { totalPages: number; totalSize: number };
-      users: Array<{ rank: number; accountid: string }>;
+      users: Array<string>;
     };
   };
 };
