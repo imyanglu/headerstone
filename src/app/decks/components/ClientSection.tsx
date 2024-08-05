@@ -102,9 +102,11 @@ const ClientSection = ({
           </div>
         </div>
         <div className="ml-auto relative z-[3] mr-[24px] flex items-center">
-          {/* <a className="flex outline outline-[3px] px-[16px] text-[12px] sm:text-[16px] py-[4px]  rounded-[6px] border-[2px]  font-bold bg-[#FFFF94] text-[rgb(97,67,38)]">
-            新卡速递🥵
-          </a> */}
+          <a
+            href="/rank"
+            className="flex   px-[16px] text-[12px] sm:text-[16px] py-[4px]  rounded-[6px]  font-bold  text-[#fff]">
+            亚服标准榜
+          </a>
           <a
             href="/cards/query"
             className="flex ml-[4px] sm:ml-[12px]  text-[12px] px-[16px] sm:text-[16px] py-[4px]  rounded-[6px]  font-bold  text-[#fff]">

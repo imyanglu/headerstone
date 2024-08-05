@@ -79,3 +79,19 @@ export const getHeroDeckByFaction = (f: string): Promise<{ decks: CardGroupOverv
 export const uploadHsCard = (p: any) => {
   return post('/uploadHsCard', { data: p });
 };
+
+type RankR = {
+  code: number;
+  message: string;
+  data: {
+    rankList: {
+      pagination: { totalPages: number; totalSize: number };
+      users: Array<{ rank: number; accountid: string }>;
+    };
+  };
+};
+export const getRankList = () => {
+  return fetch(`https://8.138.99.181:4001/rank`, {
+    next: { revalidate: 5 * 60 },
+  }).then((d) => d.json() as Promise<RankR>);
+};
