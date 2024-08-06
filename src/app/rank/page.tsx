@@ -1,29 +1,20 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import useToast from '../lib/hooks';
-import Toast from '../components/Toast';
 import { getRankList } from '../api';
-import { AutoSizer, List } from 'react-virtualized';
+import MainSection from './MainSection';
 import Image from 'next/image';
-const Page = () => {
-  const { addToast } = useToast();
 
-  const [rankList, setRankList] = useState<{
-    pagination: { totalPages: number; totalSize: number };
-    users: Array<{ rank: number; accountid: string }>;
-  } | null>(null);
+const initRankList = async () => {
+  try {
+    const d = await getRankList();
+    const pagination = d.data.rankList.pagination;
+    const users = d.data.rankList.users;
+    return { pagination, users: users.map((u, idx) => ({ idx: idx + 1, name: u })) };
+  } catch (err) {
+    return null;
+  }
+};
 
-  const initRankList = async () => {
-    getRankList().then((d) => {
-      setRankList(d.data.rankList);
-    });
-  };
-
-  useEffect(() => {
-    initRankList();
-  }, []);
-
+const Page = async () => {
+  const data = await initRankList();
   return (
     <div className="h-[100vh] bg-[#E8D4A8]  flex flex-col">
       <div className="fixed top-0 z-[10] w-full h-[100px] flex items-center bg-[#561212] ">
@@ -59,37 +50,8 @@ const Page = () => {
           </a>
         </div>
       </div>
-      <div className="h-[100px]"></div>
-
-      <div className="h-full flex-1 max-w-[1000px] mx-auto shrink-0 min-h-[300px] w-[80%] ">
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              rowCount={rankList?.users.length || 0}
-              rowHeight={60}
-              height={height}
-              width={width}
-              rowRenderer={({ index, style, key }) => {
-                const u = rankList?.users[index];
-                return (
-                  <div
-                    style={{ ...style, backgroundColor: index % 2 === 0 ? '#D9C69A' : '#E8D4A8' }}
-                    key={key}
-                    className="h-[60px] flex items-center px-[24px]">
-                    <div className="relative w-[50px] h-[50px]">
-                      <Image src="/std-rank.avif" fill alt="" />
-                      <div className="inset-0 font-bold leading-[50px] text-center text-[#fff] stroke absolute">
-                        {u?.rank}
-                      </div>
-                    </div>
-                    <div className="font-bold ml-[12px] text-[#65482A]">{u?.accountid}</div>
-                  </div>
-                );
-              }}
-            />
-          )}
-        </AutoSizer>
-      </div>
+      <div className="h-[120px]"></div>
+      <MainSection rankList={data} />
     </div>
   );
 };
