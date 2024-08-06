@@ -37,11 +37,6 @@ const Page = ({
               setS(e.target.value);
             }}
           />
-          <div
-            className="h-[30px] w-[30px] cursor-pointer absolute right-[10px]  flex items-center justify-end"
-            onClick={() => {}}>
-            <img src="/search.svg" alt="search" className="w-[24px] h-[24px]" />
-          </div>
         </div>
       </div>
 
