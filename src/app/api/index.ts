@@ -92,6 +92,6 @@ type RankR = {
 };
 export const getRankList = () => {
   return fetch(`https://8.138.99.181:4001/rank`, {
-    next: { revalidate: 5 * 60 },
+    next: { revalidate: 1 * 60 },
   }).then((d) => d.json() as Promise<RankR>);
 };
