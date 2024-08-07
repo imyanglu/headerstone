@@ -43,12 +43,7 @@ const Page = ({
       <div className="h-full flex-1 max-w-[1000px] mx-auto shrink-0 min-h-[300px] w-[80%] ">
         <AutoSizer>
           {({ height, width }) => {
-            if (!rankList)
-              return (
-                <div className="text-center font-bold" style={{ width }}>
-                  加载中...
-                </div>
-              );
+            if (!rankList) return <div className="text-center font-bold" style={{ width }}></div>;
             return (
               <List
                 rowCount={processUsers.length || 0}

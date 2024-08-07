@@ -107,7 +107,6 @@ const Page = ({ params }: { params: { slug: string } }) => {
     const dbfIdMap = new Map<number, number>();
     const cardsArr = selectedCards ? Array.from(selectedCards.values()) : [];
     selectedCards?.forEach((i) => dbfIdMap.set(i.dbfId, i.count));
-    const newCode = createCode([...dbfIdMap], slug.toLowerCase() as keyof typeof ISLAND_VACATION);
 
     const cardIds = cardsArr
       .sort((a1, a2) => a1.cost - a2.cost)
