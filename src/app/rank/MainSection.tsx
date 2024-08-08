@@ -28,7 +28,10 @@ const Page = ({
   }, []);
   return (
     <>
-      <div className="mb-[24px]">
+      <div className="mb-[24px] px-[16px] flex justify-center items-center relative">
+        <div className="text-[#fff] stroke font-bold text-[12px] absolute left-[24px]">
+          传说总人数：{processUsers.length}
+        </div>
         <div className="w-[300px] mx-auto outline-[#c2b085] flex items-center outline outline-[3px] px-[16px] text-[14px]  py-[3px]  rounded-[24px] border-[2px] border-[#000]  bg-[#E8D4A8] text-[rgb(97,67,38)]">
           <input
             placeholder="搜索..."
