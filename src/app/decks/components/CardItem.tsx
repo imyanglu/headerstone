@@ -1,16 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
 import { JobsData } from '@/app/Const';
-import { CardGroupOverview } from '@/type';
+
 import CopyBtn from './CopyBtn';
+import { DeckByHs } from '@/app/lib/data';
+import { useMemo } from 'react';
+import { generateDeckInfo } from '@/app/lib/help';
 
 const getTime = (time: number) => {
   if (!time) return '--';
 
   return (time / 60).toFixed(1) + '分';
 };
-const CardItem = (data: CardGroupOverview & { isPreview?: boolean }) => {
-  const { name, winningRate, code, id, forge, isPreview, desc, time } = data;
-  const hero = JobsData.find((a) => a.slug === data.type);
+const CardItem = (data: DeckByHs) => {
+  const { name, winRate, id, costTime, playerClass, cards, deckSideboard } = data;
+  const hero = JobsData.find((a) => a.slug === data.slug);
+  const { code, forge } = useMemo(() => {
+    return generateDeckInfo({
+      format: 2,
+      playerClass,
+      components: cards,
+      sideboardCards: deckSideboard,
+    });
+  }, []);
   if (!hero) return null;
   return (
     <>
@@ -33,22 +44,17 @@ const CardItem = (data: CardGroupOverview & { isPreview?: boolean }) => {
             )}
           </div>
         </div>
-        <div
-          className={`ml-[8px] w-[100px] text-[12px] sm:text-[16px] ${
-            isPreview ? 'hidden sm:block' : ''
-          }`}>
+        <div className={`ml-[8px] w-[150px] text-[12px] sm:text-[16px] `}>
           胜率:&nbsp;
           <strong className="text-[rgb(31,173,30)]">
-            {Number(winningRate) === 0 ? '--' : winningRate + '%'}
+            {Number(winRate) === 0 ? '--' : winRate + '%'}
           </strong>
         </div>
         <div className="text-[14px] font-bold pl-[12px] w-[150px] hidden sm:block ">
-          平均用时:🕒{getTime(time)}
+          平均用时:🕒{getTime(costTime)}
         </div>
         <div
-          className={`border-[4px]   md:w-[200px] ml-auto mt-[4px] shadow-lg outline-[#e1c892] outline-[5px] outline border-[#000]  relative z-[2] rounded-[10px] ${
-            isPreview ? 'w-[150px]' : 'w-[115px]'
-          }`}>
+          className={`border-[4px]   md:w-[200px] ml-auto mt-[4px] shadow-lg outline-[#e1c892] outline-[5px] outline border-[#000]  relative z-[2] rounded-[10px] ${'w-[115px]'}`}>
           <div className=" outline-[#E3D07F] flex items-center outline outline-[3px] pl-[8px] text-[14px]  py-[3px]  rounded-[10px] border-[2px] border-[#000]  bg-[#3D0D0D] text-[#fff]">
             <div className="flex-1 line-clamp-1 break-all">{code}</div>
             {code && <CopyBtn code={code} />}

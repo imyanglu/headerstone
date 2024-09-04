@@ -1,4 +1,8 @@
+import { platform } from 'os';
 import Cards from '../../../public/data/cards.json';
+import DecksData from '../../../public/data/deck.json';
+import RateList from '../../../public/data/winRateList.json';
+
 const BanSet = [
   'TGT',
   'BOOMSDAY',
@@ -46,5 +50,42 @@ Cards.forEach((a) => {
     StandardCards.push(a);
   }
 });
+const OtherInfoMap = new Map(DecksData.map((i) => [i.id, i]));
+export type DeckByHs = {
+  id: string;
+  name: string;
+  winRate: number;
+  totalGames: number;
+  costTime: number;
+  turns: number;
+  deckSideboard: string;
+  slug: string;
+  playerClass: number;
+  cards: string;
+};
+const DeckList: DeckByHs[] = [];
+Object.values(RateList['series']['data'])
+  .flat(2)
+  .forEach((v) => {
+    const infoId = v['archetype_id'];
+    const deckHead = OtherInfoMap.get(infoId);
 
-export { StandardCards, Cards, Heros };
+    if (deckHead) {
+      const deck = {
+        id: v.deck_id,
+        name: deckHead.name,
+        winRate: v.win_rate,
+        totalGames: v.total_games,
+        costTime: v.avg_game_length_seconds,
+        turns: v.avg_num_player_turns,
+        slug: deckHead['player_class_name'].toLocaleLowerCase(),
+        cards: v.deck_list,
+        deckSideboard: v.deck_sideboard,
+        playerClass: deckHead.player_class,
+      };
+      DeckList.push(deck);
+    }
+  });
+const Decks = DeckList;
+
+export { StandardCards, Cards, Heros, Decks };

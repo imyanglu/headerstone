@@ -8,23 +8,14 @@ import { useCallback, useMemo, useState } from 'react';
 import { AutoSizer, List } from 'react-virtualized';
 import { JobsData } from '@/app/Const';
 import { Select } from '@/app/components';
+import { DeckByHs } from '@/app/lib/data';
 
 type Filters = {
   searchText: string;
   selectedKey: string;
 };
-const ClientSection = ({
-  decks,
-  previewDecks,
-}: {
-  decks: (CardGroupOverview & { pic: string })[];
-  previewDecks: (CardGroupOverview & { pic: string })[];
-}) => {
+const ClientSection = ({ decks }: { decks: DeckByHs[] }) => {
   const [filters, setFilters] = useState<Filters>({ searchText: '', selectedKey: '' });
-
-  const [selectedSection, setSelectedSection] = useState<'recommend' | 'preview'>(
-    window.location.hash === '#preview' ? 'preview' : 'recommend'
-  );
 
   const changeFilters = <T extends keyof Filters>(k: T, v: Filters[T]) => {
     setFilters((s) => ({ ...s, [k]: v }));
@@ -45,7 +36,7 @@ const ClientSection = ({
   const selectedFaction = Factions.find((a) => a.key === filters.selectedKey);
 
   const bestDeck = useMemo(() => {
-    const dArr = decks.sort((a, b) => Number(b.winningRate) - Number(a.winningRate));
+    const dArr = decks.sort((a, b) => Number(b.winRate) - Number(a.winRate));
     return dArr[0];
   }, [decks]);
 
@@ -70,14 +61,12 @@ const ClientSection = ({
     []
   );
 
-  const isRecommend = selectedSection === 'recommend';
-
   const processDecks = useMemo(() => {
     const { searchText, selectedKey } = filters;
-    return (isRecommend ? decks : previewDecks).filter(
-      (a) => a.name.includes(searchText) && (!selectedKey || a.type === filters.selectedKey)
+    return decks.filter(
+      (a) => a.name.includes(searchText) && (!selectedKey || a.slug === filters.selectedKey)
     );
-  }, [filters, decks, isRecommend]);
+  }, [filters, decks]);
 
   return (
     <div className="w-[100vw] bg-[#76191A] flex flex-col min-h-[100vh] ]">
@@ -120,13 +109,6 @@ const ClientSection = ({
         <div className="lg:w-[300px] w-full shrink-0 bg-[#531211] pb-[20px]">
           <div className="text-[#fff] font-bold text-center py-[16px]">卡组推荐</div>
           <CardGroup {...bestDeck} />
-          <a
-            href="/com.blizzard.wtcg.hearthstone.apk"
-            target="_blank"
-            download={'炉石.apk'}
-            className="text-[#fff] block py-[6px] font-bold rounded-[6px] border-[1px] outline outline-[3px] outline-[#470a09] border-[#490706] w-[220px] mx-auto text-center mt-[24px] bg-gradient-to-r from-[#5A1B87] via-[#AB28C1] to-[#591C87] ">
-            最新炉石APK下载
-          </a>
         </div>
         <div className="flex flex-col flex-1 pt-[20px]  w-full">
           <div className="flex items-center w-full px-[16px]">
@@ -160,71 +142,25 @@ const ClientSection = ({
               </div>
             </div>
           </div>
-          <div className="stroke text-[#FFFF94] relative">
-            <div className="w-full flex px-[16px] pt-[24px]">
-              <a
-                href="#recommend"
-                style={{
-                  backgroundColor: isRecommend ? '#C09B41' : '#ccc',
-                  transform: isRecommend ? 'scale(1)' : 'scale(0.85)',
-                }}
-                onClick={(e) => {
-                  setSelectedSection('recommend');
-                }}
-                className="px-[12px] text-[14px] cursor-pointer transition-transform origin-bottom py-[6px] rounded-[8px]  rounded-b-none border-[1px]   outline-[#EAD5A8] outline-[2px] outline">
-                推荐卡组
-              </a>
-              <a
-                style={{
-                  backgroundColor: !isRecommend ? '#C09B41' : '#ccc',
-                  transform: !isRecommend ? 'scale(1)' : 'scale(0.85)',
-                }}
-                href="#preview"
-                onClick={(e) => {
-                  setSelectedSection('preview');
-                }}
-                className="ml-[2px] text-[14px] cursor-pointer origin-bottom transition-transform px-[12px] py-[6px] rounded-[8px] rounded-b-none ">
-                新版本卡组
-              </a>
-              <div className="border-1 absolute bottom-0 left-0 right-0 h-[3px] bg-[#5F1615] " />
-            </div>
-          </div>
 
           <div className="flex h-full min-h-[400px] transition-opacity flex-col px-[16px] w-full pb-[30px] pt-[8px]">
             <AutoSizer>
-              {({ height, width }) =>
-                isRecommend ? (
-                  <List
-                    rowCount={processDecks.length}
-                    rowHeight={72}
-                    height={height}
-                    width={width}
-                    rowRenderer={({ index, style, key }) => {
-                      const i = processDecks[index];
-                      return (
-                        <div style={style} key={key}>
-                          <CardItem {...i} />
-                        </div>
-                      );
-                    }}
-                  />
-                ) : (
-                  <List
-                    rowCount={processDecks.length}
-                    rowHeight={72}
-                    height={height}
-                    width={width}
-                    rowRenderer={({ index, style, key }) => {
-                      const i = processDecks[index];
-                      return (
-                        <div style={style} key={key}>
-                          <CardItem {...i} isPreview />
-                        </div>
-                      );
-                    }}
-                  />
-                )
-              }
+              {({ height, width }) => (
+                <List
+                  rowCount={processDecks.length}
+                  rowHeight={72}
+                  height={height}
+                  width={width}
+                  rowRenderer={({ index, style, key }) => {
+                    const i = processDecks[index];
+                    return (
+                      <div style={style} key={key}>
+                        <CardItem {...i} />
+                      </div>
+                    );
+                  }}
+                />
+              )}
             </AutoSizer>
           </div>
         </div>
