@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { JobsData } from '../Const';
 import { CardGroupOverview } from '@/type';
+import { Decks } from '../lib/data';
 
 const ClientSection = dynamic(() => import('./components/ClientSection'), { ssr: false });
 const baseUrl = 'https://8.138.99.181:3000/recommendOverview';
@@ -19,6 +20,7 @@ const fetchData = async () => {
     return [];
   }
 };
+console.log(Decks);
 const fetchPreview = async () => {
   try {
     const cardGroupResult = await fetch(baseUrl + '?preview=true', {
@@ -38,6 +40,6 @@ const fetchPreview = async () => {
 const Page = async () => {
   const data = await fetchData();
   const previewDecks = await fetchPreview();
-  return <ClientSection decks={[...data, ...previewDecks]} previewDecks={previewDecks.reverse()} />;
+  return <ClientSection decks={Decks} />;
 };
 export default Page;

@@ -24,30 +24,29 @@ const Page = () => {
     setParams((p) => ({ ...p, [k]: v }));
   };
   const submit = () => {
-    const { cards, title, hero } = decodeCode(params.code);
-    const cardIds = [...cards.values()]
-      .map((c) => Array.from({ length: c.count }, () => c.id))
-      .flat(2);
-    const mana = [...cards.values()]
-      .map((c) => Array.from({ length: c.count }, () => c.cost))
-      .flat(2);
-    console.log(cardIds, 'cc');
-    const req = {
-      forge: params.forge,
-      code: params.code,
-      name: title,
-      owner: '',
-      cards: cardIds,
-      type: hero,
-      winningRate: params.winningRate + '',
-      label: '',
-      mana: mana,
-      desc: '',
-      preview: true,
-      time: params.time,
-    };
-
-    uploadCardGroup(req);
+    // const { cards, title, hero } = decodeCode(params.code);
+    // const cardIds = [...cards.values()]
+    //   .map((c) => Array.from({ length: c.count }, () => c.id))
+    //   .flat(2);
+    // const mana = [...cards.values()]
+    //   .map((c) => Array.from({ length: c.count }, () => c.cost))
+    //   .flat(2);
+    // console.log(cardIds, 'cc');
+    // const req = {
+    //   forge: params.forge,
+    //   code: params.code,
+    //   name: title,
+    //   owner: '',
+    //   cards: cardIds,
+    //   type: hero,
+    //   winningRate: params.winningRate + '',
+    //   label: '',
+    //   mana: mana,
+    //   desc: '',
+    //   preview: true,
+    //   time: params.time,
+    // };
+    // uploadCardGroup(req);
   };
   return (
     <div className="flex flex-col py-[30px] gap-[16px] items-center">
