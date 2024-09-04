@@ -4,37 +4,48 @@ import { DeckContainer, Title } from '@/app/components';
 import { JobsData } from '@/app/Const';
 import { HsCard } from '@/type';
 import Header from './components/Header';
-import { StandardCards } from '@/app/lib/data';
-import { getImgSrc } from '@/app/lib/help';
+import { Decks, StandardCards } from '@/app/lib/data';
+import { generateDeckInfo, getImgSrc } from '@/app/lib/help';
+import { notFound } from 'next/navigation';
 export const revalidate = 10;
 
+const queryDeck = async (slug: string) => {
+  const deck = Decks.find((a) => a.id === slug);
+  return deck;
+};
 const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
-  const { card } = await getCardGroup(slug);
-  const cardIdx = card.cards.split(',');
+  const deck = await queryDeck(slug);
 
-  const cards = StandardCards.filter((a) => cardIdx.includes(a.id));
+  if (!deck) {
+    notFound();
+  }
+
+  const { code } = generateDeckInfo({
+    playerClass: deck?.playerClass,
+    components: deck.cards,
+    sideboardCards: deck.deckSideboard,
+    format: 2,
+  });
+  const cardIds = JSON.parse(deck.cards).map((a: [number, number]) => a[0]);
+
+  const cards = StandardCards.filter((a) => cardIds.includes(a.dbfId));
+
   const groupMap: Map<string, HsCard & { count: number }> = new Map();
-
-  cardIdx.forEach((id) => {
-    const preCard = groupMap.get(id);
-    const cCard = cards.find((a) => a.id === id);
-    if (!cCard) return;
-
-    if (preCard) {
-      groupMap.set(id, { ...cCard, count: 2 });
-      return;
-    }
-    groupMap.set(id, { ...cCard, count: 1 });
+  JSON.parse(deck.cards).forEach((i: [number, number]) => {
+    const p = groupMap.get(i[0] + '');
+    if (p) return;
+    console.log(cards.find((a) => a.dbfId == a[0]));
+    groupMap.set(i[0] + '', { ...cards.find((a) => a.dbfId == i[0]), count: i[1] });
   });
 
   const regularCards = Array.from(groupMap.values()).filter((a) => a?.cardClass === 'NEUTRAL');
   const decks = Array.from(groupMap.values()).filter((a) => a?.cardClass !== 'NEUTRAL');
-  const hero = JobsData.find((a) => a.slug === card.type);
-
+  const hero = JobsData.find((a) => a.slug === deck.slug);
+  console.log(groupMap);
   return (
     <div className="bg-[#372B47] w-[100vw] flex flex-col h-[100vh]">
       <div className="h-[100px] w-full">
-        <Header code={card.code} />
+        <Header code={code} />
       </div>
       <div className="flex px-[24px] h-[calc(100vh-100px)]">
         <div className="overflow-y-scroll flex-1 hideScrollbar   hideScrollbar hidden md:flex flex-col pr-[24px]">
@@ -92,9 +103,9 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
         </div>
         <div className="xs:block mx-auto py-[20px]">
           <DeckContainer
-            thumbnail={JobsData.find((a) => a.slug === card.type)!.thumbnail}
+            thumbnail={JobsData.find((a) => a.slug === deck.slug)!.thumbnail}
             mode="show"
-            defaultName={card.name}
+            defaultName={deck.name}
             selectedCards={groupMap}
           />
         </div>
