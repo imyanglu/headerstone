@@ -36,7 +36,6 @@ const SectionCard = ({ cards, type, onCardClick }: SectionCard) => {
 
   const count = grid.column * grid.row;
   useEffect(() => {
-    console.log(cards);
     setPage(0);
   }, [cards]);
   useEffect(() => {

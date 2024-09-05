@@ -11,7 +11,7 @@ const Page = () => {
     const img = new Image();
     img.src = '/card/mainSection/regular.webp';
     img.onload = () => {
-      console.log(img);
+     
       contextRef.current?.drawImage(img, 0, 0);
     };
   };

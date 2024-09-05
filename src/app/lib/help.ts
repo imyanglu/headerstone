@@ -12,14 +12,20 @@ const RareDict = {
   EPIC: 400,
   LEGENDARY: 1600,
 } as const;
-
+(() => {
+  const a = decode(
+    'AAECAea5AwXh+AWJkAb8wAb15QbD+QULxrAGs6AE7akG6p4G0p8EsvUFw7AG17gGjZAG9OUG7Z8GAAA='
+  );
+  console.log(a, 'xxx');
+})();
 export const generateDeckInfo = (deck: {
   playerClass: number;
   components: string;
   sideboardCards: string;
   format: number;
+  slug: string;
 }) => {
-  const { components, format, playerClass, sideboardCards } = deck;
+  const { components, format, playerClass, sideboardCards, slug } = deck;
   const formatSide: any[] = [];
   JSON.parse(sideboardCards).forEach((i: any[]) => {
     const length = i.length;
@@ -29,16 +35,18 @@ export const generateDeckInfo = (deck: {
 
     formatSide.push(...arr);
   });
+
+  const heroId = JobsData.find((a) => a.slug === slug)?.dbfId ?? 0;
+  if (heroId == 0) console.log(slug);
   const allCards = JSON.parse(components);
   const deckParams = {
     cards: allCards,
     sideboardCards: formatSide,
-    heroes: [playerClass],
+    heroes: [heroId],
     format: format as FormatType,
   };
   const decodeResult = encode(deckParams);
   const forge = allCards.reduce((sum: number, cur: [number, number]) => {
-    console.log(cur);
     const count = cur[1];
     const dbId = cur[0];
     const curC = StandardCards.find((a) => a.dbfId === dbId);

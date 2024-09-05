@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { getCardGroup } from '@/app/api';
+
 import { DeckContainer, Title } from '@/app/components';
 import { JobsData } from '@/app/Const';
 import { HsCard } from '@/type';
@@ -25,6 +25,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
     components: deck.cards,
     sideboardCards: deck.deckSideboard,
     format: 2,
+    slug:deck.slug
   });
   const cardIds = JSON.parse(deck.cards).map((a: [number, number]) => a[0]);
 
@@ -34,14 +35,14 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
   JSON.parse(deck.cards).forEach((i: [number, number]) => {
     const p = groupMap.get(i[0] + '');
     if (p) return;
-    console.log(cards.find((a) => a.dbfId == a[0]));
+   
     groupMap.set(i[0] + '', { ...cards.find((a) => a.dbfId == i[0]), count: i[1] });
   });
 
   const regularCards = Array.from(groupMap.values()).filter((a) => a?.cardClass === 'NEUTRAL');
   const decks = Array.from(groupMap.values()).filter((a) => a?.cardClass !== 'NEUTRAL');
   const hero = JobsData.find((a) => a.slug === deck.slug);
-  console.log(groupMap);
+
   return (
     <div className="bg-[#372B47] w-[100vw] flex flex-col h-[100vh]">
       <div className="h-[100px] w-full">

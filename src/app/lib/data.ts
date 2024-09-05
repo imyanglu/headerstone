@@ -1,4 +1,3 @@
-import { platform } from 'os';
 import Cards from '../../../public/data/cards.json';
 import DecksData from '../../../public/data/deck.json';
 import RateList from '../../../public/data/winRateList.json';
@@ -50,6 +49,7 @@ Cards.forEach((a) => {
     StandardCards.push(a);
   }
 });
+
 const OtherInfoMap = new Map(DecksData.map((i) => [i.id, i]));
 export type DeckByHs = {
   id: string;
@@ -62,6 +62,7 @@ export type DeckByHs = {
   slug: string;
   playerClass: number;
   cards: string;
+  format: number; // 1:狂野 2:标准
 };
 const DeckList: DeckByHs[] = [];
 Object.values(RateList['series']['data'])
@@ -82,6 +83,7 @@ Object.values(RateList['series']['data'])
         cards: v.deck_list,
         deckSideboard: v.deck_sideboard,
         playerClass: deckHead.player_class,
+        format: !!deckHead.standard_ccp_signature_core ? 2 : 1,
       };
       DeckList.push(deck);
     }
