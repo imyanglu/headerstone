@@ -61,6 +61,6 @@ const Toast = () => {
 };
 
 Toast.show = (type: 'success' | 'error' | 'regular', message: string, duration: number) => {
-  console.log('xxx');
+  
 };
 export default Toast;

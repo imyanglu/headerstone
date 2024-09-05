@@ -34,7 +34,7 @@ const DeckContainer = ({
       return a + sum.count;
     }, 0);
   }, [processCards]);
-  console.log(selectedCards, 'xxx');
+
   return (
     <div className="flex flex-col h-full max-h-[700px] mx-auto w-[328px] bg-[#372B47]">
       <div className="deckHead">

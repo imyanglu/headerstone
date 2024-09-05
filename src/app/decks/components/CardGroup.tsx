@@ -9,13 +9,23 @@ import { generateDeckInfo } from '@/app/lib/help';
 
 /* eslint-disable @next/next/no-img-element */
 
-const CardGroup = ({ name, winRate, playerClass, id, slug, cards, deckSideboard }: DeckByHs) => {
+const CardGroup = ({
+  name,
+  winRate,
+  playerClass,
+  id,
+  slug,
+  cards,
+  deckSideboard,
+  format,
+}: DeckByHs) => {
   const { HeroPic, code } = useMemo(() => {
     const { code } = generateDeckInfo({
-      format: 2,
+      format,
       playerClass,
       components: cards,
       sideboardCards: deckSideboard,
+      slug,
     });
 
     return { HeroPic: JobsData.find((a) => a.slug === slug)?.pic, code };

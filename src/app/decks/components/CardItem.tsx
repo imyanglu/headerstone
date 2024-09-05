@@ -12,16 +12,17 @@ const getTime = (time: number) => {
   return (time / 60).toFixed(1) + '分';
 };
 const CardItem = (data: DeckByHs) => {
-  const { name, winRate, id, costTime, playerClass, cards, deckSideboard } = data;
+  const { name, winRate, id, costTime, playerClass, cards, deckSideboard, slug, format } = data;
   const hero = JobsData.find((a) => a.slug === data.slug);
   const { code, forge } = useMemo(() => {
     return generateDeckInfo({
-      format: 2,
+      format,
       playerClass,
       components: cards,
       sideboardCards: deckSideboard,
+      slug,
     });
-  }, []);
+  }, [id]);
   if (!hero) return null;
   return (
     <>

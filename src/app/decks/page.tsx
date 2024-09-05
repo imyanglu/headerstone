@@ -16,11 +16,11 @@ const fetchData = async () => {
     }));
     return cardsMap;
   } catch (err) {
-    console.log(err, 'reslut');
+  
     return [];
   }
 };
-console.log(Decks);
+
 const fetchPreview = async () => {
   try {
     const cardGroupResult = await fetch(baseUrl + '?preview=true', {
@@ -32,7 +32,7 @@ const fetchPreview = async () => {
     }));
     return cardsMap;
   } catch (err) {
-    console.log(err, 'preview');
+  
     return [];
   }
 };

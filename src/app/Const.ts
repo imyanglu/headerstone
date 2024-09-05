@@ -1,5 +1,3 @@
-import { title } from 'process';
-
 export const JobsData = [
   {
     name: '死亡骑士',
@@ -8,6 +6,7 @@ export const JobsData = [
     thumbnail: 'https://pic.imgdb.cn/item/669537ebd9c307b7e9b068f1.jpg',
     tile: '/tiles/deathknight-tile.avif',
     weapon: '/weapon/deathknight.png',
+    dbfId: 78065,
   },
   {
     name: '恶魔猎人',
@@ -16,6 +15,7 @@ export const JobsData = [
     thumbnail: 'https://pic.imgdb.cn/item/66a0bf4ed9c307b7e926cc5a.jpg',
     tile: '/tiles/demonhunter-tile.avif',
     weapon: '/weapon/demonhunter.png',
+    dbfId: 56550,
   },
   {
     name: '德鲁伊',
@@ -25,6 +25,7 @@ export const JobsData = [
     title: '/druid-title.svg',
     tile: '/tiles/druid-tile.avif',
     weapon: '/weapon/druid.png',
+    dbfId: 274,
   },
   {
     name: '猎人',
@@ -33,6 +34,7 @@ export const JobsData = [
     thumbnail: 'https://pic.imgdb.cn/item/669660bed9c307b7e90bf9ad.jpg',
     tile: '/tiles/hunter-tile.avif',
     weapon: '/weapon/hunter.png',
+    dbfId: 31,
   },
   {
     name: '法师',
@@ -41,6 +43,7 @@ export const JobsData = [
     tile: '/tiles/mage-tile.avif',
     thumbnail: 'https://pic.imgdb.cn/item/66981809d9c307b7e9db2925.jpg',
     weapon: '/weapon/mage.png',
+    dbfId: 637,
   },
   {
     name: '圣骑士',
@@ -49,6 +52,7 @@ export const JobsData = [
     thumbnail: 'https://pic.imgdb.cn/item/6689730ed9c307b7e9dea892.jpg',
     tile: '/tiles/paladin-tile.avif',
     weapon: '/weapon/paladin.png',
+    dbfId: 671,
   },
   {
     name: '牧师',
@@ -57,6 +61,7 @@ export const JobsData = [
     thumbnail: 'https://pic.imgdb.cn/item/669eaf54d9c307b7e9496fbf.jpg',
     tile: '/tiles/priest-tile.avif',
     weapon: '/weapon/priest.png',
+    dbfId: 813,
   },
   {
     thumbnail: 'https://pic.imgdb.cn/item/669d5e45d9c307b7e929e15c.jpg',
@@ -65,6 +70,7 @@ export const JobsData = [
     pic: 'https://pic.imgdb.cn/item/66845bdcd9c307b7e9f0ee87.png',
     tile: '/tiles/rogue-tile.avif',
     weapon: '/weapon/rogue.png',
+    dbfId: 930,
   },
   {
     thumbnail: 'https://pic.imgdb.cn/item/66a0c18dd9c307b7e928d129.jpg',
@@ -73,6 +79,7 @@ export const JobsData = [
     pic: 'https://pic.imgdb.cn/item/66845be8d9c307b7e9f0f9a0.png',
     tile: '/tiles/shaman-tile.avif',
     weapon: '/weapon/shaman.png',
+    dbfId: 1066,
   },
   {
     thumbnail: 'https://pic.imgdb.cn/item/669eb580d9c307b7e94c8e0e.jpg',
@@ -81,6 +88,7 @@ export const JobsData = [
     pic: 'https://pic.imgdb.cn/item/66845bfbd9c307b7e9f109a2.png',
     tile: '/tiles/warlock-tile.avif',
     weapon: '/weapon/warlock.png',
+    dbfId: 893,
   },
   {
     thumbnail: 'https://pic.imgdb.cn/item/66965fc9d9c307b7e9098d1f.jpg',
@@ -89,5 +97,6 @@ export const JobsData = [
     pic: 'https://pic.imgdb.cn/item/66845c0ad9c307b7e9f11afc.png',
     tile: '/tiles/warrior-tile.avif',
     weapon: '/weapon/warrior.png',
+    dbfId: 7,
   },
 ] as const;
