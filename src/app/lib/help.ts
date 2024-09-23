@@ -50,7 +50,8 @@ export const generateDeckInfo = (deck: {
     const count = cur[1];
     const dbId = cur[0];
     const curC = StandardCards.find((a) => a.dbfId === dbId);
-    if (curC.set === 'CORE') return sum;
+
+    if (curC?.set === 'CORE') return sum;
     const forgeNum =
       count * (RareDict[(curC?.rarity ?? 'COMMON') as keyof typeof RareDict] as number);
     return sum + forgeNum;
