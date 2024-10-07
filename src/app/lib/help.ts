@@ -12,12 +12,7 @@ const RareDict = {
   EPIC: 400,
   LEGENDARY: 1600,
 } as const;
-(() => {
-  const a = decode(
-    'AAECAea5AwXh+AWJkAb8wAb15QbD+QULxrAGs6AE7akG6p4G0p8EsvUFw7AG17gGjZAG9OUG7Z8GAAA='
-  );
-  console.log(a, 'xxx');
-})();
+
 export const generateDeckInfo = (deck: {
   playerClass: number;
   components: string;
@@ -25,9 +20,9 @@ export const generateDeckInfo = (deck: {
   format: number;
   slug: string;
 }) => {
-  const { components, format, playerClass, sideboardCards, slug } = deck;
+  const { components, format, sideboardCards, slug } = deck || {};
   const formatSide: any[] = [];
-  JSON.parse(sideboardCards).forEach((i: any[]) => {
+  JSON.parse(sideboardCards ?? '[]').forEach((i: any[]) => {
     const length = i.length;
     const arr = Array.from({ length: length - 1 }, (_, idx) => {
       return [i[idx + 1][0], i[idx + 1][1], i[0]];

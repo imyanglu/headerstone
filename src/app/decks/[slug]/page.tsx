@@ -4,12 +4,14 @@ import { DeckContainer, Title } from '@/app/components';
 import { JobsData } from '@/app/Const';
 import { HsCard } from '@/type';
 import Header from './components/Header';
-import { Decks, StandardCards } from '@/app/lib/data';
+import { StandardCards } from '@/app/lib/data';
 import { generateDeckInfo, getImgSrc } from '@/app/lib/help';
 import { notFound } from 'next/navigation';
+import { initDecks } from '@/app/lib/action';
 export const revalidate = 10;
 
 const queryDeck = async (slug: string) => {
+  const Decks: any[] = await initDecks();
   const deck = Decks.find((a) => a.id === slug);
   return deck;
 };
@@ -25,7 +27,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
     components: deck.cards,
     sideboardCards: deck.deckSideboard,
     format: 2,
-    slug:deck.slug
+    slug: deck.slug,
   });
   const cardIds = JSON.parse(deck.cards).map((a: [number, number]) => a[0]);
 
@@ -35,7 +37,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
   JSON.parse(deck.cards).forEach((i: [number, number]) => {
     const p = groupMap.get(i[0] + '');
     if (p) return;
-   
+
     groupMap.set(i[0] + '', { ...cards.find((a) => a.dbfId == i[0]), count: i[1] });
   });
 
