@@ -52,7 +52,7 @@ export type DeckByHs = {
 };
 
 const format = (RateList: any, DecksData: any) => {
-  const DeckList = [];
+  const DeckList: any[] = [];
   const OtherInfoMap = new Map(DecksData.map((i: any) => [i.id, i]));
   Object.values(RateList['series']['data'])
     .flat(2)
