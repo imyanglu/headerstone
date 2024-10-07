@@ -281,9 +281,9 @@
     "player_class_name": "SHAMAN",
     "url": "/archetypes/61/elemental-shaman",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [69731, 102732, 108328, 111469, 100286, 100016, 100288, 98143]
+      "components": [69731, 108328, 102732, 100286, 111469, 100016, 100288, 102227]
     },
     "wild_ccp_signature_core": null
   },
@@ -490,9 +490,9 @@
     "player_class_name": "DEMONHUNTER",
     "url": "/archetypes/366/highlander-demon-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T02:38:23.851Z",
       "format": 2,
-      "components": [103471, 104511, 98652, 106682, 101033, 98344, 106374, 100363]
+      "components": [103471, 98652, 104511, 108346, 110796, 106713, 108967, 98469]
     },
     "wild_ccp_signature_core": null
   },
@@ -1158,9 +1158,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/154/pirate-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-05-17T02:26:09.187Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103488, 103627, 103346, 103548, 113225, 103164, 103343, 111462]
+      "components": [103164, 103548, 103488, 113225, 107181, 69742, 69679, 107799]
     },
     "wild_ccp_signature_core": null
   },
@@ -1223,9 +1223,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/153/elemental-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [88982, 102227, 102337, 102732, 108328, 111469, 98143, 101877]
+      "components": [90606, 102227, 102732, 108328, 111469, 88982, 98143, 102337]
     },
     "wild_ccp_signature_core": null
   },
@@ -1440,9 +1440,9 @@
     "player_class_name": "SHAMAN",
     "url": "/archetypes/199/big-shaman",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [101482, 106583, 106532, 103124, 100929, 101033, 106303, 111382]
+      "components": [106583, 101482, 103124, 106307, 100929, 95350, 111382, 97671]
     },
     "wild_ccp_signature_core": null
   },
@@ -1570,9 +1570,9 @@
     "player_class_name": "WARLOCK",
     "url": "/archetypes/185/demon-warlock",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [97346, 104852, 105098, 90993, 104854, 110858, 111458, 110796]
+      "components": [90993, 97346, 104852, 104854, 110796, 110858, 111458, 105098]
     },
     "wild_ccp_signature_core": null
   },
@@ -1583,9 +1583,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/25/miracle-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [102170, 104864, 104976, 110757, 106374, 108967, 103341, 95405]
+      "components": [102170, 104864, 104976, 110757, 106374, 108967, 97215, 103341]
     },
     "wild_ccp_signature_core": null
   },
@@ -1882,9 +1882,9 @@
     "player_class_name": "WARLOCK",
     "url": "/archetypes/251/pain-warlock",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [69636, 111472, 102212, 97614, 105539, 104860, 105502, 94798]
+      "components": [97614, 102212, 111472, 69636, 105502, 105539, 94798, 100641]
     },
     "wild_ccp_signature_core": null
   },
@@ -2842,9 +2842,9 @@
     "player_class_name": "DRUID",
     "url": "/archetypes/334/treant-druid",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [97584, 98265, 101685, 102188, 108617, 94798, 98087, 76289]
+      "components": [76289, 94798, 97584, 98087, 98265, 101685, 102188, 108617]
     },
     "wild_ccp_signature_core": null
   },
@@ -3111,9 +3111,9 @@
     "player_class_name": "HUNTER",
     "url": "/archetypes/355/face-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T02:38:23.851Z",
       "format": 2,
-      "components": [69546, 69600, 69691, 76297, 76320, 102191, 69668, 111462]
+      "components": [69546, 69600, 69604, 69605, 69668, 69691, 76297, 76320]
     },
     "wild_ccp_signature_core": null
   },
@@ -3176,9 +3176,9 @@
     "player_class_name": "MAGE",
     "url": "/archetypes/146/highlander-mage",
     "standard_ccp_signature_core": {
-      "as_of": "2024-08-17T20:00:16.858Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103471, 96627, 106682, 76273, 105797, 102983, 108337, 101033]
+      "components": [103471, 76273, 103354, 102983, 76271, 96627, 96903, 90749]
     },
     "wild_ccp_signature_core": null
   },
@@ -3443,9 +3443,9 @@
     "player_class_name": "SHAMAN",
     "url": "/archetypes/360/highlander-shaman",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103471, 103080, 99961, 106682, 103079, 102059, 102175, 110765]
+      "components": [103471, 99961, 106682, 102059, 106671, 103080, 106307, 106301]
     },
     "wild_ccp_signature_core": null
   },
@@ -3625,9 +3625,9 @@
     "player_class_name": "DRUID",
     "url": "/archetypes/335/dragon-druid",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [98382, 106682, 102434, 106673, 101051, 101978, 107891, 104583]
+      "components": [106673, 98382, 102434, 106682, 101051, 101978, 101033, 96671]
     },
     "wild_ccp_signature_core": null
   },
@@ -3768,9 +3768,9 @@
     "player_class_name": "WARRIOR",
     "url": "/archetypes/316/highlander-warrior",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103471, 104528, 90749, 101367, 69640, 102225, 76304, 69641]
+      "components": [103471, 104528, 98565, 90749, 101367, 69641, 102225, 105795]
     },
     "wild_ccp_signature_core": null
   },
@@ -3859,9 +3859,9 @@
     "player_class_name": "DEMONHUNTER",
     "url": "/archetypes/661/shopper-demon-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [98105, 104510, 92249, 90808, 76308, 104515, 102184, 104652]
+      "components": [104510, 105514, 110768, 90808, 104652, 96946, 101033, 90615]
     },
     "wild_ccp_signature_core": null
   },
@@ -3898,9 +3898,9 @@
     "player_class_name": "DEATHKNIGHT",
     "url": "/archetypes/612/plague-death-knight",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [98283, 98768, 100595, 99957, 98762, 97467, 97394, 99959]
+      "components": [99957, 100595, 98762, 98283, 97269, 98768, 97394, 97467]
     },
     "wild_ccp_signature_core": null
   },
@@ -4284,9 +4284,9 @@
     "player_class_name": "SHAMAN",
     "url": "/archetypes/449/nature-shaman",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [62442, 69625, 90781, 92228, 97354, 97355, 102246, 102207]
+      "components": [62442, 92228, 97354, 97355, 102246, 69625, 92232, 90781]
     },
     "wild_ccp_signature_core": null
   },
@@ -4709,9 +4709,9 @@
     "player_class_name": "PALADIN",
     "url": "/archetypes/304/highlander-paladin",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103471, 100124, 100230, 101033, 102728, 102163, 95917, 98762]
+      "components": [103471, 100124, 100230, 100553, 110753, 108346, 110754, 98762]
     },
     "wild_ccp_signature_core": null
   },
@@ -4978,9 +4978,9 @@
     "player_class_name": "DEATHKNIGHT",
     "url": "/archetypes/700/razzle-death-knight",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [81972, 111325, 111323, 106303, 107926, 106532, 107920, 106536]
+      "components": [107720, 108436, 106303, 107926, 106532, 106536, 101012, 104635]
     },
     "wild_ccp_signature_core": null
   },
@@ -5108,9 +5108,9 @@
     "player_class_name": "PRIEST",
     "url": "/archetypes/444/heal-priest",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [101481, 102054, 69707, 90956, 90959, 66861, 90681, 102422]
+      "components": [102422, 102054, 97403, 101481, 69707, 90956, 90959, 109260]
     },
     "wild_ccp_signature_core": null
   },
@@ -5533,9 +5533,9 @@
     "player_class_name": "MAGE",
     "url": "/archetypes/182/big-spell-mage",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [107753, 98704, 101966, 111471, 102347, 102224, 101876, 105797]
+      "components": [108348, 107850, 102224, 102347, 111471, 101876, 105797, 107753]
     },
     "wild_ccp_signature_core": null
   },
@@ -5607,9 +5607,9 @@
     "player_class_name": "DEATHKNIGHT",
     "url": "/archetypes/556/unholy-death-knight",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T02:38:23.851Z",
       "format": 2,
-      "components": [78335, 78342, 78353, 86190, 102228, 102224, 111328, 111329]
+      "components": [78335, 78353, 80645, 111329, 80818, 78352, 86190, 78342]
     },
     "wild_ccp_signature_core": null
   },
@@ -5620,9 +5620,9 @@
     "player_class_name": "DEATHKNIGHT",
     "url": "/archetypes/557/frost-death-knight",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [111326, 111324, 102347, 81972, 97528, 111323, 111325, 107775]
+      "components": [81972, 111323, 111324, 111325, 111326, 97528, 91252, 86731]
     },
     "wild_ccp_signature_core": null
   },
@@ -5854,9 +5854,9 @@
     "player_class_name": "WARLOCK",
     "url": "/archetypes/576/deathrattle-warlock",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [105543, 107920, 105855, 107925, 110762, 107720, 107813, 110858]
+      "components": [105543, 105855, 111485, 90854, 101513, 106306, 107796, 107797]
     },
     "wild_ccp_signature_core": null
   },
@@ -5880,9 +5880,9 @@
     "player_class_name": "DEATHKNIGHT",
     "url": "/archetypes/578/rainbow-death-knight",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [97532, 104637, 101265, 108436, 107720, 78352, 100619, 111318]
+      "components": [104637, 97532, 110796, 78352, 101033, 100619, 101012, 104635]
     },
     "wild_ccp_signature_core": null
   },
@@ -6114,9 +6114,9 @@
     "player_class_name": "PALADIN",
     "url": "/archetypes/596/dancing-paladin",
     "standard_ccp_signature_core": {
-      "as_of": "2024-05-09T13:24:29.417Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [90695, 90944, 101009, 103634, 69613, 98411, 100929, 76306]
+      "components": [90695, 69614, 101009, 103658, 90944, 98626, 69532, 110859]
     },
     "wild_ccp_signature_core": null
   },
@@ -6205,9 +6205,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/602/dagger-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2023-05-20T03:31:31.215Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [69522, 91986, 77210, 90586, 88403, 90808, 102230, 77556]
+      "components": [102205, 110756, 106675, 69522, 98377, 90586, 88403, 103662]
     },
     "wild_ccp_signature_core": null
   },
@@ -6309,9 +6309,9 @@
     "player_class_name": "DRUID",
     "url": "/archetypes/512/ramp-druid",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [106714, 110859, 102902, 111355, 107856, 102427, 103431, 102432]
+      "components": [107856, 106714, 110859, 102902, 111355, 102427, 103431, 105795]
     },
     "wild_ccp_signature_core": null
   },
@@ -6331,9 +6331,9 @@
     "player_class_name": "MAGE",
     "url": "/archetypes/615/rainbow-mage",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [98111, 98136, 96875, 97132, 107187, 108619, 106433, 101874]
+      "components": [96875, 97132, 98136, 98111, 101874, 108619, 100995, 106433]
     },
     "wild_ccp_signature_core": null
   },
@@ -6344,9 +6344,9 @@
     "player_class_name": "PALADIN",
     "url": "/archetypes/616/earthen-paladin",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [98626, 98058, 95470, 98059, 105682, 107759, 107757, 110858]
+      "components": [95470, 98058, 98059, 98626, 113111, 102790, 112097, 90689]
     },
     "wild_ccp_signature_core": null
   },
@@ -6370,9 +6370,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/618/mech-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-08-17T20:00:16.858Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [108950, 111377, 97915, 97638, 107762, 103346, 103488, 92249]
+      "components": [98023, 97318, 107797, 107815, 97638, 98105, 97078, 102219]
     },
     "wild_ccp_signature_core": null
   },
@@ -6422,9 +6422,9 @@
     "player_class_name": "PRIEST",
     "url": "/archetypes/623/alignment-priest",
     "standard_ccp_signature_core": {
-      "as_of": "2023-09-03T13:14:24.710Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [75922, 90700, 98252, 98253, 98105, 97575, 72598, 97053]
+      "components": [98105, 98253, 101966, 102347, 110776, 111470, 98223, 101841]
     },
     "wild_ccp_signature_core": null
   },
@@ -6448,9 +6448,9 @@
     "player_class_name": "MAGE",
     "url": "/archetypes/145/elemental-mage",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [90738, 98097, 101873, 102040, 101076, 102732, 103266, 108328]
+      "components": [98143, 101076, 102040, 101873, 102732, 111469, 98097, 102227]
     },
     "wild_ccp_signature_core": null
   },
@@ -6461,9 +6461,9 @@
     "player_class_name": "SHAMAN",
     "url": "/archetypes/626/tendril-shaman",
     "standard_ccp_signature_core": {
-      "as_of": "2024-08-17T20:00:16.858Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [101021, 101099, 101029, 106697, 101033, 69629, 103079, 103080]
+      "components": [101021, 101029, 101099, 106697, 103080, 110855, 102175, 103332]
     },
     "wild_ccp_signature_core": null
   },
@@ -6487,9 +6487,9 @@
     "player_class_name": "DRUID",
     "url": "/archetypes/353/highlander-druid",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103471, 101055, 108346, 101976, 105892, 101052, 111473, 97627]
+      "components": [103471, 101055, 105892, 101052, 108346, 92332, 111473, 105810]
     },
     "wild_ccp_signature_core": null
   },
@@ -6548,9 +6548,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/631/mining-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [100944, 100937, 97825, 98762, 92249, 102983, 101033, 102224]
+      "components": [98762, 102224, 100937, 100944, 101476, 97825, 101033, 92249]
     },
     "wild_ccp_signature_core": null
   },
@@ -6561,9 +6561,9 @@
     "player_class_name": "WARLOCK",
     "url": "/archetypes/632/mining-warlock",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [98762, 102904, 98768, 101464, 101871, 76310, 69660, 106652]
+      "components": [98762, 98768, 101464, 102904, 103463, 95688, 97702, 76310]
     },
     "wild_ccp_signature_core": null
   },
@@ -6574,9 +6574,9 @@
     "player_class_name": "WARLOCK",
     "url": "/archetypes/633/sludge-warlock",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [101269, 101271, 101272, 101270, 102443, 102434, 102427, 103462]
+      "components": [101269, 101270, 101271, 101272, 102427, 102443, 102903, 103462]
     },
     "wild_ccp_signature_core": null
   },
@@ -6600,9 +6600,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/638/wishing-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [100942, 109324, 107753, 99129, 98704, 100937, 98762, 100944]
+      "components": [100942, 107753, 98704, 109324, 98762, 100944, 99129, 100937]
     },
     "wild_ccp_signature_core": null
   },
@@ -6652,9 +6652,9 @@
     "player_class_name": "PALADIN",
     "url": "/archetypes/642/mining-paladin",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [98762, 102163, 111462, 98768, 102728, 104526, 90808, 90968]
+      "components": [98762, 102728, 111462, 103632, 98768, 104526, 102163, 102196]
     },
     "wild_ccp_signature_core": null
   },
@@ -6730,9 +6730,9 @@
     "player_class_name": "PRIEST",
     "url": "/archetypes/128/highlander-priest",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103471, 90749, 105282, 101033, 101989, 102424, 98520, 102225]
+      "components": [103471, 101989, 105282, 69508, 90749, 102225, 90683, 106682]
     },
     "wild_ccp_signature_core": null
   },
@@ -6769,9 +6769,9 @@
     "player_class_name": "DEMONHUNTER",
     "url": "/archetypes/650/sharpshooter-demon-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [100358, 113111, 111348, 100361, 97477, 106306, 98468, 97377]
+      "components": [97477, 100358, 100365, 111348, 113111, 100361, 101660, 101483]
     },
     "wild_ccp_signature_core": null
   },
@@ -6782,9 +6782,9 @@
     "player_class_name": "HUNTER",
     "url": "/archetypes/651/spell-token-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103154, 103167, 103186, 110772, 109326, 100178, 110776, 97096]
+      "components": [103186, 103154, 100178, 111361, 109326, 97096, 97047, 103167]
     },
     "wild_ccp_signature_core": null
   },
@@ -6808,9 +6808,9 @@
     "player_class_name": "HUNTER",
     "url": "/archetypes/625/breakfast-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103144, 95344, 100989, 97363, 98704, 94735, 106574, 103166]
+      "components": [94735, 95344, 103144, 100989, 97363, 98704, 97049, 103166]
     },
     "wild_ccp_signature_core": null
   },
@@ -6821,9 +6821,9 @@
     "player_class_name": "HUNTER",
     "url": "/archetypes/138/secret-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [95336, 97404, 101869, 105260, 111362, 102160, 96618, 105564]
+      "components": [101869, 95336, 97404, 111362, 69603, 105260, 96618, 102160]
     },
     "wild_ccp_signature_core": null
   },
@@ -6834,9 +6834,9 @@
     "player_class_name": "MAGE",
     "url": "/archetypes/285/spell-mage",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [90368, 98123, 102152, 103269, 103347, 105573, 106369, 106373]
+      "components": [90368, 102152, 103269, 103347, 105573, 107776, 106369, 106373]
     },
     "wild_ccp_signature_core": null
   },
@@ -6847,9 +6847,9 @@
     "player_class_name": "PALADIN",
     "url": "/archetypes/479/handbuff-paladin",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [113225, 90699, 100984, 90968, 90808, 111462, 98105, 94822]
+      "components": [90699, 113225, 107931, 97352, 102196, 103632, 101112, 111462]
     },
     "wild_ccp_signature_core": null
   },
@@ -6860,9 +6860,9 @@
     "player_class_name": "PALADIN",
     "url": "/archetypes/653/flood-paladin",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [102228, 96916, 90689, 76322, 101109, 105822, 91252, 96917]
+      "components": [101109, 96916, 102228, 76322, 105822, 91252, 90689, 108346]
     },
     "wild_ccp_signature_core": null
   },
@@ -6873,9 +6873,9 @@
     "player_class_name": "PALADIN",
     "url": "/archetypes/654/aura-paladin",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [100195, 103629, 103630, 104869, 90698, 106697, 111469, 104870]
+      "components": [69611, 90698, 103629, 103630, 104869, 104870, 111469, 100195]
     },
     "wild_ccp_signature_core": null
   },
@@ -6899,9 +6899,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/408/weapon-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [111376, 88403, 103662, 69522, 90808, 107923, 90586, 107764]
+      "components": [90808, 111376, 69522, 88403, 90586, 103662, 103433, 97640]
     },
     "wild_ccp_signature_core": null
   },
@@ -6912,9 +6912,9 @@
     "player_class_name": "WARLOCK",
     "url": "/archetypes/655/wheel-warlock",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [104938, 95404, 98280, 111454, 97702, 97623, 97530, 106652]
+      "components": [107923, 95404, 104938, 111454, 106652, 97702, 95688, 98280]
     },
     "wild_ccp_signature_core": null
   },
@@ -6951,9 +6951,9 @@
     "player_class_name": "PRIEST",
     "url": "/archetypes/658/zarimi-priest",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103530, 113116, 102001, 103531, 103529, 101958, 103491, 106671]
+      "components": [103530, 103531, 103529, 113116, 103491, 94822, 102001, 90952]
     },
     "wild_ccp_signature_core": null
   },
@@ -6977,9 +6977,9 @@
     "player_class_name": "DEATHKNIGHT",
     "url": "/archetypes/663/handbuff-death-knight",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [104694, 94735, 111319, 104634, 111321, 106063, 95344, 104636]
+      "components": [104694, 94735, 106063, 95344, 111319, 104634, 91251, 110762]
     },
     "wild_ccp_signature_core": null
   },
@@ -7003,9 +7003,9 @@
     "player_class_name": "HUNTER",
     "url": "/archetypes/302/highlander-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103471, 96627, 102224, 106682, 100180, 106576, 91252, 91494]
+      "components": [103471, 100180, 106682, 91252, 100191, 110796, 91494, 102224]
     },
     "wild_ccp_signature_core": null
   },
@@ -7029,9 +7029,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/665/sonya-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-08-17T20:00:16.858Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [69521, 97736, 103341, 106374, 97215, 102254, 102745, 108967]
+      "components": [69521, 106681, 97344, 103341, 98377, 110754, 97736, 102421]
     },
     "wild_ccp_signature_core": null
   },
@@ -7042,9 +7042,9 @@
     "player_class_name": "WARLOCK",
     "url": "/archetypes/666/insanity-warlock",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [90854, 101513, 90440, 90439, 90461, 106306, 102434, 107796]
+      "components": [97397, 90854, 101513, 106306, 98417, 107796, 90439, 90440]
     },
     "wild_ccp_signature_core": null
   },
@@ -7068,9 +7068,9 @@
     "player_class_name": "DEATHKNIGHT",
     "url": "/archetypes/668/highlander-death-knight",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103471, 111322, 111334, 90749, 111327, 106307, 78324, 102225]
+      "components": [103471, 106307, 90749, 104523, 111320, 102225, 106306, 100611]
     },
     "wild_ccp_signature_core": null
   },
@@ -7081,9 +7081,9 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/324/highlander-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103471, 90749, 108346, 101033, 109324, 101133, 107753, 100942]
+      "components": [103471, 90749, 110796, 108967, 90583, 101033, 111376, 108346]
     },
     "wild_ccp_signature_core": null
   },
@@ -7107,9 +7107,9 @@
     "player_class_name": "WARRIOR",
     "url": "/archetypes/670/dummy-warrior",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [103442, 103444, 103443, 103439, 105892, 103440, 111460, 107856]
+      "components": [103442, 107856, 103444, 103443, 103439, 105892, 110858, 111460]
     },
     "wild_ccp_signature_core": null
   },
@@ -7185,9 +7185,9 @@
     "player_class_name": "DEMONHUNTER",
     "url": "/archetypes/679/pirate-demon-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [107181, 106614, 106584, 103548, 105815, 106709, 106388, 106582]
+      "components": [106584, 107181, 106614, 103548, 102184, 106620, 106591, 105540]
     },
     "wild_ccp_signature_core": null
   },
@@ -7250,9 +7250,9 @@
     "player_class_name": "HUNTER",
     "url": "/archetypes/683/amalgam-hunter",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [108950, 107114, 102219, 109323, 97380, 97049, 106574, 106638]
+      "components": [107114, 108950, 102219, 109323, 97049, 97380, 106382, 111357]
     },
     "wild_ccp_signature_core": null
   },
@@ -7289,9 +7289,9 @@
     "player_class_name": "PALADIN",
     "url": "/archetypes/685/tourist-paladin",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [109324, 105556, 103634, 95350, 98704, 106374, 105682, 107757]
+      "components": [109324, 105556, 107759, 101162, 107757, 103634, 106374, 110757]
     },
     "wild_ccp_signature_core": null
   },
@@ -7302,9 +7302,9 @@
     "player_class_name": "MAGE",
     "url": "/archetypes/686/tourist-mage",
     "standard_ccp_signature_core": {
-      "as_of": "2024-08-17T20:00:16.858Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [102160, 106306, 106446, 109440, 106444, 113111, 106433, 109262]
+      "components": [99221, 101875, 98762, 101939, 98768, 76310, 90856, 106446]
     },
     "wild_ccp_signature_core": null
   },
@@ -7315,9 +7315,9 @@
     "player_class_name": "SHAMAN",
     "url": "/archetypes/687/pirate-shaman",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [106614, 103548, 106584, 105500, 96628, 95350, 106620, 102983]
+      "components": [96628, 103548, 106614, 95350, 106620, 97671, 106584, 98105]
     },
     "wild_ccp_signature_core": null
   },
@@ -7380,9 +7380,9 @@
     "player_class_name": "DEATHKNIGHT",
     "url": "/archetypes/692/corpsicle-death-knight",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T02:38:23.851Z",
       "format": 2,
-      "components": [108436, 107720, 101012, 104633, 107775, 104635, 106303, 107926]
+      "components": [108436, 107720, 107775, 107719, 101012, 104633, 100101, 104635]
     },
     "wild_ccp_signature_core": null
   },
@@ -7406,9 +7406,9 @@
     "player_class_name": "DRUID",
     "url": "/archetypes/694/concierge-druid",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [104596, 104665, 106369, 107776, 109440, 106306, 105893, 104583]
+      "components": [107776, 109440, 106306, 104596, 104665, 105893, 106369, 101051]
     },
     "wild_ccp_signature_core": null
   },
@@ -7441,9 +7441,9 @@
     "player_class_name": "WARRIOR",
     "url": "/archetypes/697/odyn-warrior",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [97061, 92266, 97697, 100875, 98520, 97680, 102175, 91888]
+      "components": [110785, 97061, 97697, 92266, 108431, 100875, 102407, 97332]
     },
     "wild_ccp_signature_core": null
   },
@@ -7467,9 +7467,9 @@
     "player_class_name": "SHAMAN",
     "url": "/archetypes/202/evolve-shaman",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [76322, 106535, 105500, 95454, 111382, 100019, 102983, 106620]
+      "components": [76322, 95454, 106535, 105500, 111382, 106620, 102172, 108625]
     },
     "wild_ccp_signature_core": null
   },
@@ -7480,9 +7480,9 @@
     "player_class_name": "SHAMAN",
     "url": "/archetypes/519/rainbow-shaman",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [106303, 96628, 106616, 95350, 92232, 101097, 106620, 100019]
+      "components": [98704, 96628, 101097, 106620, 106303, 95350, 106616, 106582]
     },
     "wild_ccp_signature_core": null
   },
@@ -7506,9 +7506,87 @@
     "player_class_name": "ROGUE",
     "url": "/archetypes/701/amalgam-rogue",
     "standard_ccp_signature_core": {
-      "as_of": "2024-09-12T10:21:21.066Z",
+      "as_of": "2024-10-01T14:42:56.201Z",
       "format": 2,
-      "components": [97638, 108950, 111377, 97915, 102219, 103346, 103343, 98105]
+      "components": [108950, 97915, 97638, 111377, 103346, 97825, 102219, 98105]
+    },
+    "wild_ccp_signature_core": null
+  },
+  {
+    "id": 702,
+    "name": "Dollhouse Druid",
+    "player_class": 2,
+    "player_class_name": "DRUID",
+    "url": "/archetypes/702/dollhouse-druid",
+    "standard_ccp_signature_core": {
+      "as_of": "2024-10-01T14:42:56.201Z",
+      "format": 2,
+      "components": [100093, 104575, 108337, 110795, 104596, 104665, 95394, 97627]
+    },
+    "wild_ccp_signature_core": null
+  },
+  {
+    "id": 703,
+    "name": "Jammin Hunter",
+    "player_class": 3,
+    "player_class_name": "HUNTER",
+    "url": "/archetypes/703/jammin-hunter",
+    "standard_ccp_signature_core": {
+      "as_of": "2024-10-01T14:42:56.201Z",
+      "format": 2,
+      "components": [97362, 106714, 91495, 110776, 90808, 91496, 107767, 102902]
+    },
+    "wild_ccp_signature_core": null
+  },
+  {
+    "id": 704,
+    "name": "Fishing Priest",
+    "player_class": 6,
+    "player_class_name": "PRIEST",
+    "url": "/archetypes/704/fishing-priest",
+    "standard_ccp_signature_core": {
+      "as_of": "2024-10-01T14:42:56.201Z",
+      "format": 2,
+      "components": [105815, 106636, 106709, 109326, 111462, 109323, 90952, 102224]
+    },
+    "wild_ccp_signature_core": null
+  },
+  {
+    "id": 705,
+    "name": "Swarm Death Knight",
+    "player_class": 1,
+    "player_class_name": "DEATHKNIGHT",
+    "url": "/archetypes/705/swarm-death-knight",
+    "standard_ccp_signature_core": {
+      "as_of": "2024-10-01T14:42:56.201Z",
+      "format": 2,
+      "components": [80818, 86190, 78342, 102228, 102224, 78352, 111318, 80819]
+    },
+    "wild_ccp_signature_core": null
+  },
+  {
+    "id": 706,
+    "name": "Dungar Hunter",
+    "player_class": 3,
+    "player_class_name": "HUNTER",
+    "url": "/archetypes/706/dungar-hunter",
+    "standard_ccp_signature_core": {
+      "as_of": "2024-10-01T14:42:56.201Z",
+      "format": 2,
+      "components": [101033, 103431, 110859, 110783, 106390, 102902, 107769, 110775]
+    },
+    "wild_ccp_signature_core": null
+  },
+  {
+    "id": 707,
+    "name": "Dungar Shaman",
+    "player_class": 8,
+    "player_class_name": "SHAMAN",
+    "url": "/archetypes/707/dungar-shaman",
+    "standard_ccp_signature_core": {
+      "as_of": "2024-10-01T14:42:56.201Z",
+      "format": 2,
+      "components": [102902, 110859, 76293, 103431, 106574, 101482, 110848, 103332]
     },
     "wild_ccp_signature_core": null
   }
