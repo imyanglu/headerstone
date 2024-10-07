@@ -92,11 +92,6 @@ const ClientSection = ({ decks }: { decks: DeckByHs[] }) => {
         </div>
         <div className="ml-auto relative z-[3] mr-[24px] flex items-center">
           <a
-            href="/rank"
-            className="flex   px-[16px] text-[12px] sm:text-[16px] py-[4px]  rounded-[6px]  font-bold  text-[#fff]">
-            亚服标准榜
-          </a>
-          <a
             href="/cards/query"
             className="flex ml-[4px] sm:ml-[12px]  text-[12px] px-[16px] sm:text-[16px] py-[4px]  rounded-[6px]  font-bold  text-[#fff]">
             卡牌库
